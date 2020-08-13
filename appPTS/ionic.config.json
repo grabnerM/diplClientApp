@@ -1,0 +1,7 @@
+{
+  "name": "appPTS",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
