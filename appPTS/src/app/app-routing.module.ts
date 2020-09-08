@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CourseComponent } from './course/course.component';
 import { SettingsComponent } from './settings/settings.component';
+import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
 ];
 @NgModule({
   imports: [
+    CommonModule,
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
   exports: [RouterModule]

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Geolocation } from '@capacitor/core';
 import { Map, tileLayer, marker, latLng, icon, Routing } from 'leaflet';
 import 'leaflet-routing-machine';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -11,11 +12,13 @@ import 'leaflet-routing-machine';
 })
 export class HomeComponent implements OnInit {
 
+  interval: any;
   map: Map;
   start: any;
   private wp = [];
   route: any;
   currentLocation: any;
+  public tracking: boolean = false;
 
   constructor(private router: Router) {
     this.getLocation();
@@ -55,27 +58,40 @@ export class HomeComponent implements OnInit {
       iconAnchor: [20,20]
     })
 
-    this.wp.push([48.3069, 14.2858])
-    this.wp.push([48.2796, 14.2533])
-    this.wp.push([48.1654, 14.0366])
-    this.wp.push([48.0927, 13.8745])
-
     let l = this.wp.length
 
-    let route = Routing.control({
-      routeWhileDragging: false,
-      plan: Routing.plan(this.wp, {
-        addWaypoints: false,  
-        createMarker: function(j, waypoint) {
-          if (j == 0) {
-            return marker(waypoint.latLng, {icon: pin, draggable: false})
-          } else if (j+1 == l) {
-            return marker(waypoint.latLng, {icon: location, draggable: false})
+    if (l > 0) {
+      let route = Routing.control({
+        routeWhileDragging: false,
+        plan: Routing.plan(this.wp, {
+          addWaypoints: false,  
+          createMarker: function(j, waypoint) {
+            if (j == 0) {
+              return marker(waypoint.latLng, {icon: pin, draggable: false})
+            } else if (j+1 == l) {
+              return marker(waypoint.latLng, {icon: location, draggable: false})
+            }
           }
-        }
-      }),
-      show: false
-    }).addTo(this.map);
+        }),
+        show: false
+      }).addTo(this.map);
+    }
   }
   
+  changeTracking() {
+    this.tracking = !this.tracking
+
+    console.log(this.tracking)
+
+    if (this.tracking) {
+      this.interval = setInterval(function() {
+        /*this.getLocation()
+        this.wp.push(this.currentLocation)
+        this.generateRoute()*/
+        console.log('test123')
+      }, 6000);
+    } else {
+      clearInterval(this.interval);
+    }
+  }
 }
