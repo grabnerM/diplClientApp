@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Geolocation } from '@capacitor/core';
 import { Map, tileLayer, marker, latLng, icon, Routing } from 'leaflet';
 import 'leaflet-routing-machine';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +20,6 @@ export class HomeComponent implements OnInit {
   public tracking: boolean = false;
 
   constructor(private router: Router) {
-    this.getLocation();
   }
 
   ngOnInit() {
@@ -29,23 +27,34 @@ export class HomeComponent implements OnInit {
 
   ionViewDidEnter() {
     this.map = new Map("map").setView([48.1654, 14.0366], 13);
-    this.generateRoute();
-  }
 
-  async getLocation() {
-    const position = await Geolocation.getCurrentPosition()
-    if (position.coords.latitude != null) {
-      this.currentLocation = [position.coords.latitude, position.coords.longitude]
-    } else {
-    }
-  }
-
-  generateRoute() {
     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' + 
                    '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
     }).addTo(this.map);
 
+
+    this.generateRoute()
+
+    this.getLocation();
+  }
+
+  async getLocation() {
+    console.log('why')
+    const position = await Geolocation.getCurrentPosition()
+    console.log(position)
+    if (position.coords.latitude != null) {
+      this.currentLocation = [position.coords.latitude, position.coords.longitude]
+      console.log(this.wp)
+      console.log([position.coords.latitude, position.coords.longitude])
+      //this.wp.push([position.coords.latitude, position.coords.longitude])
+      console.log(this.wp)
+      //this.generateRoute
+      console.log('fuck')
+    }
+  }
+
+  generateRoute() {
     let pin = icon({
       iconUrl: 'assets/icon/pin.svg',
       iconSize: [40,40],
@@ -61,7 +70,7 @@ export class HomeComponent implements OnInit {
     let l = this.wp.length
 
     if (l > 0) {
-      let route = Routing.control({
+      Routing.control({
         routeWhileDragging: false,
         plan: Routing.plan(this.wp, {
           addWaypoints: false,  
@@ -79,17 +88,13 @@ export class HomeComponent implements OnInit {
   }
   
   changeTracking() {
+    console.log(this.wp)
     this.tracking = !this.tracking
 
     console.log(this.tracking)
 
     if (this.tracking) {
-      this.interval = setInterval(function() {
-        /*this.getLocation()
-        this.wp.push(this.currentLocation)
-        this.generateRoute()*/
-        console.log('test123')
-      }, 6000);
+      this.interval = setInterval(this.getLocation, 6000);
     } else {
       clearInterval(this.interval);
     }
