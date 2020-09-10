@@ -28,11 +28,6 @@ export class HomeComponent implements OnInit {
   ionViewDidEnter() {
     this.map = new Map("map").setView([48.1654, 14.0366], 13);
 
-    tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' + 
-                   '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
-    }).addTo(this.map);
-
 
     this.generateRoute()
 
@@ -55,6 +50,11 @@ export class HomeComponent implements OnInit {
   }
 
   generateRoute() {
+    tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' + 
+                   '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+    }).addTo(this.map);
+
     let pin = icon({
       iconUrl: 'assets/icon/pin.svg',
       iconSize: [40,40],
