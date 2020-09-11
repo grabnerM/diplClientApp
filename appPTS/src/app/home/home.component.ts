@@ -43,9 +43,8 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  generateRoute() {
-    //uses async -> throws error
-    this.getLocation()
+  async generateRoute() {
+    await this.getLocation()
 
     console.log(this.wp)
 
@@ -90,8 +89,9 @@ export class HomeComponent implements OnInit {
     if (this.tracking) {
       this.generateRoute()
       document.getElementById('tracking').innerHTML = 'Stop Tracking'
-      //cant call function using async in an interval
-      this.interval = setInterval(this.generateRoute, 6000);
+      this.interval = setInterval(() => {
+        this.generateRoute()
+      }, 6000);
     } else {
       document.getElementById('tracking').innerHTML = 'Start Tracking'
       clearInterval(this.interval);
