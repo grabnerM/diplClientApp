@@ -94,8 +94,10 @@ export class HomeComponent implements OnInit {
     console.log(this.tracking)
 
     if (this.tracking) {
+      document.getElementById('tracking').innerHTML = 'Stop Tracking'
       this.interval = setInterval(this.getLocation, 6000);
     } else {
+      document.getElementById('tracking').innerHTML = 'Start Tracking'
       clearInterval(this.interval);
     }
   }

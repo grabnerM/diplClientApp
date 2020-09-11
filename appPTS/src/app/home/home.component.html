@@ -7,11 +7,6 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div id="map" style="height:100%"></div>
-</ion-content>
-
-<!--
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -19,11 +14,10 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="map" style="height:100%"></div>
+  <div id="map" style="height:90%"></div>
 
-  <ion-button color="success" (click)="changeTracking()">Start Tracking</ion-button>
+  <ion-button color="success" id="tracking" (click)="changeTracking()">Start Tracking</ion-button>
 </ion-content>
--->
 
 <!--
   <ion-button *ngIf="!tracking" color="success" (click)="changeTracking()">Start Tracking</ion-button>
