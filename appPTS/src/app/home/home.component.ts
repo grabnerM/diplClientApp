@@ -11,7 +11,7 @@ import 'leaflet-routing-machine';
 })
 export class HomeComponent implements OnInit {
 
-  interval: any;
+  private interval: any;
   map: Map;
   start: any;
   private wp = [];
@@ -28,32 +28,26 @@ export class HomeComponent implements OnInit {
   ionViewDidEnter() {
     this.map = new Map("map").setView([48.1654, 14.0366], 13);
 
-
-    this.generateRoute()
-
-    this.getLocation();
-  }
-
-  async getLocation() {
-    console.log('why')
-    const position = await Geolocation.getCurrentPosition()
-    console.log(position)
-    if (position.coords.latitude != null) {
-      this.currentLocation = [position.coords.latitude, position.coords.longitude]
-      console.log(this.wp)
-      console.log([position.coords.latitude, position.coords.longitude])
-      //this.wp.push([position.coords.latitude, position.coords.longitude])
-      console.log(this.wp)
-      //this.generateRoute
-      console.log('fuck')
-    }
-  }
-
-  generateRoute() {
     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' + 
                    '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
     }).addTo(this.map);
+  }
+
+  async getLocation() {
+    const position = await Geolocation.getCurrentPosition()
+    console.log(position)
+    if (position.coords.latitude != null) {
+      this.currentLocation = [position.coords.latitude, position.coords.longitude]
+      this.wp.push(this.currentLocation)
+    }
+  }
+
+  generateRoute() {
+    //uses async -> throws error
+    this.getLocation()
+
+    console.log(this.wp)
 
     let pin = icon({
       iconUrl: 'assets/icon/pin.svg',
@@ -94,8 +88,10 @@ export class HomeComponent implements OnInit {
     console.log(this.tracking)
 
     if (this.tracking) {
+      this.generateRoute()
       document.getElementById('tracking').innerHTML = 'Stop Tracking'
-      this.interval = setInterval(this.getLocation, 6000);
+      //cant call function using async in an interval
+      this.interval = setInterval(this.generateRoute, 6000);
     } else {
       document.getElementById('tracking').innerHTML = 'Start Tracking'
       clearInterval(this.interval);
