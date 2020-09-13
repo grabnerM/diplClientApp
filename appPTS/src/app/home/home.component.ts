@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   private wp = [];
   route: any;
   currentLocation: any;
+  private routing: any
   public tracking: boolean = false;
 
   constructor(private router: Router) {
@@ -39,6 +40,13 @@ export class HomeComponent implements OnInit {
     console.log(position)
     if (position.coords.latitude != null) {
       this.currentLocation = [position.coords.latitude, position.coords.longitude]
+      //Only for testing
+      /*if (this.wp.length == 0) {
+        this.wp.push(this.currentLocation)
+      } else if (this.wp.length == 1) {
+        this.wp.push([48.1654, 14.0366])
+      }*/
+
       this.wp.push(this.currentLocation)
     }
   }
@@ -46,9 +54,7 @@ export class HomeComponent implements OnInit {
   async generateRoute() {
     await this.getLocation()
 
-    console.log(this.wp)
-
-    let pin = icon({
+    /*let pin = icon({
       iconUrl: 'assets/icon/pin.svg',
       iconSize: [40,40],
       iconAnchor: [20,20]
@@ -58,20 +64,24 @@ export class HomeComponent implements OnInit {
       iconUrl: 'assets/icon/location.svg',
       iconSize: [40,40],
       iconAnchor: [20,20]
-    })
+    })*/
 
     let l = this.wp.length
 
     if (l > 0) {
-      Routing.control({
+      if (l >= 2) {
+        this.map.removeControl(this.routing)
+      }
+
+      this.routing = Routing.control({
         routeWhileDragging: false,
         plan: Routing.plan(this.wp, {
           addWaypoints: false,  
           createMarker: function(j, waypoint) {
             if (j == 0) {
-              return marker(waypoint.latLng, {icon: pin, draggable: false})
+              return marker(waypoint.latLng, {draggable: false})
             } else if (j+1 == l) {
-              return marker(waypoint.latLng, {icon: location, draggable: false})
+              return marker(waypoint.latLng, {draggable: false})
             }
           }
         }),
