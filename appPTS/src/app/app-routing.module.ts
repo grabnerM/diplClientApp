@@ -1,30 +1,40 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { CourseComponent } from './course/course.component';
-import { SettingsComponent } from './settings/settings.component';
+import { HomeComponent } from './components/home/home.component';
+import { CourseComponent } from './components/course/course.component';
+import { SettingsComponent } from './components/settings/settings.component';
 import { CommonModule } from '@angular/common';
+import { AuthenticationComponent } from './components/authentication/authentication.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: AuthenticationComponent
   },
   {
     path: 'home',
     component: HomeComponent,
-    pathMatch: 'full'
+    canActivate: [ AuthGuard ]
   },
   {
     path: 'course',
     component: CourseComponent,
-    pathMatch: 'full'
+    canActivate: [ AuthGuard ]
   },
   {
     path: 'settings',
     component: SettingsComponent,
-    pathMatch: 'full'
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: '**',
+    component: AuthenticationComponent
   }
 ];
 @NgModule({
