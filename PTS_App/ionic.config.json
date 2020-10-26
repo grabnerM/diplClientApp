@@ -1,7 +1,0 @@
-{
-  "name": "PTS_App",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
