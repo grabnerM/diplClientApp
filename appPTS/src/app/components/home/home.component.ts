@@ -41,13 +41,15 @@ export class HomeComponent implements OnInit {
     if (position.coords.latitude != null) {
       this.currentLocation = [position.coords.latitude, position.coords.longitude]
       //Only for testing
-      /*if (this.wp.length == 0) {
-        this.wp.push(this.currentLocation)
+      if (this.wp.length == 0) {
+        this.wp.push([48.151417, 14.020848])
       } else if (this.wp.length == 1) {
-        this.wp.push([48.1654, 14.0366])
-      }*/
+        this.wp.push([48.163901, 14.033382])
+      } else if (this.wp.length == 2) {
+        this.wp.push([48.170509, 14.051609])
+      }
 
-      this.wp.push(this.currentLocation)
+      //this.wp.push(this.currentLocation)
     }
   }
 

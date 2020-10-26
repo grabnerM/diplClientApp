@@ -17,12 +17,12 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    CommonModule,
     BrowserModule, 
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    CommonModule
   ],
   providers: [
     StatusBar,

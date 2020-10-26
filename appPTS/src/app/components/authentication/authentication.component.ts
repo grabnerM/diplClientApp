@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../service/auth.service';
 import { AlertController } from '@ionic/angular';
-import { async } from 'rxjs/internal/scheduler/async';
 
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.component.html',
-  styleUrls: ['./authentication.component.scss'],
+  styleUrls: ['./authentication.component.scss']
 })
 export class AuthenticationComponent implements OnInit {
 
@@ -19,6 +17,7 @@ export class AuthenticationComponent implements OnInit {
 
   username: string;
   password: string;
+  segmentModel = "login";
 
   constructor(
     private auth: AuthService,
@@ -42,6 +41,16 @@ export class AuthenticationComponent implements OnInit {
         await alert.present()
       }
     })
+  }
+
+  register() {
+
+  }
+
+  segmentChanged(event) {
+    console.log(this.segmentModel)
+
+    console.log(event)
   }
 
 }

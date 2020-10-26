@@ -9,6 +9,7 @@ import { take, map, switchMap } from 'rxjs/operators';
 
 const helper = new JwtHelperService();
 const TOKEN_KEY = 'jwt-token';
+const baseUrl = 'https://randomuser.me/api/';
 
 @Injectable({
   providedIn: 'root'
@@ -53,8 +54,7 @@ export class AuthService {
       return of(null)
     }
 
-    //change url
-    return this.http.get('https://randomuser.me/api/').pipe(
+    return this.http.get(baseUrl).pipe(
       take(1),
       map(res => {
         //return res

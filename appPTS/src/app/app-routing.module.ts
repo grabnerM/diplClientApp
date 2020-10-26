@@ -42,6 +42,9 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
-  exports: [RouterModule]
+  exports: [
+    RouterModule,
+    CommonModule
+  ]
 })
 export class AppRoutingModule {}
