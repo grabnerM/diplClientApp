@@ -10,14 +10,29 @@ import { AlertController } from '@ionic/angular';
 })
 export class AuthenticationComponent implements OnInit {
 
-  credentials = {
-    email: 'office@pts.com',
-    pw: '1234'
+  credentialsLogin = {
+    email: '',
+    pw: ''
   }
 
-  username: string;
-  password: string;
+  credentialsRegister = {
+    username: '',
+    firstname: '',
+    lastname: '',
+    pw: '',
+    pwRepeat: '',
+    sex: '',
+    email: '',
+    emailRepeat: '',
+    number: '',
+    zip: '',
+    city: '',
+    street: '',
+    houseno: ''
+  }
+
   segmentModel = "login";
+  secondPage = false;
 
   constructor(
     private auth: AuthService,
@@ -28,7 +43,7 @@ export class AuthenticationComponent implements OnInit {
   ngOnInit() {}
 
   login() {
-    this.auth.login(this.credentials).subscribe(async res => {
+    this.auth.login(this.credentialsLogin).subscribe(async res => {
       if (res) {
         this.router.navigateByUrl('/home')
       } else {
@@ -47,10 +62,42 @@ export class AuthenticationComponent implements OnInit {
 
   }
 
-  segmentChanged(event) {
-    console.log(this.segmentModel)
+  next() {
+    if (this.credentialsRegister.username == '' && this.credentialsRegister.username.length < 3) {
+      
+    } 
+    if (this.credentialsRegister.firstname.length < 3) {
 
-    console.log(event)
+    }
+    if (this.credentialsRegister.lastname.length < 3) {
+
+    }
+    if (this.credentialsRegister.pw) {
+      
+    }
+  }
+
+  segmentChanged(event) {
+    this.credentialsLogin = {
+      email: '',
+      pw: ''
+    }
+  
+    this.credentialsRegister = {
+      username: '',
+      firstname: '',
+      lastname: '',
+      pw: '',
+      pwRepeat: '',
+      sex: '',
+      email: '',
+      emailRepeat: '',
+      number: '',
+      zip: '',
+      city: '',
+      street: '',
+      houseno: ''
+    }
   }
 
 }

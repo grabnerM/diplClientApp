@@ -9,7 +9,7 @@
   <ion-card>
     <ion-card-header>
       <ion-toolbar>
-        <ion-segment color="tertiary" scrollable mode="md" [(ngModel)]="segmentModel" value="login">
+        <ion-segment color="tertiary" scrollable mode="md" [(ngModel)]="segmentModel" value="login" (ionChange)="segmentChanged($event)">
           <ion-segment-button value="login">
             <ion-label>Login</ion-label>
           </ion-segment-button>
@@ -20,100 +20,74 @@
       </ion-toolbar>
     </ion-card-header>
 
-    <div *ngIf='true'>
-      <ion-card-content>
+    <ion-card-content *ngIf="segmentModel == 'login'">
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="credentialsLogin.email"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="credentialsLogin.pw"></ion-input>
+      </ion-item>
+
+      <ion-button (click)="login()" expand="block">Login</ion-button>
+
+    </ion-card-content>
+
+    <ion-card-content *ngIf="segmentModel == 'register'">
+      <form (ngSubmit)="next()">
+        <ion-item lines="none">
+          <ion-label position="stacked">Username</ion-label>
+          <ion-input inputmode="text" minlength=3 required="true" placeholder="Username" name="uname" [(ngModel)]="credentialsRegister.username"></ion-input>
+        </ion-item>
 
         <ion-item lines="none">
-          <ion-label position="stacked">Email</ion-label>
-          <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="credentials.email"></ion-input>
+          <ion-label position="stacked">Firstname</ion-label>
+          <ion-input type="text" placeholder="Firstname" name="fname" [(ngModel)]="credentialsRegister.firstname"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label position="stacked">Lastname</ion-label>
+          <ion-input type="text" placeholder="Lastname" name="lname" [(ngModel)]="credentialsRegister.lastname"></ion-input>
         </ion-item>
 
         <ion-item lines="none">
           <ion-label position="stacked">Password</ion-label>
-          <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="credentials.pw">
-          </ion-input>
-        </ion-item>
-
-        <ion-button (click)="login()" expand="block">Login</ion-button>
-
-      </ion-card-content>
-    </div>
-
-    <div *ngIf="false">
-      <ion-card-content>
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <ion-col>
-                <ion-item lines="none">
-                  <ion-label position="stacked">Username</ion-label>
-                  <ion-input type="text" placeholder="Username" name="uname" [(ngModel)]="credentials.email"></ion-input>
-                </ion-item>
-              </ion-col>
-            </ion-col>
-          </ion-row>
-
-          <ion-row>
-            <ion-col>
-              <ion-item lines="none">
-                <ion-label position="stacked">Firstname</ion-label>
-                <ion-input type="text" placeholder="Firstname" name="fname" [(ngModel)]="credentials.email"></ion-input>
-              </ion-item>
-            </ion-col>
-
-            <ion-col>
-              <ion-item lines="none">
-                <ion-label position="stacked">Lastname</ion-label>
-                <ion-input type="text" placeholder="Lastname" name="lname" [(ngModel)]="credentials.email"></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-
-          <ion-row>
-            <ion-col>
-              <ion-item lines="none">
-                <ion-label position="stacked">Password</ion-label>
-                <ion-input type="password" placeholder="Password" name="pwd" [(ngModel)]="credentials.email"></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-
-          <ion-row>
-            <ion-col>
-              <ion-item lines="none">
-                <ion-label position="stacked">Repeat Password</ion-label>
-                <ion-input type="password" placeholder="Repeat Password" name="rPwd" [(ngModel)]="credentials.email"></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-
-          <ion-row>
-            <ion-col>
-              <ion-item lines="none">
-                <ion-label position="stacked">Sex</ion-label>
-                <ion-input type="text" placeholder="Sex" name="sex" [(ngModel)]="credentials.email"></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-
-        <!--
-
-        <ion-item lines="none">
-          <ion-label position="stacked">Email</ion-label>
-          <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="credentials.email"></ion-input>
+          <ion-input type="password" placeholder="Password" name="pwd" [(ngModel)]="credentialsRegister.pw"></ion-input>
         </ion-item>
 
         <ion-item lines="none">
-          <ion-label position="stacked">Phone number</ion-label>
-          <ion-input type="text" placeholder="Phone number" name="phone" [(ngModel)]="credentials.email"></ion-input>
+          <ion-label position="stacked">Repeat Password</ion-label>
+          <ion-input type="password" placeholder="Repeat Password" name="rPwd" [(ngModel)]="credentialsRegister.pwRepeat"></ion-input>
         </ion-item>
 
-        -->
+        <ion-item lines="none">
+          <ion-label position="stacked">Sex</ion-label>
+          <ion-input type="text" placeholder="Sex" name="sex" [(ngModel)]="credentialsRegister.sex"></ion-input>
+        </ion-item>
 
-        <ion-button (click)="login()" expand="block">Register</ion-button>
-      </ion-card-content>
-    </div>
+        <ion-button type="submit" expand="block">Next</ion-button>
+      </form>
+      
+      <ion-button *ngIf="secondPage" (click)="register()" expand="block">Register</ion-button>
+
+      <!--
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="credentials.email"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Phone number</ion-label>
+        <ion-input type="text" placeholder="Phone number" name="phone" [(ngModel)]="credentials.email"></ion-input>
+      </ion-item>
+
+      -->
+
+    </ion-card-content>
   </ion-card>
  
 </ion-content>
