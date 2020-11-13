@@ -5,3 +5,11 @@ ion-grid {
 ion-col {
     padding: 0%;
 }
+
+.required {
+    color: red;
+}
+
+.invalid {
+    border: 1px solid #ea6153;
+}

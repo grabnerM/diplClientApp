@@ -49,8 +49,8 @@ export class AuthService {
     )
   }
 
-  login(credentials: {email: string, pw: string}): Observable<any> {
-    if (credentials.email != 'office@pts.com' || credentials.pw != '1234') {
+  login(credentials: {email: string, password: string}): Observable<any> {
+    if (credentials.email != 'office@pts.com' || credentials.password != '1234') {
       return of(null)
     }
 

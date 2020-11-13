@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule, 
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,

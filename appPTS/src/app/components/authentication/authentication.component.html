@@ -1,79 +1,170 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>PTS App Login</ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-title>PTS App Login</ion-title>
+    </ion-toolbar>
 </ion-header>
- 
+
 <ion-content class="ion-padding">
-  
-  <ion-card>
-    <ion-card-header>
-      <ion-toolbar>
-        <ion-segment color="tertiary" scrollable mode="md" [(ngModel)]="segmentModel" value="login" (ionChange)="segmentChanged($event)">
-          <ion-segment-button value="login">
-            <ion-label>Login</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="register">
-            <ion-label>Register</ion-label>
-          </ion-segment-button>
-        </ion-segment>
-      </ion-toolbar>
-    </ion-card-header>
 
-    <ion-card-content *ngIf="segmentModel == 'login'">
+    <ion-card>
+        <ion-card-header>
+            <ion-toolbar>
+                <ion-segment color="tertiary" scrollable mode="md" [(ngModel)]="segmentModel" value="login" (ionChange)="segmentChanged($event)">
+                    <ion-segment-button value="login">
+                        <ion-label>Login</ion-label>
+                    </ion-segment-button>
+                    <ion-segment-button value="register">
+                        <ion-label>Register</ion-label>
+                    </ion-segment-button>
+                </ion-segment>
+            </ion-toolbar>
+        </ion-card-header>
 
-      <ion-item lines="none">
-        <ion-label position="stacked">Email</ion-label>
-        <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="credentialsLogin.email"></ion-input>
-      </ion-item>
+        <ion-card-content *ngIf="segmentModel == 'login'">
 
-      <ion-item lines="none">
-        <ion-label position="stacked">Password</ion-label>
-        <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="credentialsLogin.pw"></ion-input>
-      </ion-item>
+            <ion-item lines="none">
+                <ion-label position="stacked">Email</ion-label>
+                <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="credentialsLogin.email"></ion-input>
+            </ion-item>
 
-      <ion-button (click)="login()" expand="block">Login</ion-button>
+            <ion-item lines="none">
+                <ion-label position="stacked">Password</ion-label>
+                <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="credentialsLogin.password"></ion-input>
+            </ion-item>
 
-    </ion-card-content>
+            <ion-button (click)="login()" expand="block">Login</ion-button>
 
-    <ion-card-content *ngIf="segmentModel == 'register'">
-      <form (ngSubmit)="next()">
-        <ion-item lines="none">
-          <ion-label position="stacked">Username</ion-label>
-          <ion-input inputmode="text" minlength=3 required="true" placeholder="Username" name="uname" [(ngModel)]="credentialsRegister.username"></ion-input>
-        </ion-item>
+        </ion-card-content>
 
-        <ion-item lines="none">
-          <ion-label position="stacked">Firstname</ion-label>
-          <ion-input type="text" placeholder="Firstname" name="fname" [(ngModel)]="credentialsRegister.firstname"></ion-input>
-        </ion-item>
+        <ion-card-content *ngIf="segmentModel == 'register'">
+            <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+                <ion-item lines="none">
+                    <ion-label position="stacked">
+                        Username
+                        <span *ngIf="formInputIsRequired('username')" class="required">&#42;</span>
+                    </ion-label>
+                    <ion-input formControlName="username" type="text" placeholder="Username" name="uname" [class.invalid]="!formRegister.controls.username.valid  && formRegister.controls.username.dirty"></ion-input>
+                </ion-item>
 
-        <ion-item lines="none">
-          <ion-label position="stacked">Lastname</ion-label>
-          <ion-input type="text" placeholder="Lastname" name="lname" [(ngModel)]="credentialsRegister.lastname"></ion-input>
-        </ion-item>
+                <ion-item *ngIf="formRegister.controls.username.pending">
+                    <p>Checking username...</p>
+                </ion-item>
 
-        <ion-item lines="none">
-          <ion-label position="stacked">Password</ion-label>
-          <ion-input type="password" placeholder="Password" name="pwd" [(ngModel)]="credentialsRegister.pw"></ion-input>
-        </ion-item>
+                <ion-item *ngIf="!formRegister.controls.username.valid && !formRegister.controls.username.pending && formRegister.controls.username.dirty">
+                    <p>Sorry, that username can not be used!</p>
+                </ion-item>
 
-        <ion-item lines="none">
-          <ion-label position="stacked">Repeat Password</ion-label>
-          <ion-input type="password" placeholder="Repeat Password" name="rPwd" [(ngModel)]="credentialsRegister.pwRepeat"></ion-input>
-        </ion-item>
+                <ion-item lines="none">
+                    <ion-label position="stacked">
+                        Firstname
+                    </ion-label>
+                    <ion-input formControlName="firstname" type="text" placeholder="Firstname" name="fname"></ion-input>
+                </ion-item>
 
-        <ion-item lines="none">
-          <ion-label position="stacked">Sex</ion-label>
-          <ion-input type="text" placeholder="Sex" name="sex" [(ngModel)]="credentialsRegister.sex"></ion-input>
-        </ion-item>
+                <ion-item *ngIf="!formRegister.controls.firstname.valid && !formRegister.controls.firstname.pending && formRegister.controls.firstname.dirty">
+                    <p>Sorry, that username can not be used!</p>
+                </ion-item>
 
-        <ion-button type="submit" expand="block">Next</ion-button>
-      </form>
-      
-      <ion-button *ngIf="secondPage" (click)="register()" expand="block">Register</ion-button>
+                <ion-item lines="none">
+                    <ion-label position="stacked">
+                        Lastname
+                    </ion-label>
+                    <ion-input formControlName="lastname" type="text" placeholder="Lastname" name="lname"></ion-input>
+                </ion-item>
 
-      <!--
+                <ion-item *ngIf="!formRegister.controls.lastname.valid && !formRegister.controls.lastname.pending && formRegister.controls.lastname.dirty">
+                    <p>Sorry, that username can not be used!</p>
+                </ion-item>
+
+                <ion-item lines="none">
+                    <ion-label position="stacked">
+                        Password
+                    </ion-label>
+                    <ion-input formControlName="rPassword" type="password" placeholder="Password" name="pwd" [class.invalid]="!formRegister.controls.rPassword.valid  && formRegister.controls.rPassword.dirty"></ion-input>
+                </ion-item>
+
+                <ion-item *ngIf="!formRegister.controls.rPassword.valid  && formRegister.controls.rPassword.dirty">
+                    <p>Please enter a valid password.</p>
+                </ion-item>
+
+                <ion-item lines="none">
+                    <ion-label position="stacked">
+                        Confirm Password
+                    </ion-label>
+                    <ion-input formControlName="cPassword" type="password" placeholder="Confirm Password" name="cPwd" [class.invalid]="!formRegister.controls.cPassword.valid  && formRegister.controls.cPassword.dirty"></ion-input>
+                </ion-item>
+
+                <ion-item lines="none">
+                    <ion-label position="stacked">Sex</ion-label>
+                    <ion-select formControlName="sex" placeholder="Please select gender">
+                        <ion-select-option value="male">Male</ion-select-option>
+                        <ion-select-option value="female">Female</ion-select-option>
+                        <ion-select-option value="diverse">Diverse</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <!--</form>
+
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <ion-item lines="none">
+                    <ion-label position="stacked">
+                        Username
+                        <span *ngIf="formInputIsRequired('username')" class="required">&#42;</span>
+                    </ion-label>
+                    <ion-input formControlName="username" type="text" placeholder="Username" name="uname"></ion-input>
+                </ion-item>
+
+                <ion-item lines="none">
+                    <ion-label position="stacked">
+                        Firstname
+                    </ion-label>
+                    <ion-input formControlName="firstname" type="text" placeholder="Firstname" name="fname"></ion-input>
+                </ion-item>
+
+                <!--<ion-item lines="none">
+                    <ion-label position="stacked">
+                        Firstname
+                    </ion-label>
+                    <ion-input type="text" placeholder="Firstname" name="fname"></ion-input>
+                </ion-item>
+
+                <ion-item lines="none">
+                    <ion-label position="stacked">
+                        Lastname
+                    </ion-label>
+                    <ion-input type="text" placeholder="Lastname" name="lname"></ion-input>
+                </ion-item>
+
+                <ion-item lines="none">
+                    <ion-label position="stacked">
+                        Password
+                        <span *ngIf="formInputIsRequired('username')" class="required">&#42;</span>
+                    </ion-label>
+                    <ion-input type="password" placeholder="Password" name="pwd"></ion-input>
+                </ion-item>
+
+                <ion-item lines="none">
+                    <ion-label position="stacked">
+                        Confirm Password
+                        <span *ngIf="formInputIsRequired('username')" class="required">&#42;</span>
+                    </ion-label>
+                    <ion-input type="password" placeholder="Confirm Password" name="cPwd"></ion-input>
+                </ion-item>
+
+                <ion-item lines="none">
+                    <ion-label position="stacked">Sex</ion-label>
+                    <ion-select>
+                        <ion-select-option value="" checked="true">Please select gender</ion-select-option>
+                        <ion-select-option value="male">Male</ion-select-option>
+                        <ion-select-option value="female">Female</ion-select-option>
+                        <ion-select-option value="diverse">Diverse</ion-select-option>
+                    </ion-select>
+                </ion-item>-->
+
+                <ion-button *ngIf="!secondPage" type="submit" [disabled]="!formRegister.valid" expand="block">Next</ion-button>
+            </form>
+
+
+            <!--
 
       <ion-item lines="none">
         <ion-label position="stacked">Email</ion-label>
@@ -87,7 +178,7 @@
 
       -->
 
-    </ion-card-content>
-  </ion-card>
- 
+        </ion-card-content>
+    </ion-card>
+
 </ion-content>
