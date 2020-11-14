@@ -39,7 +39,7 @@ export class AuthenticationComponent implements OnInit {
       firstname: ['', Validators.compose([Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')])],
       lastname: ['', Validators.compose([Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')])],
       rPassword: ['', Validators.compose([Validators.required, Validators.pattern('^(?=.*)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')])],
-      cPassword: ['', Validators.compose([Validators.required]), PasswordValidator.checkPassword ],
+      cPassword: ['', Validators.compose([Validators.required]), (control => PasswordValidator.confirmPassword(control, this.formRegister, 'rPassword'))],
       sex: ['']
     },
     {

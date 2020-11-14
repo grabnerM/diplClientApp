@@ -43,16 +43,16 @@
                         Username
                         <span *ngIf="formInputIsRequired('username')" class="required">&#42;</span>
                     </ion-label>
-                    <ion-input formControlName="username" type="text" placeholder="Username" name="uname" [class.invalid]="!formRegister.controls.username.valid  && formRegister.controls.username.dirty"></ion-input>
+                    <ion-input formControlName="username" type="text" placeholder="Username" name="uname"></ion-input>
                 </ion-item>
 
-                <ion-item *ngIf="formRegister.controls.username.pending">
+                <div *ngIf="formRegister.controls.username.pending">
                     <p>Checking username...</p>
-                </ion-item>
+                </div>
 
-                <ion-item *ngIf="!formRegister.controls.username.valid && !formRegister.controls.username.pending && formRegister.controls.username.dirty">
-                    <p>Sorry, that username can not be used!</p>
-                </ion-item>
+                <div *ngIf="!formRegister.controls.username.valid && !formRegister.controls.username.pending && formRegister.controls.username.dirty">
+                    Sorry, that username can not be used!
+                </div>
 
                 <ion-item lines="none">
                     <ion-label position="stacked">
@@ -61,9 +61,9 @@
                     <ion-input formControlName="firstname" type="text" placeholder="Firstname" name="fname"></ion-input>
                 </ion-item>
 
-                <ion-item *ngIf="!formRegister.controls.firstname.valid && !formRegister.controls.firstname.pending && formRegister.controls.firstname.dirty">
-                    <p>Sorry, that username can not be used!</p>
-                </ion-item>
+                <div *ngIf="!formRegister.controls.firstname.valid && !formRegister.controls.firstname.pending && formRegister.controls.firstname.dirty">
+                    Sorry, that username can not be used!
+                </div>
 
                 <ion-item lines="none">
                     <ion-label position="stacked">
@@ -72,27 +72,31 @@
                     <ion-input formControlName="lastname" type="text" placeholder="Lastname" name="lname"></ion-input>
                 </ion-item>
 
-                <ion-item *ngIf="!formRegister.controls.lastname.valid && !formRegister.controls.lastname.pending && formRegister.controls.lastname.dirty">
-                    <p>Sorry, that username can not be used!</p>
-                </ion-item>
+                <div *ngIf="!formRegister.controls.lastname.valid && !formRegister.controls.lastname.pending && formRegister.controls.lastname.dirty">
+                    Sorry, that username can not be used!
+                </div>
 
                 <ion-item lines="none">
                     <ion-label position="stacked">
                         Password
                     </ion-label>
-                    <ion-input formControlName="rPassword" type="password" placeholder="Password" name="pwd" [class.invalid]="!formRegister.controls.rPassword.valid  && formRegister.controls.rPassword.dirty"></ion-input>
+                    <ion-input formControlName="rPassword" type="password" placeholder="Password" name="pwd"></ion-input>
                 </ion-item>
 
-                <ion-item *ngIf="!formRegister.controls.rPassword.valid  && formRegister.controls.rPassword.dirty">
-                    <p>Please enter a valid password.</p>
-                </ion-item>
+                <div *ngIf="!formRegister.controls.rPassword.valid  && formRegister.controls.rPassword.dirty">
+                    Please enter a valid password.
+                </div>
 
                 <ion-item lines="none">
                     <ion-label position="stacked">
                         Confirm Password
                     </ion-label>
-                    <ion-input formControlName="cPassword" type="password" placeholder="Confirm Password" name="cPwd" [class.invalid]="!formRegister.controls.cPassword.valid  && formRegister.controls.cPassword.dirty"></ion-input>
+                    <ion-input formControlName="cPassword" type="password" placeholder="Confirm Password" name="cPwd"></ion-input>
                 </ion-item>
+
+                <div *ngIf="formRegister.controls.cPassword.errors?.mustMatch && formRegister.controls.cPassword.dirty">
+                    Passwords must match!
+                </div>
 
                 <ion-item lines="none">
                     <ion-label position="stacked">Sex</ion-label>
