@@ -13,37 +13,39 @@ import { PasswordValidator } from '../../validators/password';
 })
 export class AuthenticationComponent implements OnInit {
 
-  formRegister: FormGroup
+  registerFirstPage: FormGroup
+  registerSecondPage: FormGroup
 
   segmentModel = "register"
-  secondPage = false
+  secondPage = true
   submitAttempt= false
 
   constructor(
     private auth: AuthService,
-    private alertCtrl: AlertController,
     private router: Router,
     private formBuilder: FormBuilder
   ) { 
-    /*this.formRegister = new FormGroup({
-      username: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$')]),
-      firstname: new FormControl('', [Validators.required, Validators.pattern('^(?:.{6,}|)$')]),
-      lastname: new FormControl('', [Validators.required, Validators.pattern('^(?:.{6,}|)$')]),
-      password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$')]),
-      confirmPassword: new FormControl('', [Validators.required]),
-      sex: new FormControl('')
-    })*/
-
-    this.formRegister = formBuilder.group({
+    this.registerFirstPage = formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('^(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$')]), UsernameValidator.checkUsername ],
       firstname: ['', Validators.compose([Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')])],
       lastname: ['', Validators.compose([Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')])],
-      rPassword: ['', Validators.compose([Validators.required, Validators.pattern('^(?=.*)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')])],
-      cPassword: ['', Validators.compose([Validators.required]), (control => PasswordValidator.confirmPassword(control, this.formRegister, 'rPassword'))],
+      rPassword: ['', Validators.compose([Validators.required, Validators.pattern('^(?=.*)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')]), (control => PasswordValidator.confirmPassword(control, this.registerFirstPage, 'cPassword'))],
+      cPassword: ['', Validators.compose([Validators.required]), (control => PasswordValidator.confirmPassword(control, this.registerFirstPage, 'rPassword'))],
       sex: ['']
     },
     {
       updateOn: "blur"
+    })
+
+    this.registerSecondPage = formBuilder.group({
+      email: [''],
+      cEmail: [''],
+      areaCode: [''],
+      phone: [''],
+      zip: [''],
+      city: [''],
+      street: [''],
+      housenumber: ['']
     })
   }
 
@@ -55,9 +57,6 @@ export class AuthenticationComponent implements OnInit {
   */
 
   ngOnInit() {
-  }
-
-  onSubmit() {
   }
 
   /*login() {
@@ -81,16 +80,23 @@ export class AuthenticationComponent implements OnInit {
   }
 
   next() {
-    this.submitAttempt = true
-
-    if (this.formRegister.valid) {
-      console.log("first site success")
+    if (this.registerFirstPage.valid) {
+      this.secondPage = true
+      console.log(this.registerFirstPage.controls['username'].value)
+      console.log(this.registerFirstPage.controls['firstname'].value)
+      console.log(this.registerFirstPage.controls['lastname'].value)
+      console.log(this.registerFirstPage.controls['rPassword'].value)
+      console.log(this.registerFirstPage.controls['sex'].value)
     }
   }
 
+  onSubmit() {
+
+  }
+
   formInputIsRequired(formInput: string) {
-    if (this.formRegister.controls[formInput]) {
-      if (this.formRegister.controls[formInput].hasError('required')) {
+    if (this.registerFirstPage.controls[formInput]) {
+      if (this.registerFirstPage.controls[formInput].hasError('required')) {
         return true;
       }
     }
@@ -99,7 +105,7 @@ export class AuthenticationComponent implements OnInit {
   }
 
   segmentChanged(event) {
-
+    this.secondPage = false
   }
 
 }

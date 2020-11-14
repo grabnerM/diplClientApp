@@ -37,7 +37,7 @@
         </ion-card-content>
 
         <ion-card-content *ngIf="segmentModel == 'register'">
-            <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+            <form [formGroup]="registerFirstPage" *ngIf="!secondPage">
                 <ion-item lines="none">
                     <ion-label position="stacked">
                         Username
@@ -46,11 +46,11 @@
                     <ion-input formControlName="username" type="text" placeholder="Username" name="uname"></ion-input>
                 </ion-item>
 
-                <div *ngIf="formRegister.controls.username.pending">
+                <div *ngIf="registerFirstPage.controls.username.pending">
                     <p>Checking username...</p>
                 </div>
 
-                <div *ngIf="!formRegister.controls.username.valid && !formRegister.controls.username.pending && formRegister.controls.username.dirty">
+                <div *ngIf="!registerFirstPage.controls.username.valid && !registerFirstPage.controls.username.pending && registerFirstPage.controls.username.dirty">
                     Sorry, that username can not be used!
                 </div>
 
@@ -61,7 +61,7 @@
                     <ion-input formControlName="firstname" type="text" placeholder="Firstname" name="fname"></ion-input>
                 </ion-item>
 
-                <div *ngIf="!formRegister.controls.firstname.valid && !formRegister.controls.firstname.pending && formRegister.controls.firstname.dirty">
+                <div *ngIf="!registerFirstPage.controls.firstname.valid && !registerFirstPage.controls.firstname.pending && registerFirstPage.controls.firstname.dirty">
                     Sorry, that username can not be used!
                 </div>
 
@@ -72,7 +72,7 @@
                     <ion-input formControlName="lastname" type="text" placeholder="Lastname" name="lname"></ion-input>
                 </ion-item>
 
-                <div *ngIf="!formRegister.controls.lastname.valid && !formRegister.controls.lastname.pending && formRegister.controls.lastname.dirty">
+                <div *ngIf="!registerFirstPage.controls.lastname.valid && !registerFirstPage.controls.lastname.pending && registerFirstPage.controls.lastname.dirty">
                     Sorry, that username can not be used!
                 </div>
 
@@ -83,7 +83,7 @@
                     <ion-input formControlName="rPassword" type="password" placeholder="Password" name="pwd"></ion-input>
                 </ion-item>
 
-                <div *ngIf="!formRegister.controls.rPassword.valid  && formRegister.controls.rPassword.dirty">
+                <div *ngIf="!registerFirstPage.controls.rPassword.valid  && registerFirstPage.controls.rPassword.dirty">
                     Please enter a valid password.
                 </div>
 
@@ -94,7 +94,7 @@
                     <ion-input formControlName="cPassword" type="password" placeholder="Confirm Password" name="cPwd"></ion-input>
                 </ion-item>
 
-                <div *ngIf="formRegister.controls.cPassword.errors?.mustMatch && formRegister.controls.cPassword.dirty">
+                <div *ngIf="registerFirstPage.controls.cPassword.errors?.mustMatch && registerFirstPage.controls.cPassword.dirty">
                     Passwords must match!
                 </div>
 
@@ -106,81 +106,63 @@
                         <ion-select-option value="diverse">Diverse</ion-select-option>
                     </ion-select>
                 </ion-item>
-                <!--</form>
 
-            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                <ion-item lines="none">
-                    <ion-label position="stacked">
-                        Username
-                        <span *ngIf="formInputIsRequired('username')" class="required">&#42;</span>
-                    </ion-label>
-                    <ion-input formControlName="username" type="text" placeholder="Username" name="uname"></ion-input>
-                </ion-item>
-
-                <ion-item lines="none">
-                    <ion-label position="stacked">
-                        Firstname
-                    </ion-label>
-                    <ion-input formControlName="firstname" type="text" placeholder="Firstname" name="fname"></ion-input>
-                </ion-item>
-
-                <!--<ion-item lines="none">
-                    <ion-label position="stacked">
-                        Firstname
-                    </ion-label>
-                    <ion-input type="text" placeholder="Firstname" name="fname"></ion-input>
-                </ion-item>
-
-                <ion-item lines="none">
-                    <ion-label position="stacked">
-                        Lastname
-                    </ion-label>
-                    <ion-input type="text" placeholder="Lastname" name="lname"></ion-input>
-                </ion-item>
-
-                <ion-item lines="none">
-                    <ion-label position="stacked">
-                        Password
-                        <span *ngIf="formInputIsRequired('username')" class="required">&#42;</span>
-                    </ion-label>
-                    <ion-input type="password" placeholder="Password" name="pwd"></ion-input>
-                </ion-item>
-
-                <ion-item lines="none">
-                    <ion-label position="stacked">
-                        Confirm Password
-                        <span *ngIf="formInputIsRequired('username')" class="required">&#42;</span>
-                    </ion-label>
-                    <ion-input type="password" placeholder="Confirm Password" name="cPwd"></ion-input>
-                </ion-item>
-
-                <ion-item lines="none">
-                    <ion-label position="stacked">Sex</ion-label>
-                    <ion-select>
-                        <ion-select-option value="" checked="true">Please select gender</ion-select-option>
-                        <ion-select-option value="male">Male</ion-select-option>
-                        <ion-select-option value="female">Female</ion-select-option>
-                        <ion-select-option value="diverse">Diverse</ion-select-option>
-                    </ion-select>
-                </ion-item>-->
-
-                <ion-button *ngIf="!secondPage" type="submit" [disabled]="!formRegister.valid" expand="block">Next</ion-button>
+                <ion-button type="submit" [disabled]="!registerFirstPage.valid" expand="block" (click)="next()">Next</ion-button>
             </form>
 
+            <form [formGroup]="registerSecondPage" *ngIf="secondPage" (ngSubmit)="onSubmit()">
+                <ion-item lines="none">
+                    <ion-label position="stacked">
+                        E-Mail
+                    </ion-label>
+                    <ion-input formControlName="email" type="mail" placeholder="E-Mail" name="mail"></ion-input>
+                </ion-item>
 
-            <!--
+                <ion-item lines="none">
+                    <ion-label position="stacked">
+                        Confirm E-Mail
+                    </ion-label>
+                    <ion-input formControlName="cEmail" type="mail" placeholder="Confirm E-Mail" name="cMail"></ion-input>
+                </ion-item>
 
-      <ion-item lines="none">
-        <ion-label position="stacked">Email</ion-label>
-        <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="credentials.email"></ion-input>
-      </ion-item>
+                <ion-item lines="none">
+                    <ion-label position="stacked">
+                        Area Code
+                    </ion-label>
+                    <ion-input formControlName="areaCode" type="text" placeholder="Area Code" name="areaCode"></ion-input>
 
-      <ion-item lines="none">
-        <ion-label position="stacked">Phone number</ion-label>
-        <ion-input type="text" placeholder="Phone number" name="phone" [(ngModel)]="credentials.email"></ion-input>
-      </ion-item>
+                    <ion-label position="stacked">
+                        Phone
+                    </ion-label>
+                    <ion-input formControlName="phone" type="text" placeholder="Phonenumber" name="phone"></ion-input>
+                </ion-item>
 
-      -->
+                <ion-item lines="none">
+                    <ion-label position="stacked">
+                        Zip
+                    </ion-label>
+                    <ion-input formControlName="zip" type="text" placeholder="Zip" name="zip"></ion-input>
+
+                    <ion-label position="stacked">
+                        City
+                    </ion-label>
+                    <ion-input formControlName="city" type="text" placeholder="City" name="city"></ion-input>
+                </ion-item>
+
+                <ion-item lines="none">
+                    <ion-label position="stacked">
+                        Street
+                    </ion-label>
+                    <ion-input formControlName="street" type="text" placeholder="Street" name="street"></ion-input>
+
+                    <ion-label position="stacked">
+                        Housenumber
+                    </ion-label>
+                    <ion-input formControlName="housenumber" type="text" placeholder="Housenumber" name="housenumber"></ion-input>
+                </ion-item>
+
+                <ion-button type="submit" [disabled]="!registerSecondPage.valid" expand="block">Next</ion-button>
+            </form>
 
         </ion-card-content>
     </ion-card>

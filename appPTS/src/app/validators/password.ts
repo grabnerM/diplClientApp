@@ -7,11 +7,15 @@ export class PasswordValidator {
         return new Promise(resolve => {
             
             if (!control.value && group.controls[matchPassword].value !== null || group.controls[matchPassword].value === control.value) {
-                control.setErrors(null)
+                group.controls['cPassword'].setErrors(null)
                 resolve(null)
             } else {
-                control.setErrors({ 'mustMatch': true })
-                resolve({ 'mustMatch': true })
+                group.controls['cPassword'].setErrors({ 'mustMatch': true })
+                if (matchPassword == 'rPassword') {
+                    resolve({ 'mustMatch': true })
+                } else {
+                    resolve(null)
+                }
             }
         })
     }
