@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsernameValidator } from '../../validators/username';
 import { PasswordValidator } from '../../validators/password';
+import { PhoneNumberValidator } from '../../validators/phonenumber';
 
 @Component({
   selector: 'app-authentication',
@@ -13,6 +14,7 @@ import { PasswordValidator } from '../../validators/password';
 })
 export class AuthenticationComponent implements OnInit {
 
+  login: FormGroup
   registerFirstPage: FormGroup
   registerSecondPage: FormGroup
 
@@ -25,6 +27,11 @@ export class AuthenticationComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder
   ) { 
+    this.login = formBuilder.group({
+      lEmail: [''],
+      lPassword: ['']
+    })
+
     this.registerFirstPage = formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('^(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$')]), UsernameValidator.checkUsername ],
       firstname: ['', Validators.compose([Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')])],
@@ -38,23 +45,19 @@ export class AuthenticationComponent implements OnInit {
     })
 
     this.registerSecondPage = formBuilder.group({
-      email: [''],
-      cEmail: [''],
+      rEmail: ['', Validators.compose([Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])],
+      cEmail: ['', Validators.compose([Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])],
       areaCode: [''],
-      phone: [''],
+      phone: ['', Validators.compose([]), (control => PhoneNumberValidator.confirmPhoneNumber(control, this.registerSecondPage, 'areaCode'))],
       zip: [''],
       city: [''],
       street: [''],
       housenumber: ['']
+    },
+    {
+      updateOn: 'blur'
     })
   }
-
-  /* E-Mail Validator
-  email: new FormControl('', [
-		Validators.required,
-		Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-	])
-  */
 
   ngOnInit() {
   }
@@ -106,6 +109,28 @@ export class AuthenticationComponent implements OnInit {
 
   segmentChanged(event) {
     this.secondPage = false
+
+    //Reset login
+    this.login.controls['lEmail'].reset()
+    this.login.controls['lPassword'].reset()
+    
+    //Reset first register page
+    this.registerFirstPage.controls['username'].reset()
+    this.registerFirstPage.controls['firstname'].reset()
+    this.registerFirstPage.controls['lastname'].reset()
+    this.registerFirstPage.controls['rPassword'].reset()
+    this.registerFirstPage.controls['cPassword'].reset()
+    this.registerFirstPage.controls['sex'].reset()
+
+    //Reset second register page
+    this.registerSecondPage.controls['rEmail'].reset()
+    this.registerSecondPage.controls['cEmail'].reset()
+    this.registerSecondPage.controls['areaCode'].reset()
+    this.registerSecondPage.controls['phone'].reset()
+    this.registerSecondPage.controls['zip'].reset()
+    this.registerSecondPage.controls['city'].reset()
+    this.registerSecondPage.controls['street'].reset()
+    this.registerSecondPage.controls['housenumber'].reset()
   }
 
 }
