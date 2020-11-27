@@ -21,7 +21,7 @@
         </ion-card-header>
 
         <ion-card-content *ngIf="segmentModel == 'login'">
-            <form [formGroup]="login">
+            <form [formGroup]="loginPage">
                 <ion-item lines="none">
                     <ion-label position="stacked">Email</ion-label>
                     <ion-input formControlName="lEmail" type="email" placeholder="Email" name="email"></ion-input>
@@ -32,7 +32,7 @@
                     <ion-input formControlName="lPassword" type="password" placeholder="Password" name="password"></ion-input>
                 </ion-item>
 
-                <ion-button (click)="login()" expand="block">Login</ion-button>
+                <ion-button (click)="login()" [disabled]="!loginPage.valid" expand="block">Login</ion-button>
             </form>
         </ion-card-content>
 
@@ -123,6 +123,14 @@
                         Confirm E-Mail
                     </ion-label>
                     <ion-input formControlName="cEmail" type="mail" placeholder="Confirm E-Mail" name="cMail"></ion-input>
+
+                    <div *ngIf="registerSecondPage.controls.cEmail.errors?.mustMatch && registerSecondPage.controls.cEmail.dirty">
+                        Emails must match!
+                    </div>
+
+                    <div *ngIf="registerSecondPage.controls.cEmail.errors?.pattern">
+                        Fick dich du dummer Wichser
+                    </div>
                 </ion-item>
 
                 <ion-grid>
@@ -138,7 +146,7 @@
                                 </ion-select>
                             </ion-item>
 
-                            <div *ngIf="registerSecondPage.controls.areaCode.errors?.notSet && registerSecondPage.controls.areaCode.dirty">
+                            <div *ngIf="registerSecondPage.controls.areaCode.errors?.notSet">
                                 Choose your area code!
                             </div>
                         </ion-col>
@@ -147,7 +155,7 @@
                                 <ion-label position="stacked">
                                     Phone
                                 </ion-label>
-                                <ion-input formControlName="phone" type="text" placeholder="Phonenumber" name="phone"></ion-input>
+                                <ion-input formControlName="phone" type="number" placeholder="Phonenumber" name="phone"></ion-input>
                             </ion-item>
 
                             <div *ngIf="registerSecondPage.controls.phone.errors?.wrongNumber && registerSecondPage.controls.phone.dirty">
@@ -169,7 +177,7 @@
                                 <ion-label position="stacked">
                                     Zip
                                 </ion-label>
-                                <ion-input formControlName="zip" type="text" placeholder="Zip" name="zip"></ion-input>
+                                <ion-input formControlName="zip" type="number" placeholder="Zip" name="zip"></ion-input>
                             </ion-item>
                         </ion-col>
                     </ion-row>

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
-import { AlertController } from '@ionic/angular';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsernameValidator } from '../../validators/username';
 import { PasswordValidator } from '../../validators/password';
 import { PhoneNumberValidator } from '../../validators/phonenumber';
+import { EmailValidator } from '../../validators/email';
+import { sha512 } from 'js-sha512';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-authentication',
@@ -14,22 +16,23 @@ import { PhoneNumberValidator } from '../../validators/phonenumber';
 })
 export class AuthenticationComponent implements OnInit {
 
-  login: FormGroup
+  loginPage: FormGroup
   registerFirstPage: FormGroup
   registerSecondPage: FormGroup
 
-  segmentModel = "register"
+  segmentModel = "login"
   secondPage = true
   submitAttempt= false
 
   constructor(
     private auth: AuthService,
     private router: Router,
+    private storage: Storage,
     private formBuilder: FormBuilder
   ) { 
-    this.login = formBuilder.group({
-      lEmail: [''],
-      lPassword: ['']
+    this.loginPage = formBuilder.group({
+      lEmail: ['', Validators.compose([Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])],
+      lPassword: ['', Validators.compose([Validators.required, Validators.pattern('^(?=.*)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')])]
     })
 
     this.registerFirstPage = formBuilder.group({
@@ -45,11 +48,11 @@ export class AuthenticationComponent implements OnInit {
     })
 
     this.registerSecondPage = formBuilder.group({
-      rEmail: ['', Validators.compose([Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])],
-      cEmail: ['', Validators.compose([Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])],
+      rEmail: ['', Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]), (control => EmailValidator.confirmEmail(control, this.registerSecondPage, 'cEmail'))],
+      cEmail: ['', Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]), (control => EmailValidator.confirmEmail(control, this.registerSecondPage, 'rEmail'))],
       areaCode: [''],
       phone: ['', Validators.compose([]), (control => PhoneNumberValidator.confirmPhoneNumber(control, this.registerSecondPage, 'areaCode'))],
-      zip: [''],
+      zip: ['', Validators.compose([Validators.minLength(4), Validators.maxLength(5)])],
       city: [''],
       street: [''],
       housenumber: ['']
@@ -62,24 +65,43 @@ export class AuthenticationComponent implements OnInit {
   ngOnInit() {
   }
 
-  /*login() {
-    this.auth.login().subscribe(async res => {
-      if (res) {
-        this.router.navigateByUrl('/home')
-      } else {
-        const alert = await this.alertCtrl.create({
-          header: 'Login Failed',
-          message: 'Wrong credentials',
-          buttons: ['OK']
-        })
+  login() {
+    let body = {
+      email: this.loginPage.controls['lEmail'].value,
+      password: sha512(this.loginPage.controls['lPassword'].value)
+    }
 
-        await alert.present()
+    this.auth.login(body).subscribe( result => {
+      console.log(result)
+
+      if ( result ) {
+        this.storage.set('token', result)
+        this.router.navigate(['home'])
       }
     })
-  }*/
+  }
 
   register() {
+    let body = {
+      username: this.registerFirstPage.controls['username'].value,
+      firstname: this.registerFirstPage.controls['firstname'].value,
+      lastname: this.registerFirstPage.controls['lastname'].value,
+      password: sha512(this.registerFirstPage.controls['rPassword'].value),
+      sex: this.registerFirstPage.controls['sex'].value,
+      email: this.registerSecondPage.controls['rEmail'].value,
+      phone: this.registerSecondPage.controls['areaCode'].value + this.registerSecondPage.controls['phone'].value,
+      zip: this.registerSecondPage.controls['zip'].value,
+      city: this.registerSecondPage.controls['city'].value,
+      street: this.registerSecondPage.controls['street'].value,
+      houseno: this.registerSecondPage.controls['houseno'].value
+    }
 
+    this.auth.register(body).subscribe( result => {
+      if ( result ) {
+        this.storage.set('token', result)
+        this.router.navigate(['home'])
+      }
+    })
   }
 
   next() {
@@ -91,10 +113,6 @@ export class AuthenticationComponent implements OnInit {
       console.log(this.registerFirstPage.controls['rPassword'].value)
       console.log(this.registerFirstPage.controls['sex'].value)
     }
-  }
-
-  onSubmit() {
-
   }
 
   formInputIsRequired(formInput: string) {
@@ -111,8 +129,8 @@ export class AuthenticationComponent implements OnInit {
     this.secondPage = false
 
     //Reset login
-    this.login.controls['lEmail'].reset()
-    this.login.controls['lPassword'].reset()
+    this.loginPage.controls['lEmail'].reset()
+    this.loginPage.controls['lPassword'].reset()
     
     //Reset first register page
     this.registerFirstPage.controls['username'].reset()
