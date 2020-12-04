@@ -19,7 +19,6 @@ export class AuthService {
   ) { }
 
   public login(body) {
-    console.log(body)
     return this.http.post(baseUrl + 'authenticate/senderlogin', body, { responseType: 'text' })
   }
 

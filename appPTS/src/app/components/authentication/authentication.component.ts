@@ -72,8 +72,6 @@ export class AuthenticationComponent implements OnInit {
     }
 
     this.auth.login(body).subscribe( result => {
-      console.log(result)
-
       if ( result ) {
         this.storage.set('token', result)
         this.router.navigate(['home'])
@@ -89,11 +87,11 @@ export class AuthenticationComponent implements OnInit {
       password: sha512(this.registerFirstPage.controls['rPassword'].value),
       sex: this.registerFirstPage.controls['sex'].value,
       email: this.registerSecondPage.controls['rEmail'].value,
-      phone: this.registerSecondPage.controls['areaCode'].value + this.registerSecondPage.controls['phone'].value,
+      number: this.registerSecondPage.controls['areaCode'].value + this.registerSecondPage.controls['phone'].value,
       zip: this.registerSecondPage.controls['zip'].value,
       city: this.registerSecondPage.controls['city'].value,
       street: this.registerSecondPage.controls['street'].value,
-      houseno: this.registerSecondPage.controls['houseno'].value
+      housenr: this.registerSecondPage.controls['houseno'].value
     }
 
     this.auth.register(body).subscribe( result => {

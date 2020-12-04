@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Geolocation } from '@capacitor/core';
-import { Map, tileLayer, marker, latLng, icon, Routing } from 'leaflet';
+import { Map, tileLayer, marker, Routing } from 'leaflet';
+import { HttpService } from '../../service/http.service';
 import 'leaflet-routing-machine';
+import { DataService } from '../../service/data.service';
 
 @Component({
   selector: 'app-home',
@@ -20,8 +22,11 @@ export class HomeComponent implements OnInit {
   private routing: any
   public tracking: boolean = false;
 
-  constructor(private router: Router) {
-  }
+  constructor(
+    private router: Router,
+    private http: HttpService,
+    private data: DataService
+  ) { }
 
   ngOnInit() {
   }
@@ -30,8 +35,7 @@ export class HomeComponent implements OnInit {
     this.map = new Map("map").setView([48.1654, 14.0366], 13);
 
     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' + 
-                   '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+      attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
     }).addTo(this.map);
   }
 
@@ -41,19 +45,44 @@ export class HomeComponent implements OnInit {
     if (position.coords.latitude != null) {
       this.currentLocation = [position.coords.latitude, position.coords.longitude]
       //Only for testing
+      let body
       if (this.wp.length == 0) {
         this.wp.push([48.151417, 14.020848])
+        body = {
+          routeid: this.data.routeid,
+          lat: 48.151417,
+          lng: 14.020848
+        }
       } else if (this.wp.length == 1) {
         this.wp.push([48.163901, 14.033382])
+        body = {
+          routeid: this.data.routeid,
+          lat: 48.163901,
+          lng: 14.033382
+        }
       } else if (this.wp.length == 2) {
         this.wp.push([48.170509, 14.051609])
+        body = {
+          routeid: this.data.routeid,
+          lat: 48.170509,
+          lng: 14.051609
+        }
       }
 
+      /*let body = {
+        routeid: this.data.routeid,
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      }*/
+
       //this.wp.push(this.currentLocation)
+      this.http.setLocation(body).subscribe( value => {
+        console.log(value)
+      })
     }
   }
 
-  async generateRoute() {
+  async newLocation() {
     await this.getLocation()
 
     /*let pin = icon({
@@ -77,8 +106,9 @@ export class HomeComponent implements OnInit {
 
       this.routing = Routing.control({
         routeWhileDragging: false,
+        show: false,
+        addWaypoints: false,
         plan: Routing.plan(this.wp, {
-          addWaypoints: false,  
           createMarker: function(j, waypoint) {
             if (j == 0) {
               return marker(waypoint.latLng, {draggable: false})
@@ -86,11 +116,20 @@ export class HomeComponent implements OnInit {
               return marker(waypoint.latLng, {draggable: false})
             }
           }
-        }),
-        show: false
+        })
       }).addTo(this.map);
     }
   }
+
+  async generateRoute() {
+    let body = {
+      num: "WL-18ET"
+    }
+
+    this.http.generateRoute(body).subscribe( value => {
+      console.log(value)
+    })
+  } 
   
   changeTracking() {
     console.log(this.wp)
@@ -102,7 +141,7 @@ export class HomeComponent implements OnInit {
       this.generateRoute()
       document.getElementById('tracking').innerHTML = 'Stop Tracking'
       this.interval = setInterval(() => {
-        this.generateRoute()
+        this.newLocation()
       }, 6000);
     } else {
       document.getElementById('tracking').innerHTML = 'Start Tracking'
