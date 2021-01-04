@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Geolocation } from '@capacitor/core';
-import { Map, tileLayer, marker, Routing } from 'leaflet';
+import { Map, tileLayer, marker, Routing, Marker } from 'leaflet';
 import { HttpService } from '../../service/http.service';
 import 'leaflet-routing-machine';
 import { DataService } from '../../service/data.service';
+
+const osrm_url = 'http://195.128.100.64:5000/route/v1'
 
 @Component({
   selector: 'app-home',
@@ -29,6 +31,11 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.http.getTasks().subscribe( tasks => {
+      this.data.tasks = tasks
+
+      console.log(this.data.tasks)
+    })
   }
 
   ionViewDidEnter() {
@@ -37,6 +44,8 @@ export class HomeComponent implements OnInit {
     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
     }).addTo(this.map);
+
+    this.showTasks(this.data.tasks)
   }
 
   async getLocation() {
@@ -107,6 +116,9 @@ export class HomeComponent implements OnInit {
       this.routing = Routing.control({
         routeWhileDragging: false,
         show: false,
+        router: new Routing.OSRMv1({
+          serviceUrl: osrm_url
+        }),
         addWaypoints: false,
         plan: Routing.plan(this.wp, {
           createMarker: function(j, waypoint) {
@@ -121,15 +133,27 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  async generateRoute() {
-    let body = {
-      num: "WL-18ET"
-    }
+  showTasks(tasks) {  
+    tasks.forEach(task => {
+      if (task.status == -1) {
+        let marker = new Marker([task.startlat, task.startlng]).addTo(this.map)
+        marker.on('click', event => {
+          console.log(task.description)
+        })
+      }
+    });
+  }
 
-    this.http.generateRoute(body).subscribe( value => {
+  //überarbeiten
+  generateRoute() {
+    //this.http.generateRoute().subscribe()
+  }
+
+  endRoute() {
+    this.http.endRoute().subscribe( value => {
       console.log(value)
     })
-  } 
+  }
   
   changeTracking() {
     console.log(this.wp)
@@ -146,6 +170,7 @@ export class HomeComponent implements OnInit {
     } else {
       document.getElementById('tracking').innerHTML = 'Start Tracking'
       clearInterval(this.interval);
+      this.endRoute()
     }
   }
 }

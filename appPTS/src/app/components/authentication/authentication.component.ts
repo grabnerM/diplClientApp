@@ -4,7 +4,6 @@ import { AuthService } from '../../service/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsernameValidator } from '../../validators/username';
 import { PasswordValidator } from '../../validators/password';
-import { PhoneNumberValidator } from '../../validators/phonenumber';
 import { EmailValidator } from '../../validators/email';
 import { sha512 } from 'js-sha512';
 import { Storage } from '@ionic/storage';
@@ -50,12 +49,10 @@ export class AuthenticationComponent implements OnInit {
     this.registerSecondPage = formBuilder.group({
       rEmail: ['', Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]), (control => EmailValidator.confirmEmail(control, this.registerSecondPage, 'cEmail'))],
       cEmail: ['', Validators.compose([Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]), (control => EmailValidator.confirmEmail(control, this.registerSecondPage, 'rEmail'))],
-      areaCode: [''],
-      phone: ['', Validators.compose([]), (control => PhoneNumberValidator.confirmPhoneNumber(control, this.registerSecondPage, 'areaCode'))],
       zip: ['', Validators.compose([Validators.minLength(4), Validators.maxLength(5)])],
       city: [''],
       street: [''],
-      housenumber: ['']
+      housenr: ['']
     },
     {
       updateOn: 'blur'
@@ -87,11 +84,10 @@ export class AuthenticationComponent implements OnInit {
       password: sha512(this.registerFirstPage.controls['rPassword'].value),
       sex: this.registerFirstPage.controls['sex'].value,
       email: this.registerSecondPage.controls['rEmail'].value,
-      number: this.registerSecondPage.controls['areaCode'].value + this.registerSecondPage.controls['phone'].value,
       zip: this.registerSecondPage.controls['zip'].value,
       city: this.registerSecondPage.controls['city'].value,
       street: this.registerSecondPage.controls['street'].value,
-      housenr: this.registerSecondPage.controls['houseno'].value
+      housenr: this.registerSecondPage.controls['housenr'].value
     }
 
     this.auth.register(body).subscribe( result => {
@@ -141,12 +137,10 @@ export class AuthenticationComponent implements OnInit {
     //Reset second register page
     this.registerSecondPage.controls['rEmail'].reset()
     this.registerSecondPage.controls['cEmail'].reset()
-    this.registerSecondPage.controls['areaCode'].reset()
-    this.registerSecondPage.controls['phone'].reset()
     this.registerSecondPage.controls['zip'].reset()
     this.registerSecondPage.controls['city'].reset()
     this.registerSecondPage.controls['street'].reset()
-    this.registerSecondPage.controls['housenumber'].reset()
+    this.registerSecondPage.controls['housenr'].reset()
   }
 
 }
