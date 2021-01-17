@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
 import { Storage } from '@ionic/storage';
-import { from } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { Task } from '../class/Task';
 
 const baseUrl = "http://localhost:8080/"
@@ -48,10 +48,18 @@ export class HttpService {
     return from(this.storage.get('token').then((result) => {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
 
-      return [new Task(1, 48.138435, 14.004268, 48.155429, 14.036327, 'Lieferung von 2 Kisten Bier (ZM und Hirter Privat Pils)', -1, 12),
+      /*return [new Task(1, 48.138435, 14.004268, 48.155429, 14.036327, 'Lieferung von 2 Kisten Bier (ZM und Hirter Privat Pils)', -1, 12),
               new Task(2, 48.155429, 14.036327, 48.138435, 14.004268, 'Lieferung von 3 Kebap Scharf ohne Tomaten', -1, 13),
-              new Task(3, 48.165429, 14.136327, 48.138435, 14.004268, '15 Briefe', 0, 13)]
-      //return this.http.get(baseUrl + 'sender/getOpenTasks')
+              new Task(3, 48.165429, 14.136327, 48.138435, 14.004268, '15 Briefe', 0, 13)]*/
+      return this.http.get<Task[]>(baseUrl + 'sender/getOpenTasks', {headers})
+    }))
+  }
+
+  acceptTask(taskId) {
+    return from(this.storage.get('token').then((result) => {
+      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
+
+      return this.http.get(baseUrl + 'sender/acceptTask/' + taskId, {headers})
     }))
   }
 }

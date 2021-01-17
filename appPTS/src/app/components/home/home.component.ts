@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵbypassSanitizationTrustResourceUrl } from '@angular/core';
 import { Router } from '@angular/router';
 import { Geolocation } from '@capacitor/core';
 import { Map, tileLayer, marker, Routing, Marker } from 'leaflet';
 import { HttpService } from '../../service/http.service';
 import 'leaflet-routing-machine';
 import { DataService } from '../../service/data.service';
+import { ModalController } from '@ionic/angular';
+import { TaskInfoPage } from 'src/app/pages/task-info/task-info.page';
+import { Task } from 'src/app/class/Task';
 
 const osrm_url = 'http://195.128.100.64:5000/route/v1'
 
@@ -27,14 +30,17 @@ export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
     private http: HttpService,
-    private data: DataService
+    private data: DataService,
+    private modalController: ModalController
   ) { }
 
   ngOnInit() {
-    this.http.getTasks().subscribe( tasks => {
-      this.data.tasks = tasks
+    this.http.getTasks().subscribe( result => {
+      result.subscribe( tasks => {
+        this.data.tasks = tasks
 
-      console.log(this.data.tasks)
+        this.showTasks(this.data.tasks)
+      })
     })
   }
 
@@ -44,8 +50,18 @@ export class HomeComponent implements OnInit {
     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
     }).addTo(this.map);
+  }
 
-    this.showTasks(this.data.tasks)
+  async presentModal(task: Task) {
+    const modal = await this.modalController.create({
+      component: TaskInfoPage,
+      swipeToClose: true,
+      componentProps: {
+        task: task
+      }
+    })
+
+    return await modal.present()
   }
 
   async getLocation() {
@@ -138,7 +154,7 @@ export class HomeComponent implements OnInit {
       if (task.status == -1) {
         let marker = new Marker([task.startlat, task.startlng]).addTo(this.map)
         marker.on('click', event => {
-          console.log(task.description)
+          this.presentModal(task)
         })
       }
     });

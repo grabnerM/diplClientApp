@@ -35,7 +35,11 @@ const routes: Routes = [
   {
     path: '**',
     component: AuthenticationComponent
+  },  {
+    path: 'task-info',
+    loadChildren: () => import('./pages/task-info/task-info.module').then( m => m.TaskInfoPageModule)
   }
+
 ];
 @NgModule({
   imports: [

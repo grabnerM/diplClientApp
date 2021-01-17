@@ -1,0 +1,19 @@
+#route {
+    height: 30%;
+    z-index: 0;
+}
+
+ion-card,
+ion-item {
+    text-align: center;
+}
+
+ion-item-divider {
+    width: 90%;
+    margin: auto;
+}
+
+.swipeButton {
+    margin-top: 5%;
+    --border-width: 1px;
+}
