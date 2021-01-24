@@ -5,9 +5,10 @@ import { Map, tileLayer, marker, Routing, Marker } from 'leaflet';
 import { HttpService } from '../../service/http.service';
 import 'leaflet-routing-machine';
 import { DataService } from '../../service/data.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController, Platform, ToastController } from '@ionic/angular';
 import { TaskInfoPage } from 'src/app/pages/task-info/task-info.page';
 import { Task } from 'src/app/class/Task';
+import { NFC, Ndef } from '@ionic-native/nfc/ngx';
 
 const osrm_url = 'http://195.128.100.64:5000/route/v1'
 
@@ -28,13 +29,24 @@ export class HomeComponent implements OnInit {
   public tracking: boolean = false;
 
   constructor(
+    private platform: Platform,
     private router: Router,
     private http: HttpService,
     private data: DataService,
-    private modalController: ModalController
-  ) { }
+    private modalController: ModalController,
+    private toastCtrl: ToastController,
+    private nfc: NFC,
+    private ndef: Ndef
+  ) {
+    this.platform.ready().then(() => {
+      this.addListenNFC()
+    })
+  }
 
   ngOnInit() {
+  }
+
+  ionViewDidEnter() {
     this.http.getTasks().subscribe( result => {
       result.subscribe( tasks => {
         this.data.tasks = tasks
@@ -42,14 +54,40 @@ export class HomeComponent implements OnInit {
         this.showTasks(this.data.tasks)
       })
     })
-  }
-
-  ionViewDidEnter() {
     this.map = new Map("map").setView([48.1654, 14.0366], 13);
 
     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
     }).addTo(this.map);
+  }
+
+  addListenNFC() {
+    console.log('Listen to NFC')
+
+    this.nfc.addNdefListener(() => {
+      console.log('successfully attached ndef  listener')
+    }, async (err) => {
+      console.log('erro attaching ndef listener', err)
+
+      let toast = await this.toastCtrl.create({
+        message: err,
+        duration: 1000,
+        position: 'bottom'
+      })
+
+      toast.present()
+    }).subscribe(async (event) => {
+      console.log('received ndef messag. the tag contains: ', event.tag)
+      console.log('decoded tag id', this.nfc.bytesToHexString(event.tag.id))
+
+      let toast = await this.toastCtrl.create({
+        message: this.nfc.bytesToHexString(event.tag.id),
+        duration: 1000,
+        position: 'bottom'
+      })
+
+      toast.present()
+    })
   }
 
   async presentModal(task: Task) {
