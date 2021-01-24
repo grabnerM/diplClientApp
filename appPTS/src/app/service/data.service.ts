@@ -8,6 +8,7 @@ export class DataService {
 
   public routeid: number
   public tasks: Task[] = []
+  public acceptedTasks: Task[] = []
 
   constructor() { }
 }

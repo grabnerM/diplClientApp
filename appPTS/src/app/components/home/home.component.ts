@@ -1,7 +1,7 @@
 import { Component, OnInit, ɵbypassSanitizationTrustResourceUrl } from '@angular/core';
 import { Router } from '@angular/router';
 import { Geolocation } from '@capacitor/core';
-import { Map, tileLayer, marker, Routing, Marker } from 'leaflet';
+import { Map, tileLayer, marker, Routing, Marker, Icon } from 'leaflet';
 import { HttpService } from '../../service/http.service';
 import 'leaflet-routing-machine';
 import { DataService } from '../../service/data.service';
@@ -19,14 +19,15 @@ const osrm_url = 'http://195.128.100.64:5000/route/v1'
 })
 export class HomeComponent implements OnInit {
 
-  private interval: any;
-  map: Map;
-  start: any;
-  private wp = [];
-  route: any;
-  currentLocation: any;
+  private interval: any
+  map: Map
+  start: any
+  private wp = []
+  route: any
+  currentLocation: any
   private routing: any
-  public tracking: boolean = false;
+  public tracking: boolean = false
+
 
   constructor(
     private platform: Platform,
@@ -51,7 +52,8 @@ export class HomeComponent implements OnInit {
       result.subscribe( tasks => {
         this.data.tasks = tasks
 
-        this.showTasks(this.data.tasks)
+        this.showOpenTasks(this.data.tasks)
+        //this.showAcceptedTasks(this.data.acceptedTasks)
       })
     })
     this.map = new Map("map").setView([48.1654, 14.0366], 13);
@@ -187,7 +189,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  showTasks(tasks) {  
+  showOpenTasks(tasks) {  
     tasks.forEach(task => {
       if (task.status == -1) {
         let marker = new Marker([task.startlat, task.startlng]).addTo(this.map)
@@ -197,6 +199,14 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+
+  /*showAcceptedTasks(tasks) {
+    tasks.forEach(task => {
+      if (task.status == 0) {
+        let marker = new Marker([task.startlat, task.startlng]).addTo(this.map)
+      }
+    })
+  }*/
 
   //überarbeiten
   generateRoute() {
