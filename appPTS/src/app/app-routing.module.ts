@@ -10,7 +10,7 @@ import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -35,7 +35,8 @@ const routes: Routes = [
   {
     path: '**',
     component: AuthenticationComponent
-  },  {
+  },
+  {
     path: 'task-info',
     loadChildren: () => import('./pages/task-info/task-info.module').then( m => m.TaskInfoPageModule)
   }

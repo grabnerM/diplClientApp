@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { from, Observable } from 'rxjs';
 import { Task } from '../class/Task';
 
-const baseUrl = "http://localhost:8080/"
+const baseUrl = "http://195.128.100.64:8080/"
 
 @Injectable({
   providedIn: 'root'
