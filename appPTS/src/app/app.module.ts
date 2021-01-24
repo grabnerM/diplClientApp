@@ -14,6 +14,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Ndef, NFC } from '@ionic-native/nfc/ngx';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     IonicStorageModule.forRoot(),
   ],
   providers: [
+    NFC,
+    Ndef,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
