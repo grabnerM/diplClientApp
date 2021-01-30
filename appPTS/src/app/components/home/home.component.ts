@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  ionViewDidEnter() {
+  async ionViewDidEnter() {
     this.http.getTasks().subscribe( result => {
       result.subscribe( tasks => {
         this.data.tasks = tasks
@@ -56,8 +56,11 @@ export class HomeComponent implements OnInit {
         //this.showAcceptedTasks(this.data.acceptedTasks)
       })
     })
-    this.map = new Map("map").setView([48.1654, 14.0366], 13);
 
+    const position = await Geolocation.getCurrentPosition()
+    
+    this.map = new Map("map").setView([position.coords.latitude, position.coords.longitude], 13);
+    
     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
     }).addTo(this.map);
@@ -83,7 +86,7 @@ export class HomeComponent implements OnInit {
       console.log('decoded tag id', this.nfc.bytesToHexString(event.tag.id))
 
       let toast = await this.toastCtrl.create({
-        message: this.nfc.bytesToHexString(event.tag.id),
+        message: event.tag.ndefMessage.toString(),
         duration: 1000,
         position: 'bottom'
       })
