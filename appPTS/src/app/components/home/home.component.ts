@@ -81,14 +81,17 @@ export class HomeComponent implements OnInit {
       })
 
       toast.present()
-    }).subscribe(async (event) => {
-      console.log('received ndef messag. the tag contains: ', event.tag)
-      console.log('decoded tag id', this.nfc.bytesToHexString(event.tag.id))
+    }).subscribe(async data => {
+      let payload = data.tag.ndefMessage[0].payload
+      let tagContent = this.nfc.bytesToString(payload).substring(3)
 
-      console.log('NFC-Tag Inhalt: ', event.tag.ndefMessage.toString())
+      console.log('received ndef messag. the tag contains: ', data.tag)
+      console.log('decoded tag id', this.nfc.bytesToHexString(data.tag.id))
+
+      console.log('NFC-Tag Inhalt: ', tagContent)
 
       let toast = await this.toastCtrl.create({
-        message: this.nfc.bytesToHexString(event.tag.id),
+        message: this.nfc.bytesToHexString(data.tag.id),
         duration: 1000,
         position: 'bottom'
       })
