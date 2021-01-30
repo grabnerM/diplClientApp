@@ -85,8 +85,10 @@ export class HomeComponent implements OnInit {
       console.log('received ndef messag. the tag contains: ', event.tag)
       console.log('decoded tag id', this.nfc.bytesToHexString(event.tag.id))
 
+      console.log('NFC-Tag Inhalt: ' + event.tag.ndefMessage.values.toString())
+
       let toast = await this.toastCtrl.create({
-        message: event.tag.ndefMessage.toString(),
+        message: this.nfc.bytesToHexString(event.tag.id),
         duration: 1000,
         position: 'bottom'
       })
