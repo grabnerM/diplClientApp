@@ -20,11 +20,11 @@ const osrm_url = 'http://195.128.100.64:5000/route/v1'
 export class HomeComponent implements OnInit {
 
   private interval: any
-  map: Map
-  start: any
+  private map: Map
+  private start: any
   private wp = []
-  route: any
-  currentLocation: any
+  private route: any
+  private currentLocation: any
   private routing: any
   public tracking: boolean = false
 
@@ -53,7 +53,14 @@ export class HomeComponent implements OnInit {
         this.data.tasks = tasks
 
         this.showOpenTasks(this.data.tasks)
-        //this.showAcceptedTasks(this.data.acceptedTasks)
+      })
+    })
+
+    this.http.getAcceptedTasks().subscribe( result => {
+      result.subscribe( tasks => {
+        this.data.acceptedTasks = tasks
+
+        this.showAcceptedTasks(this.data.acceptedTasks)
       })
     })
 
@@ -100,7 +107,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  async presentModal(task: Task) {
+  async presentModalOpenTask(task: Task) {
     const modal = await this.modalController.create({
       component: TaskInfoPage,
       swipeToClose: true,
@@ -163,11 +170,11 @@ export class HomeComponent implements OnInit {
       iconSize: [40,40],
       iconAnchor: [20,20]
     })
-
-    let location = icon({
+    
+    let location = Icon({
       iconUrl: 'assets/icon/location.svg',
-      iconSize: [40,40],
-      iconAnchor: [20,20]
+      iconSize: [40, 40],
+      iconAnchor: [20, 20]
     })*/
 
     let l = this.wp.length
@@ -202,19 +209,23 @@ export class HomeComponent implements OnInit {
       if (task.status == -1) {
         let marker = new Marker([task.startlat, task.startlng]).addTo(this.map)
         marker.on('click', event => {
-          this.presentModal(task)
+          this.presentModalOpenTask(task)
         })
       }
     });
   }
 
-  /*showAcceptedTasks(tasks) {
+  showAcceptedTasks(tasks) {
     tasks.forEach(task => {
       if (task.status == 0) {
-        let marker = new Marker([task.startlat, task.startlng]).addTo(this.map)
+        let marker = new Marker([task.startlat, task.startlng], { icon: new Icon({
+          iconUrl: 'assets/icon/clipboard-outline.svg',
+          iconSize: [40, 40],
+          iconAnchor: [20, 20]
+        })}).addTo(this.map)
       }
     })
-  }*/
+  }
 
   //überarbeiten
   generateRoute() {
