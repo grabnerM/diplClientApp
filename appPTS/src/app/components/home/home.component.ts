@@ -88,15 +88,15 @@ export class HomeComponent implements OnInit {
       console.log('received ndef messag. the tag contains: ', data.tag)
       console.log('decoded tag id', this.nfc.bytesToHexString(data.tag.id))
 
-      console.log('NFC-Tag Inhalt: ', tagContent)
-
       let toast = await this.toastCtrl.create({
-        message: this.nfc.bytesToHexString(data.tag.id),
+        message: 'Route wird gestartet',
         duration: 1000,
         position: 'bottom'
       })
 
       toast.present()
+
+      this.http.startRoute(tagContent).subscribe()
     })
   }
 

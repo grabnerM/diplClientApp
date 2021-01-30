@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { acceptedTask } from '../class/acceptedTask';
 import { Task } from '../class/Task';
 
 @Injectable({
@@ -8,7 +9,7 @@ export class DataService {
 
   public routeid: number
   public tasks: Task[] = []
-  public acceptedTasks: Task[] = []
+  public acceptedTasks: acceptedTask[] = []
 
   constructor() { }
 }
