@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
   private currentLocation: any
   private routing: any
   public tracking: boolean = false
+  public acceptedTaskMarker: Marker[] = []
 
 
   constructor(
@@ -98,9 +99,7 @@ export class HomeComponent implements OnInit {
       toast.present()
 
       this.http.startRoute(tagContent).subscribe( result => {
-        console.log('Test123')
         result.subscribe( res => {
-          console.log('Test213')
           this.reloadAcceptedTasks(tagContent)
         })
       })
@@ -244,6 +243,8 @@ export class HomeComponent implements OnInit {
         marker.on('click', () => {
           this.presentModalAcceptedTask(task)
         })
+
+        this.acceptedTaskMarker.push(marker)
       })
     }
   }
@@ -255,18 +256,13 @@ export class HomeComponent implements OnInit {
     let task = this.data.acceptedTasks.find(i => i.taskid == taskId)
     let index = tasks.indexOf(task)
 
-    tasks.forEach( task => {
-      let marker = new Marker([task.startlat, task.startlng], { icon: new Icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41]
-      })})
-
-      marker.removeFrom(this.map)
+    this.acceptedTaskMarker.forEach( marker => {
+      this.map.removeLayer(marker)
     })
 
     tasks.splice(index, 1)
     this.data.acceptedTasks = tasks
+    this.acceptedTaskMarker = []
 
     this.showAcceptedTasks(tasks)
   }
