@@ -50,6 +50,14 @@ export class HomeComponent implements OnInit {
   }
 
   async ionViewDidEnter() {
+    const position = await Geolocation.getCurrentPosition()
+    
+    this.map = new Map("map").setView([position.coords.latitude, position.coords.longitude], 13)
+    
+    tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
+    }).addTo(this.map)
+    
     this.http.getTasks().subscribe( result => {
       result.subscribe( tasks => {
         this.data.tasks = tasks
@@ -65,14 +73,6 @@ export class HomeComponent implements OnInit {
         this.showAcceptedTasks(this.data.acceptedTasks)
       })
     })
-
-    const position = await Geolocation.getCurrentPosition()
-    
-    this.map = new Map("map").setView([position.coords.latitude, position.coords.longitude], 13)
-    
-    tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
-    }).addTo(this.map)
   }
 
   addListenNFC() {
