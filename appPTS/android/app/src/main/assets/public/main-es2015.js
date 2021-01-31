@@ -326,6 +326,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-accept/task-accept.page.html":
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-accept/task-accept.page.html ***!
+  \***********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                  <ion-label>\n                      State of Task\n                  </ion-label>\n                  <ion-label>\n                      {{task.status}}\n                  </ion-label>\n              </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                  Description\n              </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"startRoute(task.taskid)\">\n                Paket abgeholt\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-info/task-info.page.html":
 /*!*******************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-info/task-info.page.html ***!
@@ -335,7 +348,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                    <ion-label>\n                        State of Task\n                    </ion-label>\n                    <ion-label>\n                        {{task.status}}\n                    </ion-label>\n                </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                    Description\n                </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"acceptTask(task.taskid)\">\n                Accept task\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                    <ion-label>\n                        State of Task\n                    </ion-label>\n                    <ion-label>\n                        {{task.status}}\n                    </ion-label>\n                </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                    Description\n                </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"acceptTask(task.taskid)\">\n                Auftrag annehmen\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>");
 
 /***/ }),
 
@@ -370,7 +383,7 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'login',
         pathMatch: 'full'
     },
     {
@@ -379,8 +392,8 @@ const routes = [
     },
     {
         path: 'home',
-        component: _components_home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"] /*,
-        canActivate: [ AuthGuard ]*/
+        component: _components_home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"],
+        canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_8__["AuthGuard"]]
     },
     {
         path: 'course',
@@ -399,6 +412,10 @@ const routes = [
     {
         path: 'task-info',
         loadChildren: () => __webpack_require__.e(/*! import() | pages-task-info-task-info-module */ "pages-task-info-task-info-module").then(__webpack_require__.bind(null, /*! ./pages/task-info/task-info.module */ "./src/app/pages/task-info/task-info.module.ts")).then(m => m.TaskInfoPageModule)
+    },
+    {
+        path: 'task-accept',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-task-accept-task-accept-module */ "pages-task-accept-task-accept-module").then(__webpack_require__.bind(null, /*! ./pages/task-accept/task-accept.module */ "./src/app/pages/task-accept/task-accept.module.ts")).then(m => m.TaskAcceptPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -837,6 +854,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 /* harmony import */ var src_app_pages_task_info_task_info_page__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/pages/task-info/task-info.page */ "./src/app/pages/task-info/task-info.page.ts");
 /* harmony import */ var _ionic_native_nfc_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic-native/nfc/ngx */ "./node_modules/@ionic-native/nfc/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var src_app_pages_task_accept_task_accept_page__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/pages/task-accept/task-accept.page */ "./src/app/pages/task-accept/task-accept.page.ts");
+
 
 
 
@@ -868,16 +887,25 @@ let HomeComponent = class HomeComponent {
     ngOnInit() {
     }
     ionViewDidEnter() {
-        this.http.getTasks().subscribe(result => {
-            result.subscribe(tasks => {
-                this.data.tasks = tasks;
-                this.showTasks(this.data.tasks);
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            this.http.getTasks().subscribe(result => {
+                result.subscribe(tasks => {
+                    this.data.tasks = tasks;
+                    this.showOpenTasks(this.data.tasks);
+                });
             });
+            this.http.getAcceptedTasks().subscribe(result => {
+                result.subscribe(tasks => {
+                    this.data.acceptedTasks = tasks;
+                    this.showAcceptedTasks(this.data.acceptedTasks);
+                });
+            });
+            const position = yield _capacitor_core__WEBPACK_IMPORTED_MODULE_3__["Geolocation"].getCurrentPosition();
+            this.map = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Map"]("map").setView([position.coords.latitude, position.coords.longitude], 13);
+            Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["tileLayer"])('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
+            }).addTo(this.map);
         });
-        this.map = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Map"]("map").setView([48.1654, 14.0366], 13);
-        Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["tileLayer"])('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
-        }).addTo(this.map);
     }
     addListenNFC() {
         console.log('Listen to NFC');
@@ -891,21 +919,36 @@ let HomeComponent = class HomeComponent {
                 position: 'bottom'
             });
             toast.present();
-        })).subscribe((event) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            console.log('received ndef messag. the tag contains: ', event.tag);
-            console.log('decoded tag id', this.nfc.bytesToHexString(event.tag.id));
+        })).subscribe((data) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            let payload = data.tag.ndefMessage[0].payload;
+            let tagContent = this.nfc.bytesToString(payload).substring(3);
+            console.log('received ndef messag. the tag contains: ', data.tag);
+            console.log('decoded tag id', this.nfc.bytesToHexString(data.tag.id));
             let toast = yield this.toastCtrl.create({
-                message: this.nfc.bytesToHexString(event.tag.id),
+                message: 'Route wird gestartet',
                 duration: 1000,
                 position: 'bottom'
             });
             toast.present();
+            this.http.startRoute(tagContent).subscribe();
         }));
     }
-    presentModal(task) {
+    presentModalOpenTask(task) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const modal = yield this.modalController.create({
                 component: src_app_pages_task_info_task_info_page__WEBPACK_IMPORTED_MODULE_9__["TaskInfoPage"],
+                swipeToClose: true,
+                componentProps: {
+                    task: task
+                }
+            });
+            return yield modal.present();
+        });
+    }
+    presentModalAcceptedTask(task) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const modal = yield this.modalController.create({
+                component: src_app_pages_task_accept_task_accept_page__WEBPACK_IMPORTED_MODULE_11__["TaskAcceptPage"],
                 swipeToClose: true,
                 componentProps: {
                     task: task
@@ -966,11 +1009,11 @@ let HomeComponent = class HomeComponent {
               iconSize: [40,40],
               iconAnchor: [20,20]
             })
-        
-            let location = icon({
+            
+            let location = Icon({
               iconUrl: 'assets/icon/location.svg',
-              iconSize: [40,40],
-              iconAnchor: [20,20]
+              iconSize: [40, 40],
+              iconAnchor: [20, 20]
             })*/
             let l = this.wp.length;
             if (l > 0) {
@@ -998,15 +1041,33 @@ let HomeComponent = class HomeComponent {
             }
         });
     }
-    showTasks(tasks) {
-        tasks.forEach(task => {
-            if (task.status == -1) {
-                let marker = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Marker"]([task.startlat, task.startlng]).addTo(this.map);
-                marker.on('click', event => {
-                    this.presentModal(task);
+    showOpenTasks(tasks) {
+        if (tasks != null) {
+            tasks.forEach(task => {
+                let marker = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Marker"]([task.startlat, task.startlng], { icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+                        iconSize: [25, 41],
+                        iconAnchor: [12, 41]
+                    }) }).addTo(this.map);
+                marker.on('click', () => {
+                    this.presentModalOpenTask(task);
                 });
-            }
-        });
+            });
+        }
+    }
+    showAcceptedTasks(tasks) {
+        if (tasks != null) {
+            tasks.forEach(task => {
+                let marker = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Marker"]([task.startlat, task.startlng], { icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+                        iconSize: [25, 41],
+                        iconAnchor: [12, 41]
+                    }) }).addTo(this.map);
+                marker.on('click', () => {
+                    this.presentModalAcceptedTask(task);
+                });
+            });
+        }
     }
     //überarbeiten
     generateRoute() {
@@ -1142,6 +1203,106 @@ AuthGuard = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
+/***/ "./src/app/pages/task-accept/task-accept.page.scss":
+/*!*********************************************************!*\
+  !*** ./src/app/pages/task-accept/task-accept.page.scss ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("#route {\n  height: 30%;\n  z-index: 0;\n}\n\nion-card,\nion-item {\n  text-align: center;\n}\n\nion-item-divider {\n  width: 90%;\n  margin: auto;\n}\n\n.swipeButton {\n  margin-top: 5%;\n  --border-width: 1px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9tYXhpbWlsaWFuZ3JhYm5lci9Eb2N1bWVudHMvRGlwbG9tYXJiZWl0L2RpcGxDbGllbnRBcHAvYXBwUFRTL3NyYy9hcHAvcGFnZXMvdGFzay1hY2NlcHQvdGFzay1hY2NlcHQucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy90YXNrLWFjY2VwdC90YXNrLWFjY2VwdC5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxXQUFBO0VBQ0EsVUFBQTtBQ0NKOztBREVBOztFQUVJLGtCQUFBO0FDQ0o7O0FERUE7RUFDSSxVQUFBO0VBQ0EsWUFBQTtBQ0NKOztBREVBO0VBQ0ksY0FBQTtFQUNBLG1CQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy90YXNrLWFjY2VwdC90YXNrLWFjY2VwdC5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjcm91dGUge1xuICAgIGhlaWdodDogMzAlO1xuICAgIHotaW5kZXg6IDA7XG59XG5cbmlvbi1jYXJkLFxuaW9uLWl0ZW0ge1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuaW9uLWl0ZW0tZGl2aWRlciB7XG4gICAgd2lkdGg6IDkwJTtcbiAgICBtYXJnaW46IGF1dG87XG59XG5cbi5zd2lwZUJ1dHRvbiB7XG4gICAgbWFyZ2luLXRvcDogNSU7XG4gICAgLS1ib3JkZXItd2lkdGg6IDFweDtcbn0iLCIjcm91dGUge1xuICBoZWlnaHQ6IDMwJTtcbiAgei1pbmRleDogMDtcbn1cblxuaW9uLWNhcmQsXG5pb24taXRlbSB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuaW9uLWl0ZW0tZGl2aWRlciB7XG4gIHdpZHRoOiA5MCU7XG4gIG1hcmdpbjogYXV0bztcbn1cblxuLnN3aXBlQnV0dG9uIHtcbiAgbWFyZ2luLXRvcDogNSU7XG4gIC0tYm9yZGVyLXdpZHRoOiAxcHg7XG59Il19 */");
+
+/***/ }),
+
+/***/ "./src/app/pages/task-accept/task-accept.page.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/pages/task-accept/task-accept.page.ts ***!
+  \*******************************************************/
+/*! exports provided: TaskAcceptPage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TaskAcceptPage", function() { return TaskAcceptPage; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+/* harmony import */ var src_app_service_http_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/service/http.service */ "./src/app/service/http.service.ts");
+/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! leaflet */ "./node_modules/leaflet/dist/leaflet-src.js");
+/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_4__);
+
+
+
+
+
+const osrm_url = 'http://195.128.100.64:5000/route/v1';
+let TaskAcceptPage = class TaskAcceptPage {
+    constructor(modalCtrl, http) {
+        this.modalCtrl = modalCtrl;
+        this.http = http;
+    }
+    ngOnInit() {
+    }
+    ionViewDidEnter() {
+        this.map = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Map"]("route").setView([48.1654, 14.0366], 11);
+        Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["tileLayer"])('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
+        this.showRoute();
+    }
+    showRoute() {
+        let wp = [];
+        wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(this.task.startlat, this.task.startlng));
+        wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(this.task.endlat, this.task.endlng));
+        leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].control({
+            routeWhileDragging: false,
+            show: false,
+            router: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].OSRMv1({
+                serviceUrl: osrm_url
+            }),
+            addWaypoints: false,
+            plan: leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].plan(wp, {
+                createMarker: function (j, waypoint) {
+                    if (j == 0) {
+                        return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, { draggable: false });
+                    }
+                    else {
+                        return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, { draggable: false });
+                    }
+                }
+            })
+        }).addTo(this.map);
+    }
+    dismiss() {
+        this.modalCtrl.dismiss();
+    }
+    startRoute(taskId) {
+        this.http.startRoute(taskId).subscribe(result => {
+            /*result.subscribe( result => {
+              console.log(result)
+            })*/
+        });
+    }
+};
+TaskAcceptPage.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"] },
+    { type: src_app_service_http_service__WEBPACK_IMPORTED_MODULE_3__["HttpService"] }
+];
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], TaskAcceptPage.prototype, "task", void 0);
+TaskAcceptPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-task-accept',
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./task-accept.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-accept/task-accept.page.html")).default,
+        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./task-accept.page.scss */ "./src/app/pages/task-accept/task-accept.page.scss")).default]
+    })
+], TaskAcceptPage);
+
+
+
+/***/ }),
+
 /***/ "./src/app/pages/task-info/task-info.page.scss":
 /*!*****************************************************!*\
   !*** ./src/app/pages/task-info/task-info.page.scss ***!
@@ -1263,7 +1424,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const TOKEN_KEY = 'token';
-const baseUrl = 'http://localhost:8080/';
+const corsUrl = "https://cors-anywhere.herokuapp.com/";
+const baseUrl = corsUrl + "http://195.128.100.64:8080/";
+//const baseUrl = "http://localhost:8080/"
 let AuthService = class AuthService {
     constructor(storage, http, router) {
         this.storage = storage;
@@ -1271,6 +1434,7 @@ let AuthService = class AuthService {
         this.router = router;
     }
     login(body) {
+        console.log(body);
         return this.http.post(baseUrl + 'authenticate/senderlogin', body, { responseType: 'text' });
     }
     getUser() {
@@ -1319,6 +1483,7 @@ __webpack_require__.r(__webpack_exports__);
 let DataService = class DataService {
     constructor() {
         this.tasks = [];
+        this.acceptedTasks = [];
     }
 };
 DataService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
@@ -1353,7 +1518,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const baseUrl = "http://195.128.100.64:8080/";
+const corsUrl = "https://cors-anywhere.herokuapp.com/";
+const baseUrl = corsUrl + "http://195.128.100.64:8080/";
+//const baseUrl = "http://localhost:8080/"
 let HttpService = class HttpService {
     constructor(http, storage, data) {
         this.http = http;
@@ -1389,10 +1556,23 @@ let HttpService = class HttpService {
             return this.http.get(baseUrl + 'sender/getOpenTasks', { headers });
         }));
     }
+    getAcceptedTasks() {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then((result) => {
+            let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
+            return this.http.get(baseUrl + 'sender/getOpenTasksBySender', { headers });
+        }));
+    }
     acceptTask(taskId) {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then((result) => {
             let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
             return this.http.get(baseUrl + 'sender/acceptTask/' + taskId, { headers });
+        }));
+    }
+    startRoute(taskId) {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then((result) => {
+            let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
+            let routeId = this.data.acceptedTasks.find(i => i.taskid === taskId).routeId;
+            console.log(routeId);
         }));
     }
 };

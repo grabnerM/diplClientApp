@@ -4,8 +4,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Sender } from '../class/Sender';
 
-const TOKEN_KEY = 'token';
-const baseUrl = 'http://localhost:8080/';
+const TOKEN_KEY = 'token'
+const corsUrl = "https://cors-anywhere.herokuapp.com/"
+const baseUrl = corsUrl + "http://195.128.100.64:8080/"
+//const baseUrl = "http://localhost:8080/"
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,8 @@ export class AuthService {
   ) { }
 
   public login(body) {
+    console.log(body)
+
     return this.http.post(baseUrl + 'authenticate/senderlogin', body, { responseType: 'text' })
   }
 

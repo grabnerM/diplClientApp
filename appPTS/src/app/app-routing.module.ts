@@ -39,7 +39,8 @@ const routes: Routes = [
   {
     path: 'task-info',
     loadChildren: () => import('./pages/task-info/task-info.module').then( m => m.TaskInfoPageModule)
-  },  {
+  },
+  {
     path: 'task-accept',
     loadChildren: () => import('./pages/task-accept/task-accept.module').then( m => m.TaskAcceptPageModule)
   }

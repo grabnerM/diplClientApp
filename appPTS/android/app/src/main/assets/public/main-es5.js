@@ -217,6 +217,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-accept/task-accept.page.html":
+  /*!***********************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-accept/task-accept.page.html ***!
+    \***********************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppPagesTaskAcceptTaskAcceptPageHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                  <ion-label>\n                      State of Task\n                  </ion-label>\n                  <ion-label>\n                      {{task.status}}\n                  </ion-label>\n              </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                  Description\n              </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"startRoute(task.taskid)\">\n                Paket abgeholt\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>";
+    /***/
+  },
+
+  /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-info/task-info.page.html":
   /*!*******************************************************************************************!*\
     !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-info/task-info.page.html ***!
@@ -232,7 +252,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                    <ion-label>\n                        State of Task\n                    </ion-label>\n                    <ion-label>\n                        {{task.status}}\n                    </ion-label>\n                </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                    Description\n                </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"acceptTask(task.taskid)\">\n                Accept task\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                    <ion-label>\n                        State of Task\n                    </ion-label>\n                    <ion-label>\n                        {{task.status}}\n                    </ion-label>\n                </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                    Description\n                </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"acceptTask(task.taskid)\">\n                Auftrag annehmen\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>";
     /***/
   },
 
@@ -312,17 +332,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var routes = [{
       path: '',
-      redirectTo: 'home',
+      redirectTo: 'login',
       pathMatch: 'full'
     }, {
       path: 'login',
       component: _components_authentication_authentication_component__WEBPACK_IMPORTED_MODULE_7__["AuthenticationComponent"]
     }, {
       path: 'home',
-      component: _components_home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"]
-      /*,
-      canActivate: [ AuthGuard ]*/
-
+      component: _components_home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"],
+      canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_8__["AuthGuard"]]
     }, {
       path: 'course',
       component: _components_course_course_component__WEBPACK_IMPORTED_MODULE_4__["CourseComponent"],
@@ -343,6 +361,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         /*! ./pages/task-info/task-info.module */
         "./src/app/pages/task-info/task-info.module.ts")).then(function (m) {
           return m.TaskInfoPageModule;
+        });
+      }
+    }, {
+      path: 'task-accept',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | pages-task-accept-task-accept-module */
+        "pages-task-accept-task-accept-module").then(__webpack_require__.bind(null,
+        /*! ./pages/task-accept/task-accept.module */
+        "./src/app/pages/task-accept/task-accept.module.ts")).then(function (m) {
+          return m.TaskAcceptPageModule;
         });
       }
     }];
@@ -1094,6 +1123,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _ionic_native_nfc_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
     /*! @ionic-native/nfc/ngx */
     "./node_modules/@ionic-native/nfc/__ivy_ngcc__/ngx/index.js");
+    /* harmony import */
+
+
+    var src_app_pages_task_accept_task_accept_page__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    /*! src/app/pages/task-accept/task-accept.page */
+    "./src/app/pages/task-accept/task-accept.page.ts");
 
     var osrm_url = 'http://195.128.100.64:5000/route/v1';
 
@@ -1124,19 +1159,45 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ionViewDidEnter",
         value: function ionViewDidEnter() {
-          var _this6 = this;
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            var _this6 = this;
 
-          this.http.getTasks().subscribe(function (result) {
-            result.subscribe(function (tasks) {
-              _this6.data.tasks = tasks;
+            var position;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    this.http.getTasks().subscribe(function (result) {
+                      result.subscribe(function (tasks) {
+                        _this6.data.tasks = tasks;
 
-              _this6.showTasks(_this6.data.tasks);
-            });
-          });
-          this.map = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Map"]("map").setView([48.1654, 14.0366], 13);
-          Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["tileLayer"])('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
-          }).addTo(this.map);
+                        _this6.showOpenTasks(_this6.data.tasks);
+                      });
+                    });
+                    this.http.getAcceptedTasks().subscribe(function (result) {
+                      result.subscribe(function (tasks) {
+                        _this6.data.acceptedTasks = tasks;
+
+                        _this6.showAcceptedTasks(_this6.data.acceptedTasks);
+                      });
+                    });
+                    _context.next = 4;
+                    return _capacitor_core__WEBPACK_IMPORTED_MODULE_3__["Geolocation"].getCurrentPosition();
+
+                  case 4:
+                    position = _context.sent;
+                    this.map = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Map"]("map").setView([position.coords.latitude, position.coords.longitude], 13);
+                    Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["tileLayer"])('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                      attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
+                    }).addTo(this.map);
+
+                  case 7:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
         }
       }, {
         key: "addListenNFC",
@@ -1147,14 +1208,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.nfc.addNdefListener(function () {
             console.log('successfully attached ndef  listener');
           }, function (err) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this7, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this7, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
               var toast;
-              return regeneratorRuntime.wrap(function _callee$(_context) {
+              return regeneratorRuntime.wrap(function _callee2$(_context2) {
                 while (1) {
-                  switch (_context.prev = _context.next) {
+                  switch (_context2.prev = _context2.next) {
                     case 0:
                       console.log('erro attaching ndef listener', err);
-                      _context.next = 3;
+                      _context2.next = 3;
                       return this.toastCtrl.create({
                         message: err,
                         duration: 1000,
@@ -1162,55 +1223,58 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       });
 
                     case 3:
-                      toast = _context.sent;
-                      toast.present();
-
-                    case 5:
-                    case "end":
-                      return _context.stop();
-                  }
-                }
-              }, _callee, this);
-            }));
-          }).subscribe(function (event) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this7, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-              var toast;
-              return regeneratorRuntime.wrap(function _callee2$(_context2) {
-                while (1) {
-                  switch (_context2.prev = _context2.next) {
-                    case 0:
-                      console.log('received ndef messag. the tag contains: ', event.tag);
-                      console.log('decoded tag id', this.nfc.bytesToHexString(event.tag.id));
-                      _context2.next = 4;
-                      return this.toastCtrl.create({
-                        message: this.nfc.bytesToHexString(event.tag.id),
-                        duration: 1000,
-                        position: 'bottom'
-                      });
-
-                    case 4:
                       toast = _context2.sent;
                       toast.present();
 
-                    case 6:
+                    case 5:
                     case "end":
                       return _context2.stop();
                   }
                 }
               }, _callee2, this);
             }));
+          }).subscribe(function (data) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this7, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+              var payload, tagContent, toast;
+              return regeneratorRuntime.wrap(function _callee3$(_context3) {
+                while (1) {
+                  switch (_context3.prev = _context3.next) {
+                    case 0:
+                      payload = data.tag.ndefMessage[0].payload;
+                      tagContent = this.nfc.bytesToString(payload).substring(3);
+                      console.log('received ndef messag. the tag contains: ', data.tag);
+                      console.log('decoded tag id', this.nfc.bytesToHexString(data.tag.id));
+                      _context3.next = 6;
+                      return this.toastCtrl.create({
+                        message: 'Route wird gestartet',
+                        duration: 1000,
+                        position: 'bottom'
+                      });
+
+                    case 6:
+                      toast = _context3.sent;
+                      toast.present();
+                      this.http.startRoute(tagContent).subscribe();
+
+                    case 9:
+                    case "end":
+                      return _context3.stop();
+                  }
+                }
+              }, _callee3, this);
+            }));
           });
         }
       }, {
-        key: "presentModal",
-        value: function presentModal(task) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+        key: "presentModalOpenTask",
+        value: function presentModalOpenTask(task) {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
             var modal;
-            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+            return regeneratorRuntime.wrap(function _callee4$(_context4) {
               while (1) {
-                switch (_context3.prev = _context3.next) {
+                switch (_context4.prev = _context4.next) {
                   case 0:
-                    _context3.next = 2;
+                    _context4.next = 2;
                     return this.modalController.create({
                       component: src_app_pages_task_info_task_info_page__WEBPACK_IMPORTED_MODULE_9__["TaskInfoPage"],
                       swipeToClose: true,
@@ -1220,35 +1284,69 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     });
 
                   case 2:
-                    modal = _context3.sent;
-                    _context3.next = 5;
+                    modal = _context4.sent;
+                    _context4.next = 5;
                     return modal.present();
 
                   case 5:
-                    return _context3.abrupt("return", _context3.sent);
+                    return _context4.abrupt("return", _context4.sent);
 
                   case 6:
                   case "end":
-                    return _context3.stop();
+                    return _context4.stop();
                 }
               }
-            }, _callee3, this);
+            }, _callee4, this);
+          }));
+        }
+      }, {
+        key: "presentModalAcceptedTask",
+        value: function presentModalAcceptedTask(task) {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+            var modal;
+            return regeneratorRuntime.wrap(function _callee5$(_context5) {
+              while (1) {
+                switch (_context5.prev = _context5.next) {
+                  case 0:
+                    _context5.next = 2;
+                    return this.modalController.create({
+                      component: src_app_pages_task_accept_task_accept_page__WEBPACK_IMPORTED_MODULE_11__["TaskAcceptPage"],
+                      swipeToClose: true,
+                      componentProps: {
+                        task: task
+                      }
+                    });
+
+                  case 2:
+                    modal = _context5.sent;
+                    _context5.next = 5;
+                    return modal.present();
+
+                  case 5:
+                    return _context5.abrupt("return", _context5.sent);
+
+                  case 6:
+                  case "end":
+                    return _context5.stop();
+                }
+              }
+            }, _callee5, this);
           }));
         }
       }, {
         key: "getLocation",
         value: function getLocation() {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
             var position, body;
-            return regeneratorRuntime.wrap(function _callee4$(_context4) {
+            return regeneratorRuntime.wrap(function _callee6$(_context6) {
               while (1) {
-                switch (_context4.prev = _context4.next) {
+                switch (_context6.prev = _context6.next) {
                   case 0:
-                    _context4.next = 2;
+                    _context6.next = 2;
                     return _capacitor_core__WEBPACK_IMPORTED_MODULE_3__["Geolocation"].getCurrentPosition();
 
                   case 2:
-                    position = _context4.sent;
+                    position = _context6.sent;
                     console.log(position);
 
                     if (position.coords.latitude != null) {
@@ -1291,22 +1389,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 5:
                   case "end":
-                    return _context4.stop();
+                    return _context6.stop();
                 }
               }
-            }, _callee4, this);
+            }, _callee6, this);
           }));
         }
       }, {
         key: "newLocation",
         value: function newLocation() {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
             var l;
-            return regeneratorRuntime.wrap(function _callee5$(_context5) {
+            return regeneratorRuntime.wrap(function _callee7$(_context7) {
               while (1) {
-                switch (_context5.prev = _context5.next) {
+                switch (_context7.prev = _context7.next) {
                   case 0:
-                    _context5.next = 2;
+                    _context7.next = 2;
                     return this.getLocation();
 
                   case 2:
@@ -1315,10 +1413,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       iconSize: [40,40],
                       iconAnchor: [20,20]
                     })
-                             let location = icon({
+                    
+                    let location = Icon({
                       iconUrl: 'assets/icon/location.svg',
-                      iconSize: [40,40],
-                      iconAnchor: [20,20]
+                      iconSize: [40, 40],
+                      iconAnchor: [20, 20]
                     })*/
                     l = this.wp.length;
 
@@ -1352,25 +1451,51 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 4:
                   case "end":
-                    return _context5.stop();
+                    return _context7.stop();
                 }
               }
-            }, _callee5, this);
+            }, _callee7, this);
           }));
         }
       }, {
-        key: "showTasks",
-        value: function showTasks(tasks) {
+        key: "showOpenTasks",
+        value: function showOpenTasks(tasks) {
           var _this8 = this;
 
-          tasks.forEach(function (task) {
-            if (task.status == -1) {
-              var marker = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Marker"]([task.startlat, task.startlng]).addTo(_this8.map);
-              marker.on('click', function (event) {
-                _this8.presentModal(task);
+          if (tasks != null) {
+            tasks.forEach(function (task) {
+              var marker = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Marker"]([task.startlat, task.startlng], {
+                icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+                  iconSize: [25, 41],
+                  iconAnchor: [12, 41]
+                })
+              }).addTo(_this8.map);
+              marker.on('click', function () {
+                _this8.presentModalOpenTask(task);
               });
-            }
-          });
+            });
+          }
+        }
+      }, {
+        key: "showAcceptedTasks",
+        value: function showAcceptedTasks(tasks) {
+          var _this9 = this;
+
+          if (tasks != null) {
+            tasks.forEach(function (task) {
+              var marker = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Marker"]([task.startlat, task.startlng], {
+                icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+                  iconSize: [25, 41],
+                  iconAnchor: [12, 41]
+                })
+              }).addTo(_this9.map);
+              marker.on('click', function () {
+                _this9.presentModalAcceptedTask(task);
+              });
+            });
+          }
         } //überarbeiten
 
       }, {
@@ -1387,7 +1512,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "changeTracking",
         value: function changeTracking() {
-          var _this9 = this;
+          var _this10 = this;
 
           console.log(this.wp);
           this.tracking = !this.tracking;
@@ -1397,7 +1522,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.generateRoute();
             document.getElementById('tracking').innerHTML = 'Stop Tracking';
             this.interval = setInterval(function () {
-              _this9.newLocation();
+              _this10.newLocation();
             }, 6000);
           } else {
             document.getElementById('tracking').innerHTML = 'Start Tracking';
@@ -1587,6 +1712,168 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     AuthGuard = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
       providedIn: 'root'
     })], AuthGuard);
+    /***/
+  },
+
+  /***/
+  "./src/app/pages/task-accept/task-accept.page.scss":
+  /*!*********************************************************!*\
+    !*** ./src/app/pages/task-accept/task-accept.page.scss ***!
+    \*********************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppPagesTaskAcceptTaskAcceptPageScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "#route {\n  height: 30%;\n  z-index: 0;\n}\n\nion-card,\nion-item {\n  text-align: center;\n}\n\nion-item-divider {\n  width: 90%;\n  margin: auto;\n}\n\n.swipeButton {\n  margin-top: 5%;\n  --border-width: 1px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9tYXhpbWlsaWFuZ3JhYm5lci9Eb2N1bWVudHMvRGlwbG9tYXJiZWl0L2RpcGxDbGllbnRBcHAvYXBwUFRTL3NyYy9hcHAvcGFnZXMvdGFzay1hY2NlcHQvdGFzay1hY2NlcHQucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy90YXNrLWFjY2VwdC90YXNrLWFjY2VwdC5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxXQUFBO0VBQ0EsVUFBQTtBQ0NKOztBREVBOztFQUVJLGtCQUFBO0FDQ0o7O0FERUE7RUFDSSxVQUFBO0VBQ0EsWUFBQTtBQ0NKOztBREVBO0VBQ0ksY0FBQTtFQUNBLG1CQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9wYWdlcy90YXNrLWFjY2VwdC90YXNrLWFjY2VwdC5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjcm91dGUge1xuICAgIGhlaWdodDogMzAlO1xuICAgIHotaW5kZXg6IDA7XG59XG5cbmlvbi1jYXJkLFxuaW9uLWl0ZW0ge1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuaW9uLWl0ZW0tZGl2aWRlciB7XG4gICAgd2lkdGg6IDkwJTtcbiAgICBtYXJnaW46IGF1dG87XG59XG5cbi5zd2lwZUJ1dHRvbiB7XG4gICAgbWFyZ2luLXRvcDogNSU7XG4gICAgLS1ib3JkZXItd2lkdGg6IDFweDtcbn0iLCIjcm91dGUge1xuICBoZWlnaHQ6IDMwJTtcbiAgei1pbmRleDogMDtcbn1cblxuaW9uLWNhcmQsXG5pb24taXRlbSB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuaW9uLWl0ZW0tZGl2aWRlciB7XG4gIHdpZHRoOiA5MCU7XG4gIG1hcmdpbjogYXV0bztcbn1cblxuLnN3aXBlQnV0dG9uIHtcbiAgbWFyZ2luLXRvcDogNSU7XG4gIC0tYm9yZGVyLXdpZHRoOiAxcHg7XG59Il19 */";
+    /***/
+  },
+
+  /***/
+  "./src/app/pages/task-accept/task-accept.page.ts":
+  /*!*******************************************************!*\
+    !*** ./src/app/pages/task-accept/task-accept.page.ts ***!
+    \*******************************************************/
+
+  /*! exports provided: TaskAcceptPage */
+
+  /***/
+  function srcAppPagesTaskAcceptTaskAcceptPageTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "TaskAcceptPage", function () {
+      return TaskAcceptPage;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @ionic/angular */
+    "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+    /* harmony import */
+
+
+    var src_app_service_http_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! src/app/service/http.service */
+    "./src/app/service/http.service.ts");
+    /* harmony import */
+
+
+    var leaflet__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! leaflet */
+    "./node_modules/leaflet/dist/leaflet-src.js");
+    /* harmony import */
+
+
+    var leaflet__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_4__);
+
+    var osrm_url = 'http://195.128.100.64:5000/route/v1';
+
+    var TaskAcceptPage = /*#__PURE__*/function () {
+      function TaskAcceptPage(modalCtrl, http) {
+        _classCallCheck(this, TaskAcceptPage);
+
+        this.modalCtrl = modalCtrl;
+        this.http = http;
+      }
+
+      _createClass(TaskAcceptPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "ionViewDidEnter",
+        value: function ionViewDidEnter() {
+          this.map = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Map"]("route").setView([48.1654, 14.0366], 11);
+          Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["tileLayer"])('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
+          this.showRoute();
+        }
+      }, {
+        key: "showRoute",
+        value: function showRoute() {
+          var wp = [];
+          wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(this.task.startlat, this.task.startlng));
+          wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(this.task.endlat, this.task.endlng));
+          leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].control({
+            routeWhileDragging: false,
+            show: false,
+            router: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].OSRMv1({
+              serviceUrl: osrm_url
+            }),
+            addWaypoints: false,
+            plan: leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].plan(wp, {
+              createMarker: function createMarker(j, waypoint) {
+                if (j == 0) {
+                  return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, {
+                    draggable: false
+                  });
+                } else {
+                  return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, {
+                    draggable: false
+                  });
+                }
+              }
+            })
+          }).addTo(this.map);
+        }
+      }, {
+        key: "dismiss",
+        value: function dismiss() {
+          this.modalCtrl.dismiss();
+        }
+      }, {
+        key: "startRoute",
+        value: function startRoute(taskId) {
+          this.http.startRoute(taskId).subscribe(function (result) {
+            /*result.subscribe( result => {
+              console.log(result)
+            })*/
+          });
+        }
+      }]);
+
+      return TaskAcceptPage;
+    }();
+
+    TaskAcceptPage.ctorParameters = function () {
+      return [{
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
+      }, {
+        type: src_app_service_http_service__WEBPACK_IMPORTED_MODULE_3__["HttpService"]
+      }];
+    };
+
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], TaskAcceptPage.prototype, "task", void 0);
+    TaskAcceptPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-task-accept',
+      template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
+      /*! raw-loader!./task-accept.page.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-accept/task-accept.page.html"))["default"],
+      styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
+      /*! ./task-accept.page.scss */
+      "./src/app/pages/task-accept/task-accept.page.scss"))["default"]]
+    })], TaskAcceptPage);
     /***/
   },
 
@@ -1803,7 +2090,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 
     var TOKEN_KEY = 'token';
-    var baseUrl = 'http://localhost:8080/';
+    var corsUrl = "https://cors-anywhere.herokuapp.com/";
+    var baseUrl = corsUrl + "http://195.128.100.64:8080/"; //const baseUrl = "http://localhost:8080/"
 
     var AuthService = /*#__PURE__*/function () {
       function AuthService(storage, http, router) {
@@ -1817,6 +2105,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AuthService, [{
         key: "login",
         value: function login(body) {
+          console.log(body);
           return this.http.post(baseUrl + 'authenticate/senderlogin', body, {
             responseType: 'text'
           });
@@ -1833,10 +2122,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "logOut",
         value: function logOut() {
-          var _this10 = this;
+          var _this11 = this;
 
           this.storage.remove(TOKEN_KEY).then(function () {
-            _this10.router.navigateByUrl('/');
+            _this11.router.navigateByUrl('/');
           });
         }
       }, {
@@ -1903,6 +2192,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _classCallCheck(this, DataService);
 
       this.tasks = [];
+      this.acceptedTasks = [];
     };
 
     DataService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -1967,7 +2257,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /*! rxjs */
     "./node_modules/rxjs/_esm2015/index.js");
 
-    var baseUrl = "http://195.128.100.64:8080/";
+    var corsUrl = "https://cors-anywhere.herokuapp.com/";
+    var baseUrl = corsUrl + "http://195.128.100.64:8080/"; //const baseUrl = "http://localhost:8080/"
 
     var HttpService = /*#__PURE__*/function () {
       function HttpService(http, storage, data) {
@@ -1981,11 +2272,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(HttpService, [{
         key: "setLocation",
         value: function setLocation(body) {
-          var _this11 = this;
+          var _this12 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
-            var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + _this11.storage.get('token'));
-            return _this11.http.post(baseUrl + 'sender/savePosition', {
+            var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + _this12.storage.get('token'));
+            return _this12.http.post(baseUrl + 'sender/savePosition', {
               headers: headers
             }, body);
           }));
@@ -2001,11 +2292,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "endRoute",
         value: function endRoute() {
-          var _this12 = this;
+          var _this13 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
-            var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + _this12.storage.get('token'));
-            return _this12.http.put(baseUrl + 'sender/endRoute/' + _this12.data.routeid, {
+            var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + _this13.storage.get('token'));
+            return _this13.http.put(baseUrl + 'sender/endRoute/' + _this13.data.routeid, {
               headers: headers
             });
           }));
@@ -2014,7 +2305,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getTasks",
         value: function getTasks() {
-          var _this13 = this;
+          var _this14 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
@@ -2022,7 +2313,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     new Task(2, 48.155429, 14.036327, 48.138435, 14.004268, 'Lieferung von 3 Kebap Scharf ohne Tomaten', -1, 13),
                     new Task(3, 48.165429, 14.136327, 48.138435, 14.004268, '15 Briefe', 0, 13)]*/
 
-            return _this13.http.get(baseUrl + 'sender/getOpenTasks', {
+            return _this14.http.get(baseUrl + 'sender/getOpenTasks', {
+              headers: headers
+            });
+          }));
+        }
+      }, {
+        key: "getAcceptedTasks",
+        value: function getAcceptedTasks() {
+          var _this15 = this;
+
+          return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
+            var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
+            return _this15.http.get(baseUrl + 'sender/getOpenTasksBySender', {
               headers: headers
             });
           }));
@@ -2030,13 +2333,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "acceptTask",
         value: function acceptTask(taskId) {
-          var _this14 = this;
+          var _this16 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
-            return _this14.http.get(baseUrl + 'sender/acceptTask/' + taskId, {
+            return _this16.http.get(baseUrl + 'sender/acceptTask/' + taskId, {
               headers: headers
             });
+          }));
+        }
+      }, {
+        key: "startRoute",
+        value: function startRoute(taskId) {
+          var _this17 = this;
+
+          return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
+            var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
+
+            var routeId = _this17.data.acceptedTasks.find(function (i) {
+              return i.taskid === taskId;
+            }).routeId;
+
+            console.log(routeId);
           }));
         }
       }]);

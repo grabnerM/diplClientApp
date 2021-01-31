@@ -5,6 +5,7 @@ xmlns:amazon="http://schemas.amazon.com/apk/res/android">
 <application  >
 
 </application>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 <uses-permission android:name="android.permission.NFC"/>
 <uses-feature android:name="android.hardware.nfc" android:required="false"/>
 </manifest>

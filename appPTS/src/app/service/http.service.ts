@@ -6,8 +6,9 @@ import { from } from 'rxjs';
 import { Task } from '../class/Task';
 import { acceptedTask } from '../class/acceptedTask';
 
-//const baseUrl = "http://195.128.100.64:8080/"
-const baseUrl = "http://localhost:8080/"
+const corsUrl = "https://cors-anywhere.herokuapp.com/"
+const baseUrl = corsUrl + "http://195.128.100.64:8080/"
+//const baseUrl = "http://localhost:8080/"
 
 @Injectable({
   providedIn: 'root'

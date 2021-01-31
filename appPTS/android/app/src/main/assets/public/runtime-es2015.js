@@ -64,7 +64,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"common":"common","pages-task-info-task-info-module":"pages-task-info-task-info-module","polyfills-core-js":"polyfills-core-js","polyfills-css-shim":"polyfills-css-shim","polyfills-dom":"polyfills-dom","shadow-css-fc98efba-js":"shadow-css-fc98efba-js","swiper-bundle-95afeea2-js":"swiper-bundle-95afeea2-js","focus-visible-15ada7f7-js":"focus-visible-15ada7f7-js","input-shims-b956f530-js":"input-shims-b956f530-js","keyboard-dd970efc-js":"keyboard-dd970efc-js","status-tap-a9bf301d-js":"status-tap-a9bf301d-js","swipe-back-0a6a44c8-js":"swipe-back-0a6a44c8-js","tap-click-252af35a-js":"tap-click-252af35a-js"}[chunkId]||chunkId) + "-es2015.js"
+/******/ 		return __webpack_require__.p + "" + ({"common":"common","pages-task-accept-task-accept-module":"pages-task-accept-task-accept-module","pages-task-info-task-info-module":"pages-task-info-task-info-module","polyfills-core-js":"polyfills-core-js","polyfills-css-shim":"polyfills-css-shim","polyfills-dom":"polyfills-dom","shadow-css-fc98efba-js":"shadow-css-fc98efba-js","swiper-bundle-95afeea2-js":"swiper-bundle-95afeea2-js","focus-visible-15ada7f7-js":"focus-visible-15ada7f7-js","input-shims-b956f530-js":"input-shims-b956f530-js","keyboard-dd970efc-js":"keyboard-dd970efc-js","status-tap-a9bf301d-js":"status-tap-a9bf301d-js","swipe-back-0a6a44c8-js":"swipe-back-0a6a44c8-js","tap-click-252af35a-js":"tap-click-252af35a-js"}[chunkId]||chunkId) + "-es2015.js"
 /******/ 	}
 /******/
 /******/ 	// The require function
