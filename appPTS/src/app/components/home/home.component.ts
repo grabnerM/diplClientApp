@@ -9,6 +9,8 @@ import { ModalController, Platform, ToastController } from '@ionic/angular';
 import { TaskInfoPage } from 'src/app/pages/task-info/task-info.page';
 import { Task } from 'src/app/class/Task';
 import { NFC, Ndef } from '@ionic-native/nfc/ngx';
+import { acceptedTask } from 'src/app/class/acceptedTask';
+import { TaskAcceptPage } from 'src/app/pages/task-accept/task-accept.page';
 
 const osrm_url = 'http://195.128.100.64:5000/route/v1'
 
@@ -66,11 +68,11 @@ export class HomeComponent implements OnInit {
 
     const position = await Geolocation.getCurrentPosition()
     
-    this.map = new Map("map").setView([position.coords.latitude, position.coords.longitude], 13);
+    this.map = new Map("map").setView([position.coords.latitude, position.coords.longitude], 13)
     
     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
-    }).addTo(this.map);
+    }).addTo(this.map)
   }
 
   addListenNFC() {
@@ -110,6 +112,18 @@ export class HomeComponent implements OnInit {
   async presentModalOpenTask(task: Task) {
     const modal = await this.modalController.create({
       component: TaskInfoPage,
+      swipeToClose: true,
+      componentProps: {
+        task: task
+      }
+    })
+
+    return await modal.present()
+  }
+
+  async presentModalAcceptedTask(task: acceptedTask) {
+    const modal = await this.modalController.create({
+      component: TaskAcceptPage,
       swipeToClose: true,
       componentProps: {
         task: task
@@ -205,26 +219,35 @@ export class HomeComponent implements OnInit {
   }
 
   showOpenTasks(tasks) {  
-    tasks.forEach(task => {
-      if (task.status == -1) {
-        let marker = new Marker([task.startlat, task.startlng]).addTo(this.map)
-        marker.on('click', event => {
+    if (tasks != null) {
+      tasks.forEach(task => {
+        let marker = new Marker([task.startlat, task.startlng], { icon: new Icon({
+          iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+          iconSize: [25, 41],
+          iconAnchor: [12, 41]
+        })}).addTo(this.map)
+
+        marker.on('click', () => {
           this.presentModalOpenTask(task)
         })
-      }
-    });
+      })
+    }
   }
 
   showAcceptedTasks(tasks) {
-    tasks.forEach(task => {
-      if (task.status == 0) {
+    if (tasks != null) {
+      tasks.forEach(task => {
         let marker = new Marker([task.startlat, task.startlng], { icon: new Icon({
-          iconUrl: 'assets/icon/clipboard-outline.svg',
-          iconSize: [40, 40],
-          iconAnchor: [20, 20]
+          iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+          iconSize: [25, 41],
+          iconAnchor: [12, 41]
         })}).addTo(this.map)
-      }
-    })
+
+        marker.on('click', () => {
+          this.presentModalAcceptedTask(task)
+        })
+      })
+    }
   }
 
   //überarbeiten

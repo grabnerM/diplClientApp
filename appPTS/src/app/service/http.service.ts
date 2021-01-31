@@ -2,12 +2,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
 import { Storage } from '@ionic/storage';
-import { from, Observable } from 'rxjs';
+import { from } from 'rxjs';
 import { Task } from '../class/Task';
-import { MotionWatchAccelCallback } from '@capacitor/core';
 import { acceptedTask } from '../class/acceptedTask';
 
-const baseUrl = "http://195.128.100.64:8080/"
+//const baseUrl = "http://195.128.100.64:8080/"
+const baseUrl = "http://localhost:8080/"
 
 @Injectable({
   providedIn: 'root'
