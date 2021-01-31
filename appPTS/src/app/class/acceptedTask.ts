@@ -9,6 +9,6 @@ export class acceptedTask {
         public description: String,
         public status: number,
         public receiverid: number,
-        public routeId: number
+        public routeid: number
     ) { }
 }
