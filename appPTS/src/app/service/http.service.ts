@@ -78,7 +78,7 @@ export class HttpService {
     return from(this.storage.get('token').then((result) => {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
 
-      let routeId = this.data.acceptedTasks.find(i => i.taskid === taskId).routeId
+      let routeId = this.data.acceptedTasks.find(i => i.taskid == taskId)
 
       console.log(routeId)
     }))
