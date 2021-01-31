@@ -5,26 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f80a4366-6320-44a4-9732-13f1a8cdb4ed" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules/512121772/capacitor-android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/512121772/capacitor-android.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/capacitor-cordova-android-plugins/capacitor-cordova-android-plugins.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/capacitor-cordova-android-plugins/capacitor-cordova-android-plugins.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/cordova_plugins.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/cordova_plugins.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/main-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/main-es2015.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/main-es2015.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/main-es2015.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/main-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/main-es5.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/main-es5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/main-es5.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/runtime-es2015.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/runtime-es2015.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/runtime-es2015.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/runtime-es2015.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/runtime-es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/runtime-es5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/runtime-es5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/runtime-es5.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/xml/config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/capacitor-cordova-android-plugins/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/capacitor-cordova-android-plugins/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/components/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/components/home/home.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/pages/task-accept/task-accept.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/pages/task-accept/task-accept.page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/pages/task-info/task-info.page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/pages/task-info/task-info.page.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/app/service/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/service/auth.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/app/service/http.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/service/http.service.ts" afterDir="false" />
     </list>
@@ -63,6 +51,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="PNXGAM8942901769" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-01-31T16:19:19.377Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
@@ -151,22 +141,22 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="184" y="123" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.877@0.23.1440.877" timestamp="1612004954535" />
-    <state width="1398" height="230" key="GridCell.Tab.0.bottom" timestamp="1611500185629">
+    <state width="1398" height="230" key="GridCell.Tab.0.bottom" timestamp="1612109329554">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="230" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1611500185629" />
-    <state width="1398" height="230" key="GridCell.Tab.0.center" timestamp="1611500185628">
+    <state width="1398" height="230" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1612109329554" />
+    <state width="1398" height="230" key="GridCell.Tab.0.center" timestamp="1612109329553">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="230" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1611500185628" />
-    <state width="1398" height="230" key="GridCell.Tab.0.left" timestamp="1611500185628">
+    <state width="1398" height="230" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1612109329553" />
+    <state width="1398" height="230" key="GridCell.Tab.0.left" timestamp="1612109329553">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="230" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1611500185628" />
-    <state width="1398" height="230" key="GridCell.Tab.0.right" timestamp="1611500185628">
+    <state width="1398" height="230" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1612109329553" />
+    <state width="1398" height="230" key="GridCell.Tab.0.right" timestamp="1612109329554">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="230" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1611500185628" />
+    <state width="1398" height="230" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1612109329554" />
     <state x="100" y="123" width="1240" height="677" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1611498441841">
       <screen x="0" y="23" width="1440" height="877" />
     </state>

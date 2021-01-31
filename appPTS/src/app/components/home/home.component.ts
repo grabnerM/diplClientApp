@@ -76,13 +76,8 @@ export class HomeComponent implements OnInit {
   }
 
   addListenNFC() {
-    console.log('Listen to NFC')
-
     this.nfc.addNdefListener(() => {
-      console.log('successfully attached ndef  listener')
     }, async (err) => {
-      console.log('erro attaching ndef listener', err)
-
       let toast = await this.toastCtrl.create({
         message: err,
         duration: 1000,
@@ -94,9 +89,6 @@ export class HomeComponent implements OnInit {
       let payload = data.tag.ndefMessage[0].payload
       let tagContent = this.nfc.bytesToString(payload).substring(3)
 
-      console.log('received ndef messag. the tag contains: ', data.tag)
-      console.log('decoded tag id', this.nfc.bytesToHexString(data.tag.id))
-
       let toast = await this.toastCtrl.create({
         message: 'Route wird gestartet',
         duration: 1000,
@@ -105,7 +97,13 @@ export class HomeComponent implements OnInit {
 
       toast.present()
 
-      this.http.startRoute(tagContent).subscribe()
+      this.http.startRoute(tagContent).subscribe( result => {
+        console.log('Test123')
+        result.subscribe( res => {
+          console.log('Test213')
+          this.reloadAcceptedTasks(tagContent)
+        })
+      })
     })
   }
 
@@ -248,6 +246,29 @@ export class HomeComponent implements OnInit {
         })
       })
     }
+  }
+
+  reloadAcceptedTasks(taskId) {
+    console.log('132')
+
+    let tasks = this.data.acceptedTasks
+    let task = this.data.acceptedTasks.find(i => i.taskid == taskId)
+    let index = tasks.indexOf(task)
+
+    tasks.forEach( task => {
+      let marker = new Marker([task.startlat, task.startlng], { icon: new Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41]
+      })})
+
+      marker.removeFrom(this.map)
+    })
+
+    tasks.splice(index, 1)
+    this.data.acceptedTasks = tasks
+
+    this.showAcceptedTasks(tasks)
   }
 
   //überarbeiten

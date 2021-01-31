@@ -23,7 +23,7 @@ export class HttpService {
 
   setLocation(body) {
     return from(this.storage.get('token').then((result) => {
-      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.storage.get('token'))
+      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
 
       return this.http.post(baseUrl + 'sender/savePosition', {headers}, body)
     }))
@@ -40,7 +40,7 @@ export class HttpService {
 
   endRoute() {
     return from(this.storage.get('token').then((result) => {
-      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.storage.get('token'))
+      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
 
       return this.http.put(baseUrl + 'sender/endRoute/' + this.data.routeid, {headers})
     }))
@@ -78,9 +78,9 @@ export class HttpService {
     return from(this.storage.get('token').then((result) => {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
 
-      let routeId = this.data.acceptedTasks.find(i => i.taskid === taskId).routeid
-
-      console.log(routeId)
+      let routeid = this.data.acceptedTasks.find(i => i.taskid == taskId).routeid
+      
+      return this.http.get(baseUrl + 'sender/startRoute/' + routeid, {headers})
     }))
   }
 }

@@ -888,6 +888,11 @@ let HomeComponent = class HomeComponent {
     }
     ionViewDidEnter() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const position = yield _capacitor_core__WEBPACK_IMPORTED_MODULE_3__["Geolocation"].getCurrentPosition();
+            this.map = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Map"]("map").setView([position.coords.latitude, position.coords.longitude], 13);
+            Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["tileLayer"])('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
+            }).addTo(this.map);
             this.http.getTasks().subscribe(result => {
                 result.subscribe(tasks => {
                     this.data.tasks = tasks;
@@ -900,19 +905,11 @@ let HomeComponent = class HomeComponent {
                     this.showAcceptedTasks(this.data.acceptedTasks);
                 });
             });
-            const position = yield _capacitor_core__WEBPACK_IMPORTED_MODULE_3__["Geolocation"].getCurrentPosition();
-            this.map = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Map"]("map").setView([position.coords.latitude, position.coords.longitude], 13);
-            Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["tileLayer"])('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
-            }).addTo(this.map);
         });
     }
     addListenNFC() {
-        console.log('Listen to NFC');
         this.nfc.addNdefListener(() => {
-            console.log('successfully attached ndef  listener');
         }, (err) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            console.log('erro attaching ndef listener', err);
             let toast = yield this.toastCtrl.create({
                 message: err,
                 duration: 1000,
@@ -922,15 +919,19 @@ let HomeComponent = class HomeComponent {
         })).subscribe((data) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             let payload = data.tag.ndefMessage[0].payload;
             let tagContent = this.nfc.bytesToString(payload).substring(3);
-            console.log('received ndef messag. the tag contains: ', data.tag);
-            console.log('decoded tag id', this.nfc.bytesToHexString(data.tag.id));
             let toast = yield this.toastCtrl.create({
                 message: 'Route wird gestartet',
                 duration: 1000,
                 position: 'bottom'
             });
             toast.present();
-            this.http.startRoute(tagContent).subscribe();
+            this.http.startRoute(tagContent).subscribe(result => {
+                console.log('Test123');
+                result.subscribe(res => {
+                    console.log('Test213');
+                    this.reloadAcceptedTasks(tagContent);
+                });
+            });
         }));
     }
     presentModalOpenTask(task) {
@@ -1068,6 +1069,23 @@ let HomeComponent = class HomeComponent {
                 });
             });
         }
+    }
+    reloadAcceptedTasks(taskId) {
+        console.log('132');
+        let tasks = this.data.acceptedTasks;
+        let task = this.data.acceptedTasks.find(i => i.taskid == taskId);
+        let index = tasks.indexOf(task);
+        tasks.forEach(task => {
+            let marker = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Marker"]([task.startlat, task.startlng], { icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41]
+                }) });
+            marker.removeFrom(this.map);
+        });
+        tasks.splice(index, 1);
+        this.data.acceptedTasks = tasks;
+        this.showAcceptedTasks(tasks);
     }
     //überarbeiten
     generateRoute() {
@@ -1237,7 +1255,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const osrm_url = 'http://195.128.100.64:5000/route/v1';
+const corsUrl = "https://cors-anywhere.herokuapp.com/";
+const osrm_url = corsUrl + 'http://195.128.100.64:5000/route/v1';
 let TaskAcceptPage = class TaskAcceptPage {
     constructor(modalCtrl, http) {
         this.modalCtrl = modalCtrl;
@@ -1264,10 +1283,24 @@ let TaskAcceptPage = class TaskAcceptPage {
             plan: leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].plan(wp, {
                 createMarker: function (j, waypoint) {
                     if (j == 0) {
-                        return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, { draggable: false });
+                        return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, {
+                            icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png',
+                                iconSize: [25, 41],
+                                iconAnchor: [12, 41]
+                            }),
+                            draggable: false
+                        });
                     }
                     else {
-                        return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, { draggable: false });
+                        return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, {
+                            icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png',
+                                iconSize: [25, 41],
+                                iconAnchor: [12, 41]
+                            }),
+                            draggable: false
+                        });
                     }
                 }
             })
@@ -1337,7 +1370,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const osrm_url = 'http://195.128.100.64:5000/route/v1';
+const corsUrl = "https://cors-anywhere.herokuapp.com/";
+const osrm_url = corsUrl + 'http://195.128.100.64:5000/route/v1';
 let TaskInfoPage = class TaskInfoPage {
     constructor(modalCtrl, http) {
         this.modalCtrl = modalCtrl;
@@ -1364,10 +1398,24 @@ let TaskInfoPage = class TaskInfoPage {
             plan: leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].plan(wp, {
                 createMarker: function (j, waypoint) {
                     if (j == 0) {
-                        return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, { draggable: false });
+                        return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, {
+                            icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png',
+                                iconSize: [25, 41],
+                                iconAnchor: [12, 41]
+                            }),
+                            draggable: false
+                        });
                     }
                     else {
-                        return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, { draggable: false });
+                        return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, {
+                            icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png',
+                                iconSize: [25, 41],
+                                iconAnchor: [12, 41]
+                            }),
+                            draggable: false
+                        });
                     }
                 }
             })
@@ -1434,7 +1482,6 @@ let AuthService = class AuthService {
         this.router = router;
     }
     login(body) {
-        console.log(body);
         return this.http.post(baseUrl + 'authenticate/senderlogin', body, { responseType: 'text' });
     }
     getUser() {
@@ -1529,7 +1576,7 @@ let HttpService = class HttpService {
     }
     setLocation(body) {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then((result) => {
-            let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + this.storage.get('token'));
+            let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
             return this.http.post(baseUrl + 'sender/savePosition', { headers }, body);
         }));
     }
@@ -1542,7 +1589,7 @@ let HttpService = class HttpService {
     }
     endRoute() {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then((result) => {
-            let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + this.storage.get('token'));
+            let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
             return this.http.put(baseUrl + 'sender/endRoute/' + this.data.routeid, { headers });
         }));
     }
@@ -1571,8 +1618,8 @@ let HttpService = class HttpService {
     startRoute(taskId) {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then((result) => {
             let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
-            let routeId = this.data.acceptedTasks.find(i => i.taskid === taskId).routeId;
-            console.log(routeId);
+            let routeid = this.data.acceptedTasks.find(i => i.taskid == taskId).routeid;
+            return this.http.get(baseUrl + 'sender/startRoute/' + routeid, { headers });
         }));
     }
 };

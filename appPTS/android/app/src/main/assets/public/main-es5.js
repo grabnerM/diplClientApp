@@ -1167,6 +1167,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
+                    _context.next = 2;
+                    return _capacitor_core__WEBPACK_IMPORTED_MODULE_3__["Geolocation"].getCurrentPosition();
+
+                  case 2:
+                    position = _context.sent;
+                    this.map = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Map"]("map").setView([position.coords.latitude, position.coords.longitude], 13);
+                    Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["tileLayer"])('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                      attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
+                    }).addTo(this.map);
                     this.http.getTasks().subscribe(function (result) {
                       result.subscribe(function (tasks) {
                         _this6.data.tasks = tasks;
@@ -1181,15 +1190,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         _this6.showAcceptedTasks(_this6.data.acceptedTasks);
                       });
                     });
-                    _context.next = 4;
-                    return _capacitor_core__WEBPACK_IMPORTED_MODULE_3__["Geolocation"].getCurrentPosition();
-
-                  case 4:
-                    position = _context.sent;
-                    this.map = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Map"]("map").setView([position.coords.latitude, position.coords.longitude], 13);
-                    Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["tileLayer"])('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                      attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
-                    }).addTo(this.map);
 
                   case 7:
                   case "end":
@@ -1204,29 +1204,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function addListenNFC() {
           var _this7 = this;
 
-          console.log('Listen to NFC');
-          this.nfc.addNdefListener(function () {
-            console.log('successfully attached ndef  listener');
-          }, function (err) {
+          this.nfc.addNdefListener(function () {}, function (err) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this7, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
               var toast;
               return regeneratorRuntime.wrap(function _callee2$(_context2) {
                 while (1) {
                   switch (_context2.prev = _context2.next) {
                     case 0:
-                      console.log('erro attaching ndef listener', err);
-                      _context2.next = 3;
+                      _context2.next = 2;
                       return this.toastCtrl.create({
                         message: err,
                         duration: 1000,
                         position: 'bottom'
                       });
 
-                    case 3:
+                    case 2:
                       toast = _context2.sent;
                       toast.present();
 
-                    case 5:
+                    case 4:
                     case "end":
                       return _context2.stop();
                   }
@@ -1235,6 +1231,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }));
           }).subscribe(function (data) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this7, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+              var _this8 = this;
+
               var payload, tagContent, toast;
               return regeneratorRuntime.wrap(function _callee3$(_context3) {
                 while (1) {
@@ -1242,21 +1240,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     case 0:
                       payload = data.tag.ndefMessage[0].payload;
                       tagContent = this.nfc.bytesToString(payload).substring(3);
-                      console.log('received ndef messag. the tag contains: ', data.tag);
-                      console.log('decoded tag id', this.nfc.bytesToHexString(data.tag.id));
-                      _context3.next = 6;
+                      _context3.next = 4;
                       return this.toastCtrl.create({
                         message: 'Route wird gestartet',
                         duration: 1000,
                         position: 'bottom'
                       });
 
-                    case 6:
+                    case 4:
                       toast = _context3.sent;
                       toast.present();
-                      this.http.startRoute(tagContent).subscribe();
+                      this.http.startRoute(tagContent).subscribe(function (result) {
+                        console.log('Test123');
+                        result.subscribe(function (res) {
+                          console.log('Test213');
 
-                    case 9:
+                          _this8.reloadAcceptedTasks(tagContent);
+                        });
+                      });
+
+                    case 7:
                     case "end":
                       return _context3.stop();
                   }
@@ -1460,7 +1463,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "showOpenTasks",
         value: function showOpenTasks(tasks) {
-          var _this8 = this;
+          var _this9 = this;
 
           if (tasks != null) {
             tasks.forEach(function (task) {
@@ -1470,9 +1473,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   iconSize: [25, 41],
                   iconAnchor: [12, 41]
                 })
-              }).addTo(_this8.map);
+              }).addTo(_this9.map);
               marker.on('click', function () {
-                _this8.presentModalOpenTask(task);
+                _this9.presentModalOpenTask(task);
               });
             });
           }
@@ -1480,7 +1483,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "showAcceptedTasks",
         value: function showAcceptedTasks(tasks) {
-          var _this9 = this;
+          var _this10 = this;
 
           if (tasks != null) {
             tasks.forEach(function (task) {
@@ -1490,12 +1493,37 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   iconSize: [25, 41],
                   iconAnchor: [12, 41]
                 })
-              }).addTo(_this9.map);
+              }).addTo(_this10.map);
               marker.on('click', function () {
-                _this9.presentModalAcceptedTask(task);
+                _this10.presentModalAcceptedTask(task);
               });
             });
           }
+        }
+      }, {
+        key: "reloadAcceptedTasks",
+        value: function reloadAcceptedTasks(taskId) {
+          var _this11 = this;
+
+          console.log('132');
+          var tasks = this.data.acceptedTasks;
+          var task = this.data.acceptedTasks.find(function (i) {
+            return i.taskid == taskId;
+          });
+          var index = tasks.indexOf(task);
+          tasks.forEach(function (task) {
+            var marker = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Marker"]([task.startlat, task.startlng], {
+              icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41]
+              })
+            });
+            marker.removeFrom(_this11.map);
+          });
+          tasks.splice(index, 1);
+          this.data.acceptedTasks = tasks;
+          this.showAcceptedTasks(tasks);
         } //überarbeiten
 
       }, {
@@ -1512,7 +1540,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "changeTracking",
         value: function changeTracking() {
-          var _this10 = this;
+          var _this12 = this;
 
           console.log(this.wp);
           this.tracking = !this.tracking;
@@ -1522,7 +1550,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.generateRoute();
             document.getElementById('tracking').innerHTML = 'Stop Tracking';
             this.interval = setInterval(function () {
-              _this10.newLocation();
+              _this12.newLocation();
             }, 6000);
           } else {
             document.getElementById('tracking').innerHTML = 'Start Tracking';
@@ -1789,7 +1817,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var leaflet__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_4__);
 
-    var osrm_url = 'http://195.128.100.64:5000/route/v1';
+    var corsUrl = "https://cors-anywhere.herokuapp.com/";
+    var osrm_url = corsUrl + 'http://195.128.100.64:5000/route/v1';
 
     var TaskAcceptPage = /*#__PURE__*/function () {
       function TaskAcceptPage(modalCtrl, http) {
@@ -1826,10 +1855,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               createMarker: function createMarker(j, waypoint) {
                 if (j == 0) {
                   return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, {
+                    icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png',
+                      iconSize: [25, 41],
+                      iconAnchor: [12, 41]
+                    }),
                     draggable: false
                   });
                 } else {
                   return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, {
+                    icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png',
+                      iconSize: [25, 41],
+                      iconAnchor: [12, 41]
+                    }),
                     draggable: false
                   });
                 }
@@ -1951,7 +1990,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var leaflet__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_4__);
 
-    var osrm_url = 'http://195.128.100.64:5000/route/v1';
+    var corsUrl = "https://cors-anywhere.herokuapp.com/";
+    var osrm_url = corsUrl + 'http://195.128.100.64:5000/route/v1';
 
     var TaskInfoPage = /*#__PURE__*/function () {
       function TaskInfoPage(modalCtrl, http) {
@@ -1988,10 +2028,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               createMarker: function createMarker(j, waypoint) {
                 if (j == 0) {
                   return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, {
+                    icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png',
+                      iconSize: [25, 41],
+                      iconAnchor: [12, 41]
+                    }),
                     draggable: false
                   });
                 } else {
                   return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, {
+                    icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png',
+                      iconSize: [25, 41],
+                      iconAnchor: [12, 41]
+                    }),
                     draggable: false
                   });
                 }
@@ -2105,7 +2155,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AuthService, [{
         key: "login",
         value: function login(body) {
-          console.log(body);
           return this.http.post(baseUrl + 'authenticate/senderlogin', body, {
             responseType: 'text'
           });
@@ -2122,10 +2171,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "logOut",
         value: function logOut() {
-          var _this11 = this;
+          var _this13 = this;
 
           this.storage.remove(TOKEN_KEY).then(function () {
-            _this11.router.navigateByUrl('/');
+            _this13.router.navigateByUrl('/');
           });
         }
       }, {
@@ -2272,11 +2321,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(HttpService, [{
         key: "setLocation",
         value: function setLocation(body) {
-          var _this12 = this;
+          var _this14 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
-            var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + _this12.storage.get('token'));
-            return _this12.http.post(baseUrl + 'sender/savePosition', {
+            var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
+            return _this14.http.post(baseUrl + 'sender/savePosition', {
               headers: headers
             }, body);
           }));
@@ -2292,11 +2341,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "endRoute",
         value: function endRoute() {
-          var _this13 = this;
+          var _this15 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
-            var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + _this13.storage.get('token'));
-            return _this13.http.put(baseUrl + 'sender/endRoute/' + _this13.data.routeid, {
+            var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
+            return _this15.http.put(baseUrl + 'sender/endRoute/' + _this15.data.routeid, {
               headers: headers
             });
           }));
@@ -2305,7 +2354,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getTasks",
         value: function getTasks() {
-          var _this14 = this;
+          var _this16 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
@@ -2313,7 +2362,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     new Task(2, 48.155429, 14.036327, 48.138435, 14.004268, 'Lieferung von 3 Kebap Scharf ohne Tomaten', -1, 13),
                     new Task(3, 48.165429, 14.136327, 48.138435, 14.004268, '15 Briefe', 0, 13)]*/
 
-            return _this14.http.get(baseUrl + 'sender/getOpenTasks', {
+            return _this16.http.get(baseUrl + 'sender/getOpenTasks', {
               headers: headers
             });
           }));
@@ -2321,11 +2370,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getAcceptedTasks",
         value: function getAcceptedTasks() {
-          var _this15 = this;
+          var _this17 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
-            return _this15.http.get(baseUrl + 'sender/getOpenTasksBySender', {
+            return _this17.http.get(baseUrl + 'sender/getOpenTasksBySender', {
               headers: headers
             });
           }));
@@ -2333,11 +2382,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "acceptTask",
         value: function acceptTask(taskId) {
-          var _this16 = this;
+          var _this18 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
-            return _this16.http.get(baseUrl + 'sender/acceptTask/' + taskId, {
+            return _this18.http.get(baseUrl + 'sender/acceptTask/' + taskId, {
               headers: headers
             });
           }));
@@ -2345,16 +2394,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "startRoute",
         value: function startRoute(taskId) {
-          var _this17 = this;
+          var _this19 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
 
-            var routeId = _this17.data.acceptedTasks.find(function (i) {
-              return i.taskid === taskId;
-            }).routeId;
+            var routeid = _this19.data.acceptedTasks.find(function (i) {
+              return i.taskid == taskId;
+            }).routeid;
 
-            console.log(routeId);
+            return _this19.http.get(baseUrl + 'sender/startRoute/' + routeid, {
+              headers: headers
+            });
           }));
         }
       }]);

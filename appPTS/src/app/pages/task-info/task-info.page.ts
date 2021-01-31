@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { HttpService } from 'src/app/service/http.service';
-import { Map, tileLayer, marker, Routing, Marker, latLng } from 'leaflet';
+import { Map, tileLayer, marker, Routing, Marker, latLng, Icon } from 'leaflet';
 import { Task } from 'src/app/class/Task';
 
-const osrm_url = 'http://195.128.100.64:5000/route/v1'
+const corsUrl = "https://cors-anywhere.herokuapp.com/"
+const osrm_url = corsUrl + 'http://195.128.100.64:5000/route/v1'
 
 @Component({
   selector: 'app-task-info',
@@ -49,9 +50,23 @@ export class TaskInfoPage implements OnInit {
       plan: Routing.plan(wp, {
         createMarker: function(j, waypoint) {
           if (j == 0) {
-            return marker(waypoint.latLng, {draggable: false})
+            return marker(waypoint.latLng, { 
+              icon: new Icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41]
+              }), 
+              draggable: false
+            })
           } else {
-            return marker(waypoint.latLng, {draggable: false})
+            return marker(waypoint.latLng, { 
+              icon: new Icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41]
+              }), 
+              draggable: false
+            })
           }
         }
       })
