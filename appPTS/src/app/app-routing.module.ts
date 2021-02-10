@@ -43,7 +43,11 @@ const routes: Routes = [
   {
     path: 'task-accept',
     loadChildren: () => import('./pages/task-accept/task-accept.module').then( m => m.TaskAcceptPageModule)
+  },  {
+    path: 'task-finish',
+    loadChildren: () => import('./pages/task-finish/task-finish.module').then( m => m.TaskFinishPageModule)
   }
+
 
 
 ];

@@ -6,7 +6,8 @@ import { Sender } from '../class/Sender';
 
 const TOKEN_KEY = 'token'
 const corsUrl = "https://cors-anywhere.herokuapp.com/"
-const baseUrl = corsUrl + "http://195.128.100.64:8080/"
+//const baseUrl = corsUrl + "http://195.128.100.64:8080/"
+const baseUrl = "https://v2202010130694129625.goodsrv.de/"
 //const baseUrl = "http://localhost:8080/"
 
 @Injectable({

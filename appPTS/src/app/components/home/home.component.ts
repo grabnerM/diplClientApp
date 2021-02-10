@@ -1,7 +1,7 @@
 import { Component, OnInit, ɵbypassSanitizationTrustResourceUrl } from '@angular/core';
 import { Router } from '@angular/router';
 import { Geolocation } from '@capacitor/core';
-import { Map, tileLayer, marker, Routing, Marker, Icon } from 'leaflet';
+import { Map, tileLayer, marker, Routing, Marker, Icon, latLng } from 'leaflet';
 import { HttpService } from '../../service/http.service';
 import 'leaflet-routing-machine';
 import { DataService } from '../../service/data.service';
@@ -11,8 +11,9 @@ import { Task } from 'src/app/class/Task';
 import { NFC, Ndef } from '@ionic-native/nfc/ngx';
 import { acceptedTask } from 'src/app/class/acceptedTask';
 import { TaskAcceptPage } from 'src/app/pages/task-accept/task-accept.page';
+import { TaskFinishPage } from 'src/app/pages/task-finish/task-finish.page';
 
-const osrm_url = 'http://195.128.100.64:5000/route/v1'
+const osrm_url = "https://v2202010130694129625.goodsrv.de:50/route/v1"
 
 @Component({
   selector: 'app-home',
@@ -22,15 +23,15 @@ const osrm_url = 'http://195.128.100.64:5000/route/v1'
 export class HomeComponent implements OnInit {
 
   private interval: any
-  private map: Map
   private start: any
   private wp = []
   private route: any
   private currentLocation: any
-  private routing: any
-  public tracking: boolean = false
-  public acceptedTaskMarker: Marker[] = []
-
+  private currentDrivingTask: acceptedTask
+  private tracking: boolean = false
+  private acceptedTaskMarker: Marker[] = []
+  private map: Map
+  private routing: any = false
 
   constructor(
     private platform: Platform,
@@ -89,20 +90,43 @@ export class HomeComponent implements OnInit {
     }).subscribe(async data => {
       let payload = data.tag.ndefMessage[0].payload
       let tagContent = this.nfc.bytesToString(payload).substring(3)
+      let task = this.data.acceptedTasks.find(i => i.taskid == Number(tagContent))
 
-      let toast = await this.toastCtrl.create({
-        message: 'Route wird gestartet',
-        duration: 1000,
-        position: 'bottom'
-      })
-
-      toast.present()
-
-      this.http.startRoute(tagContent).subscribe( result => {
-        result.subscribe( res => {
-          this.reloadAcceptedTasks(tagContent)
+      if (this.routing) {
+        let toast = await this.toastCtrl.create({
+          message: 'Route beendet',
+          duration: 2000,
+          position: 'bottom'
         })
-      })
+  
+        toast.present()
+  
+        this.endRoute(this.currentDrivingTask)
+      } else if (this.data.acceptedTasks.includes(task) && !this.routing) {
+        let toast = await this.toastCtrl.create({
+          message: 'Route wird gestartet',
+          duration: 2000,
+          position: 'bottom'
+        })
+  
+        toast.present()
+  
+        this.http.startRoute(tagContent).subscribe( result => {
+          result.subscribe( res => {
+            this.startRoute(tagContent)
+            this.reloadAcceptedTasks(tagContent)
+            this.routing = true
+          })
+        })
+      } else {
+        let toast = await this.toastCtrl.create({
+          message: 'Kein Task gefunden',
+          duration: 2000,
+          position: 'bottom'
+        })
+  
+        toast.present()
+      }
     })
   }
 
@@ -130,6 +154,16 @@ export class HomeComponent implements OnInit {
     return await modal.present()
   }
 
+  async presentModalFinishTask(task: acceptedTask) {
+    const modal = await this.modalController.create({
+      component: TaskFinishPage,
+      swipeToClose: true,
+      componentProps: {
+        task: task
+      }
+    })
+  }
+
   async getLocation() {
     const position = await Geolocation.getCurrentPosition()
     console.log(position)
@@ -140,21 +174,21 @@ export class HomeComponent implements OnInit {
       if (this.wp.length == 0) {
         this.wp.push([48.151417, 14.020848])
         body = {
-          routeid: this.data.routeid,
+          routeid: this.data.routeId,
           lat: 48.151417,
           lng: 14.020848
         }
       } else if (this.wp.length == 1) {
         this.wp.push([48.163901, 14.033382])
         body = {
-          routeid: this.data.routeid,
+          routeid: this.data.routeId,
           lat: 48.163901,
           lng: 14.033382
         }
       } else if (this.wp.length == 2) {
         this.wp.push([48.170509, 14.051609])
         body = {
-          routeid: this.data.routeid,
+          routeid: this.data.routeId,
           lat: 48.170509,
           lng: 14.051609
         }
@@ -250,12 +284,11 @@ export class HomeComponent implements OnInit {
   }
 
   reloadAcceptedTasks(taskId) {
-    console.log('132')
-
     let tasks = this.data.acceptedTasks
     let task = this.data.acceptedTasks.find(i => i.taskid == taskId)
     let index = tasks.indexOf(task)
 
+    this.currentDrivingTask = task
     this.acceptedTaskMarker.forEach( marker => {
       this.map.removeLayer(marker)
     })
@@ -268,14 +301,63 @@ export class HomeComponent implements OnInit {
   }
 
   //überarbeiten
-  generateRoute() {
-    //this.http.generateRoute().subscribe()
+  startRoute(taskId) {
+    let task = this.data.acceptedTasks.find(i => i.taskid == taskId)
+
+    let wp = []
+
+    wp.push(latLng(task.startlat, task.startlng))
+    wp.push(latLng(task.endlat, task.endlng))
+
+    this.route = Routing.control({
+      routeWhileDragging: false,
+      show: false,
+      router: new Routing.OSRMv1({
+        serviceUrl: osrm_url
+      }),
+      addWaypoints: false,
+      plan: Routing.plan(wp, {
+        createMarker: function(j, waypoint) {
+          if (j == 0) {
+            return marker(waypoint.latLng, { 
+              icon: new Icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41]
+              }), 
+              draggable: false
+            })
+          } else {
+            let marker = new Marker(waypoint.latLng, { 
+              icon: new Icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41]
+              }), 
+              draggable: false
+            })
+
+            marker.on('click', () => {
+              this.presentModalFinishTask(task)
+            })
+
+            return marker
+          }
+        }
+      })
+    })
+
+    this.route.addTo(this.map)
   }
 
-  endRoute() {
-    this.http.endRoute().subscribe( value => {
-      console.log(value)
+  endRoute(task) {
+    this.http.endRoute(task.routeid).subscribe( result => {
+      result.subscribe( res => {
+      })
     })
+
+    this.routing = false
+    this.map.removeControl(this.route)
   }
   
   changeTracking() {
@@ -285,7 +367,6 @@ export class HomeComponent implements OnInit {
     console.log(this.tracking)
 
     if (this.tracking) {
-      this.generateRoute()
       document.getElementById('tracking').innerHTML = 'Stop Tracking'
       this.interval = setInterval(() => {
         this.newLocation()
@@ -293,7 +374,6 @@ export class HomeComponent implements OnInit {
     } else {
       document.getElementById('tracking').innerHTML = 'Start Tracking'
       clearInterval(this.interval);
-      this.endRoute()
     }
   }
 }

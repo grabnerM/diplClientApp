@@ -237,6 +237,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-finish/task-finish.page.html":
+  /*!***********************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-finish/task-finish.page.html ***!
+    \***********************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppPagesTaskFinishTaskFinishPageHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n      <ion-title>Informations</ion-title>\n      <ion-buttons slot=\"primary\">\n          <ion-button (click)=\"dismiss()\">\n              <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n          </ion-button>\n      </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div id=\"route\"></div>\n  <ion-card>\n      <ion-card-content>\n          <ion-item-divider>\n              <!--<ion-item>\n                <ion-label>\n                    State of Task\n                </ion-label>\n                <ion-label>\n                    {{task.status}}\n                </ion-label>\n            </ion-item>-->\n              {{task.status}}\n          </ion-item-divider>\n          <ion-item-divider>\n              <!--<ion-item>\n                Description\n            </ion-item><br> {{task.description}}-->\n              {{task.description}}\n          </ion-item-divider>\n          <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"finishRoute(task)\">\n              Paket abgegeben\n          </ion-button>\n      </ion-card-content>\n  </ion-card>\n</ion-content>";
+    /***/
+  },
+
+  /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-info/task-info.page.html":
   /*!*******************************************************************************************!*\
     !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-info/task-info.page.html ***!
@@ -372,6 +392,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         /*! ./pages/task-accept/task-accept.module */
         "./src/app/pages/task-accept/task-accept.module.ts")).then(function (m) {
           return m.TaskAcceptPageModule;
+        });
+      }
+    }, {
+      path: 'task-finish',
+      loadChildren: function loadChildren() {
+        return __webpack_require__.e(
+        /*! import() | pages-task-finish-task-finish-module */
+        "pages-task-finish-task-finish-module").then(__webpack_require__.bind(null,
+        /*! ./pages/task-finish/task-finish.module */
+        "./src/app/pages/task-finish/task-finish.module.ts")).then(function (m) {
+          return m.TaskFinishPageModule;
         });
       }
     }];
@@ -645,6 +676,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _ionic_native_nfc_ngx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
     /*! @ionic-native/nfc/ngx */
     "./node_modules/@ionic-native/nfc/__ivy_ngcc__/ngx/index.js");
+    /* harmony import */
+
+
+    var _components_home_home_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+    /*! ./components/home/home.component */
+    "./src/app/components/home/home.component.ts");
 
     var AppModule = function AppModule() {
       _classCallCheck(this, AppModule);
@@ -654,7 +691,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       declarations: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"], _components_authentication_authentication_component__WEBPACK_IMPORTED_MODULE_12__["AuthenticationComponent"]],
       entryComponents: [_components_authentication_authentication_component__WEBPACK_IMPORTED_MODULE_12__["AuthenticationComponent"]],
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _angular_common__WEBPACK_IMPORTED_MODULE_9__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_13__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_13__["ReactiveFormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpClientModule"], _ionic_storage__WEBPACK_IMPORTED_MODULE_10__["IonicStorageModule"].forRoot()],
-      providers: [_ionic_native_nfc_ngx__WEBPACK_IMPORTED_MODULE_14__["NFC"], _ionic_native_nfc_ngx__WEBPACK_IMPORTED_MODULE_14__["Ndef"], _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], {
+      providers: [_ionic_native_nfc_ngx__WEBPACK_IMPORTED_MODULE_14__["NFC"], _ionic_native_nfc_ngx__WEBPACK_IMPORTED_MODULE_14__["Ndef"], _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _components_home_home_component__WEBPACK_IMPORTED_MODULE_15__["HomeComponent"], {
         provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
         useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
       }],
@@ -1129,8 +1166,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var src_app_pages_task_accept_task_accept_page__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! src/app/pages/task-accept/task-accept.page */
     "./src/app/pages/task-accept/task-accept.page.ts");
+    /* harmony import */
 
-    var osrm_url = 'http://195.128.100.64:5000/route/v1';
+
+    var src_app_pages_task_finish_task_finish_page__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    /*! src/app/pages/task-finish/task-finish.page */
+    "./src/app/pages/task-finish/task-finish.page.ts");
+
+    var osrm_url = "https://v2202010130694129625.goodsrv.de:50/route/v1";
 
     var HomeComponent = /*#__PURE__*/function () {
       function HomeComponent(platform, router, http, data, modalController, toastCtrl, nfc, ndef) {
@@ -1148,6 +1191,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.ndef = ndef;
         this.wp = [];
         this.tracking = false;
+        this.acceptedTaskMarker = [];
+        this.routing = false;
         this.platform.ready().then(function () {
           _this5.addListenNFC();
         });
@@ -1233,33 +1278,81 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this7, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
               var _this8 = this;
 
-              var payload, tagContent, toast;
+              var payload, tagContent, task, toast, _toast, _toast2;
+
               return regeneratorRuntime.wrap(function _callee3$(_context3) {
                 while (1) {
                   switch (_context3.prev = _context3.next) {
                     case 0:
                       payload = data.tag.ndefMessage[0].payload;
                       tagContent = this.nfc.bytesToString(payload).substring(3);
-                      _context3.next = 4;
+                      task = this.data.acceptedTasks.find(function (i) {
+                        return i.taskid == Number(tagContent);
+                      });
+
+                      if (!this.routing) {
+                        _context3.next = 11;
+                        break;
+                      }
+
+                      _context3.next = 6;
                       return this.toastCtrl.create({
-                        message: 'Route wird gestartet',
-                        duration: 1000,
+                        message: 'Route beendet',
+                        duration: 2000,
                         position: 'bottom'
                       });
 
-                    case 4:
+                    case 6:
                       toast = _context3.sent;
                       toast.present();
-                      this.http.startRoute(tagContent).subscribe(function (result) {
-                        console.log('Test123');
-                        result.subscribe(function (res) {
-                          console.log('Test213');
+                      this.endRoute(this.currentDrivingTask);
+                      _context3.next = 23;
+                      break;
 
-                          _this8.reloadAcceptedTasks(tagContent);
-                        });
+                    case 11:
+                      if (!(this.data.acceptedTasks.includes(task) && !this.routing)) {
+                        _context3.next = 19;
+                        break;
+                      }
+
+                      _context3.next = 14;
+                      return this.toastCtrl.create({
+                        message: 'Route wird gestartet',
+                        duration: 2000,
+                        position: 'bottom'
                       });
 
-                    case 7:
+                    case 14:
+                      _toast = _context3.sent;
+
+                      _toast.present();
+
+                      this.http.startRoute(tagContent).subscribe(function (result) {
+                        result.subscribe(function (res) {
+                          _this8.startRoute(tagContent);
+
+                          _this8.reloadAcceptedTasks(tagContent);
+
+                          _this8.routing = true;
+                        });
+                      });
+                      _context3.next = 23;
+                      break;
+
+                    case 19:
+                      _context3.next = 21;
+                      return this.toastCtrl.create({
+                        message: 'Kein Task gefunden',
+                        duration: 2000,
+                        position: 'bottom'
+                      });
+
+                    case 21:
+                      _toast2 = _context3.sent;
+
+                      _toast2.present();
+
+                    case 23:
                     case "end":
                       return _context3.stop();
                   }
@@ -1337,19 +1430,48 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }));
         }
       }, {
-        key: "getLocation",
-        value: function getLocation() {
+        key: "presentModalFinishTask",
+        value: function presentModalFinishTask(task) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
-            var position, body;
+            var modal;
             return regeneratorRuntime.wrap(function _callee6$(_context6) {
               while (1) {
                 switch (_context6.prev = _context6.next) {
                   case 0:
                     _context6.next = 2;
+                    return this.modalController.create({
+                      component: src_app_pages_task_finish_task_finish_page__WEBPACK_IMPORTED_MODULE_12__["TaskFinishPage"],
+                      swipeToClose: true,
+                      componentProps: {
+                        task: task
+                      }
+                    });
+
+                  case 2:
+                    modal = _context6.sent;
+
+                  case 3:
+                  case "end":
+                    return _context6.stop();
+                }
+              }
+            }, _callee6, this);
+          }));
+        }
+      }, {
+        key: "getLocation",
+        value: function getLocation() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
+            var position, body;
+            return regeneratorRuntime.wrap(function _callee7$(_context7) {
+              while (1) {
+                switch (_context7.prev = _context7.next) {
+                  case 0:
+                    _context7.next = 2;
                     return _capacitor_core__WEBPACK_IMPORTED_MODULE_3__["Geolocation"].getCurrentPosition();
 
                   case 2:
-                    position = _context6.sent;
+                    position = _context7.sent;
                     console.log(position);
 
                     if (position.coords.latitude != null) {
@@ -1358,21 +1480,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       if (this.wp.length == 0) {
                         this.wp.push([48.151417, 14.020848]);
                         body = {
-                          routeid: this.data.routeid,
+                          routeid: this.data.routeId,
                           lat: 48.151417,
                           lng: 14.020848
                         };
                       } else if (this.wp.length == 1) {
                         this.wp.push([48.163901, 14.033382]);
                         body = {
-                          routeid: this.data.routeid,
+                          routeid: this.data.routeId,
                           lat: 48.163901,
                           lng: 14.033382
                         };
                       } else if (this.wp.length == 2) {
                         this.wp.push([48.170509, 14.051609]);
                         body = {
-                          routeid: this.data.routeid,
+                          routeid: this.data.routeId,
                           lat: 48.170509,
                           lng: 14.051609
                         };
@@ -1392,22 +1514,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 5:
                   case "end":
-                    return _context6.stop();
+                    return _context7.stop();
                 }
               }
-            }, _callee6, this);
+            }, _callee7, this);
           }));
         }
       }, {
         key: "newLocation",
         value: function newLocation() {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
             var l;
-            return regeneratorRuntime.wrap(function _callee7$(_context7) {
+            return regeneratorRuntime.wrap(function _callee8$(_context8) {
               while (1) {
-                switch (_context7.prev = _context7.next) {
+                switch (_context8.prev = _context8.next) {
                   case 0:
-                    _context7.next = 2;
+                    _context8.next = 2;
                     return this.getLocation();
 
                   case 2:
@@ -1454,10 +1576,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 4:
                   case "end":
-                    return _context7.stop();
+                    return _context8.stop();
                 }
               }
-            }, _callee7, this);
+            }, _callee8, this);
           }));
         }
       }, {
@@ -1497,6 +1619,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               marker.on('click', function () {
                 _this10.presentModalAcceptedTask(task);
               });
+
+              _this10.acceptedTaskMarker.push(marker);
             });
           }
         }
@@ -1505,57 +1629,95 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function reloadAcceptedTasks(taskId) {
           var _this11 = this;
 
-          console.log('132');
           var tasks = this.data.acceptedTasks;
           var task = this.data.acceptedTasks.find(function (i) {
             return i.taskid == taskId;
           });
           var index = tasks.indexOf(task);
-          tasks.forEach(function (task) {
-            var marker = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Marker"]([task.startlat, task.startlng], {
-              icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
-                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
-                iconSize: [25, 41],
-                iconAnchor: [12, 41]
-              })
-            });
-            marker.removeFrom(_this11.map);
+          this.currentDrivingTask = task;
+          this.acceptedTaskMarker.forEach(function (marker) {
+            _this11.map.removeLayer(marker);
           });
           tasks.splice(index, 1);
           this.data.acceptedTasks = tasks;
+          this.acceptedTaskMarker = [];
           this.showAcceptedTasks(tasks);
         } //überarbeiten
 
       }, {
-        key: "generateRoute",
-        value: function generateRoute() {//this.http.generateRoute().subscribe()
+        key: "startRoute",
+        value: function startRoute(taskId) {
+          var task = this.data.acceptedTasks.find(function (i) {
+            return i.taskid == taskId;
+          });
+          var wp = [];
+          wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(task.startlat, task.startlng));
+          wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(task.endlat, task.endlng));
+          this.route = leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].control({
+            routeWhileDragging: false,
+            show: false,
+            router: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].OSRMv1({
+              serviceUrl: osrm_url
+            }),
+            addWaypoints: false,
+            plan: leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].plan(wp, {
+              createMarker: function createMarker(j, waypoint) {
+                var _this12 = this;
+
+                if (j == 0) {
+                  return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, {
+                    icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png',
+                      iconSize: [25, 41],
+                      iconAnchor: [12, 41]
+                    }),
+                    draggable: false
+                  });
+                } else {
+                  var marker = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Marker"](waypoint.latLng, {
+                    icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png',
+                      iconSize: [25, 41],
+                      iconAnchor: [12, 41]
+                    }),
+                    draggable: false
+                  });
+                  marker.on('click', function () {
+                    _this12.presentModalFinishTask(task);
+                  });
+                  return marker;
+                }
+              }
+            })
+          });
+          this.route.addTo(this.map);
         }
       }, {
         key: "endRoute",
-        value: function endRoute() {
-          this.http.endRoute().subscribe(function (value) {
-            console.log(value);
+        value: function endRoute(task) {
+          this.http.endRoute(task.routeid).subscribe(function (result) {
+            result.subscribe(function (res) {});
           });
+          this.routing = false;
+          this.map.removeControl(this.route);
         }
       }, {
         key: "changeTracking",
         value: function changeTracking() {
-          var _this12 = this;
+          var _this13 = this;
 
           console.log(this.wp);
           this.tracking = !this.tracking;
           console.log(this.tracking);
 
           if (this.tracking) {
-            this.generateRoute();
             document.getElementById('tracking').innerHTML = 'Stop Tracking';
             this.interval = setInterval(function () {
-              _this12.newLocation();
+              _this13.newLocation();
             }, 6000);
           } else {
             document.getElementById('tracking').innerHTML = 'Start Tracking';
             clearInterval(this.interval);
-            this.endRoute();
           }
         }
       }]);
@@ -1816,16 +1978,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
     var leaflet__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_4__);
+    /* harmony import */
 
-    var corsUrl = "https://cors-anywhere.herokuapp.com/";
-    var osrm_url = corsUrl + 'http://195.128.100.64:5000/route/v1';
+
+    var src_app_components_home_home_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! src/app/components/home/home.component */
+    "./src/app/components/home/home.component.ts");
+
+    var osrm_url = "https://v2202010130694129625.goodsrv.de:50/route/v1";
 
     var TaskAcceptPage = /*#__PURE__*/function () {
-      function TaskAcceptPage(modalCtrl, http) {
+      function TaskAcceptPage(modalCtrl, http, home) {
         _classCallCheck(this, TaskAcceptPage);
 
         this.modalCtrl = modalCtrl;
         this.http = http;
+        this.home = home;
       }
 
       _createClass(TaskAcceptPage, [{
@@ -1884,11 +2052,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "startRoute",
         value: function startRoute(taskId) {
-          this.http.startRoute(taskId).subscribe(function (result) {
-            /*result.subscribe( result => {
-              console.log(result)
-            })*/
-          });
+          this.home.startRoute(taskId);
+          this.dismiss();
         }
       }]);
 
@@ -1900,6 +2065,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
       }, {
         type: src_app_service_http_service__WEBPACK_IMPORTED_MODULE_3__["HttpService"]
+      }, {
+        type: src_app_components_home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"]
       }];
     };
 
@@ -1913,6 +2080,184 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       /*! ./task-accept.page.scss */
       "./src/app/pages/task-accept/task-accept.page.scss"))["default"]]
     })], TaskAcceptPage);
+    /***/
+  },
+
+  /***/
+  "./src/app/pages/task-finish/task-finish.page.scss":
+  /*!*********************************************************!*\
+    !*** ./src/app/pages/task-finish/task-finish.page.scss ***!
+    \*********************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppPagesTaskFinishTaskFinishPageScss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3Rhc2stZmluaXNoL3Rhc2stZmluaXNoLnBhZ2Uuc2NzcyJ9 */";
+    /***/
+  },
+
+  /***/
+  "./src/app/pages/task-finish/task-finish.page.ts":
+  /*!*******************************************************!*\
+    !*** ./src/app/pages/task-finish/task-finish.page.ts ***!
+    \*******************************************************/
+
+  /*! exports provided: TaskFinishPage */
+
+  /***/
+  function srcAppPagesTaskFinishTaskFinishPageTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "TaskFinishPage", function () {
+      return TaskFinishPage;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @ionic/angular */
+    "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+    /* harmony import */
+
+
+    var src_app_service_http_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! src/app/service/http.service */
+    "./src/app/service/http.service.ts");
+    /* harmony import */
+
+
+    var leaflet__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! leaflet */
+    "./node_modules/leaflet/dist/leaflet-src.js");
+    /* harmony import */
+
+
+    var leaflet__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_4__);
+    /* harmony import */
+
+
+    var src_app_components_home_home_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! src/app/components/home/home.component */
+    "./src/app/components/home/home.component.ts");
+
+    var osrm_url = "https://v2202010130694129625.goodsrv.de:50/route/v1";
+
+    var TaskFinishPage = /*#__PURE__*/function () {
+      function TaskFinishPage(modalCtrl, http, home) {
+        _classCallCheck(this, TaskFinishPage);
+
+        this.modalCtrl = modalCtrl;
+        this.http = http;
+        this.home = home;
+      }
+
+      _createClass(TaskFinishPage, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "ionViewDidEnter",
+        value: function ionViewDidEnter() {
+          this.map = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Map"]("route").setView([48.1654, 14.0366], 11);
+          Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["tileLayer"])('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
+          this.showRoute();
+        }
+      }, {
+        key: "showRoute",
+        value: function showRoute() {
+          var wp = [];
+          wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(this.task.startlat, this.task.startlng));
+          wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(this.task.endlat, this.task.endlng));
+          leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].control({
+            routeWhileDragging: false,
+            show: false,
+            router: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].OSRMv1({
+              serviceUrl: osrm_url
+            }),
+            addWaypoints: false,
+            plan: leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].plan(wp, {
+              createMarker: function createMarker(j, waypoint) {
+                if (j == 0) {
+                  return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, {
+                    icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png',
+                      iconSize: [25, 41],
+                      iconAnchor: [12, 41]
+                    }),
+                    draggable: false
+                  });
+                } else {
+                  return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, {
+                    icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png',
+                      iconSize: [25, 41],
+                      iconAnchor: [12, 41]
+                    }),
+                    draggable: false
+                  });
+                }
+              }
+            })
+          }).addTo(this.map);
+        }
+      }, {
+        key: "dismiss",
+        value: function dismiss() {
+          this.modalCtrl.dismiss();
+        }
+      }, {
+        key: "finishRoute",
+        value: function finishRoute(task) {
+          this.home.endRoute(task);
+          this.dismiss();
+        }
+      }]);
+
+      return TaskFinishPage;
+    }();
+
+    TaskFinishPage.ctorParameters = function () {
+      return [{
+        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"]
+      }, {
+        type: src_app_service_http_service__WEBPACK_IMPORTED_MODULE_3__["HttpService"]
+      }, {
+        type: src_app_components_home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"]
+      }];
+    };
+
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], TaskFinishPage.prototype, "task", void 0);
+    TaskFinishPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-task-finish',
+      template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
+      /*! raw-loader!./task-finish.page.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-finish/task-finish.page.html"))["default"],
+      styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
+      /*! ./task-finish.page.scss */
+      "./src/app/pages/task-finish/task-finish.page.scss"))["default"]]
+    })], TaskFinishPage);
     /***/
   },
 
@@ -1990,8 +2335,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var leaflet__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_4__);
 
-    var corsUrl = "https://cors-anywhere.herokuapp.com/";
-    var osrm_url = corsUrl + 'http://195.128.100.64:5000/route/v1';
+    var osrm_url = "https://v2202010130694129625.goodsrv.de:50/route/v1";
 
     var TaskInfoPage = /*#__PURE__*/function () {
       function TaskInfoPage(modalCtrl, http) {
@@ -2140,8 +2484,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
 
     var TOKEN_KEY = 'token';
-    var corsUrl = "https://cors-anywhere.herokuapp.com/";
-    var baseUrl = corsUrl + "http://195.128.100.64:8080/"; //const baseUrl = "http://localhost:8080/"
+    var corsUrl = "https://cors-anywhere.herokuapp.com/"; //const baseUrl = corsUrl + "http://195.128.100.64:8080/"
+
+    var baseUrl = "https://v2202010130694129625.goodsrv.de/"; //const baseUrl = "http://localhost:8080/"
 
     var AuthService = /*#__PURE__*/function () {
       function AuthService(storage, http, router) {
@@ -2171,10 +2516,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "logOut",
         value: function logOut() {
-          var _this13 = this;
+          var _this14 = this;
 
           this.storage.remove(TOKEN_KEY).then(function () {
-            _this13.router.navigateByUrl('/');
+            _this14.router.navigateByUrl('/');
           });
         }
       }, {
@@ -2242,6 +2587,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       this.tasks = [];
       this.acceptedTasks = [];
+      this.acceptedTaskMarker = [];
     };
 
     DataService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -2306,8 +2652,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /*! rxjs */
     "./node_modules/rxjs/_esm2015/index.js");
 
-    var corsUrl = "https://cors-anywhere.herokuapp.com/";
-    var baseUrl = corsUrl + "http://195.128.100.64:8080/"; //const baseUrl = "http://localhost:8080/"
+    var corsUrl = "https://cors-anywhere.herokuapp.com/"; //const baseUrl = corsUrl + "http://195.128.100.64:8080/"
+
+    var baseUrl = "https://v2202010130694129625.goodsrv.de/"; //const baseUrl = "http://localhost:8080/"
 
     var HttpService = /*#__PURE__*/function () {
       function HttpService(http, storage, data) {
@@ -2321,11 +2668,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(HttpService, [{
         key: "setLocation",
         value: function setLocation(body) {
-          var _this14 = this;
+          var _this15 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
-            return _this14.http.post(baseUrl + 'sender/savePosition', {
+            return _this15.http.post(baseUrl + 'sender/savePosition', {
               headers: headers
             }, body);
           }));
@@ -2340,12 +2687,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "endRoute",
-        value: function endRoute() {
-          var _this15 = this;
+        value: function endRoute(routeId) {
+          var _this16 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
-            return _this15.http.put(baseUrl + 'sender/endRoute/' + _this15.data.routeid, {
+            return _this16.http.get(baseUrl + 'sender/endRoute/' + routeId, {
               headers: headers
             });
           }));
@@ -2354,7 +2701,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getTasks",
         value: function getTasks() {
-          var _this16 = this;
+          var _this17 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
@@ -2362,7 +2709,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     new Task(2, 48.155429, 14.036327, 48.138435, 14.004268, 'Lieferung von 3 Kebap Scharf ohne Tomaten', -1, 13),
                     new Task(3, 48.165429, 14.136327, 48.138435, 14.004268, '15 Briefe', 0, 13)]*/
 
-            return _this16.http.get(baseUrl + 'sender/getOpenTasks', {
+            return _this17.http.get(baseUrl + 'sender/getOpenTasks', {
               headers: headers
             });
           }));
@@ -2370,11 +2717,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getAcceptedTasks",
         value: function getAcceptedTasks() {
-          var _this17 = this;
+          var _this18 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
-            return _this17.http.get(baseUrl + 'sender/getOpenTasksBySender', {
+            return _this18.http.get(baseUrl + 'sender/getOpenTasksBySender', {
               headers: headers
             });
           }));
@@ -2382,11 +2729,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "acceptTask",
         value: function acceptTask(taskId) {
-          var _this18 = this;
+          var _this19 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
-            return _this18.http.get(baseUrl + 'sender/acceptTask/' + taskId, {
+            return _this19.http.get(baseUrl + 'sender/acceptTask/' + taskId, {
               headers: headers
             });
           }));
@@ -2394,16 +2741,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "startRoute",
         value: function startRoute(taskId) {
-          var _this19 = this;
+          var _this20 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
 
-            var routeid = _this19.data.acceptedTasks.find(function (i) {
+            var routeid = _this20.data.acceptedTasks.find(function (i) {
               return i.taskid == taskId;
             }).routeid;
 
-            return _this19.http.get(baseUrl + 'sender/startRoute/' + routeid, {
+            return _this20.http.get(baseUrl + 'sender/startRoute/' + routeid, {
               headers: headers
             });
           }));

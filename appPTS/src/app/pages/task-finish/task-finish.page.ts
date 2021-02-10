@@ -8,11 +8,11 @@ import { HomeComponent } from 'src/app/components/home/home.component';
 const osrm_url = "https://v2202010130694129625.goodsrv.de:50/route/v1"
 
 @Component({
-  selector: 'app-task-accept',
-  templateUrl: './task-accept.page.html',
-  styleUrls: ['./task-accept.page.scss'],
+  selector: 'app-task-finish',
+  templateUrl: './task-finish.page.html',
+  styleUrls: ['./task-finish.page.scss'],
 })
-export class TaskAcceptPage implements OnInit {
+export class TaskFinishPage implements OnInit {
 
   @Input() task: acceptedTask
 
@@ -78,8 +78,8 @@ export class TaskAcceptPage implements OnInit {
     this.modalCtrl.dismiss()
   }
 
-  startRoute(taskId) {
-    this.home.startRoute(taskId)
+  finishRoute(task) {
+    this.home.endRoute(task)
     this.dismiss()
   }
 

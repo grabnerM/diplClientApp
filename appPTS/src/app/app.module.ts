@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ndef, NFC } from '@ionic-native/nfc/ngx';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { Ndef, NFC } from '@ionic-native/nfc/ngx';
     Ndef,
     StatusBar,
     SplashScreen,
+    HomeComponent,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

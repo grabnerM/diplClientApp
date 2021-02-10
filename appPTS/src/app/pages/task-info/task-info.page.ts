@@ -4,8 +4,7 @@ import { HttpService } from 'src/app/service/http.service';
 import { Map, tileLayer, marker, Routing, Marker, latLng, Icon } from 'leaflet';
 import { Task } from 'src/app/class/Task';
 
-const corsUrl = "https://cors-anywhere.herokuapp.com/"
-const osrm_url = corsUrl + 'http://195.128.100.64:5000/route/v1'
+const osrm_url = "https://v2202010130694129625.goodsrv.de:50/route/v1"
 
 @Component({
   selector: 'app-task-info',

@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-title>Informations</ion-title>
+      <ion-buttons slot="primary">
+          <ion-button (click)="dismiss()">
+              <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="route"></div>
+  <ion-card>
+      <ion-card-content>
+          <ion-item-divider>
+              <!--<ion-item>
+                <ion-label>
+                    State of Task
+                </ion-label>
+                <ion-label>
+                    {{task.status}}
+                </ion-label>
+            </ion-item>-->
+              {{task.status}}
+          </ion-item-divider>
+          <ion-item-divider>
+              <!--<ion-item>
+                Description
+            </ion-item><br> {{task.description}}-->
+              {{task.description}}
+          </ion-item-divider>
+          <ion-button class="swipeButton" color="dark" fill="outline" shape="round" size="default" (click)="finishRoute(task)">
+              Paket abgegeben
+          </ion-button>
+      </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -339,6 +339,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-finish/task-finish.page.html":
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-finish/task-finish.page.html ***!
+  \***********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n      <ion-title>Informations</ion-title>\n      <ion-buttons slot=\"primary\">\n          <ion-button (click)=\"dismiss()\">\n              <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n          </ion-button>\n      </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div id=\"route\"></div>\n  <ion-card>\n      <ion-card-content>\n          <ion-item-divider>\n              <!--<ion-item>\n                <ion-label>\n                    State of Task\n                </ion-label>\n                <ion-label>\n                    {{task.status}}\n                </ion-label>\n            </ion-item>-->\n              {{task.status}}\n          </ion-item-divider>\n          <ion-item-divider>\n              <!--<ion-item>\n                Description\n            </ion-item><br> {{task.description}}-->\n              {{task.description}}\n          </ion-item-divider>\n          <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"finishRoute(task)\">\n              Paket abgegeben\n          </ion-button>\n      </ion-card-content>\n  </ion-card>\n</ion-content>");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-info/task-info.page.html":
 /*!*******************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-info/task-info.page.html ***!
@@ -416,6 +429,10 @@ const routes = [
     {
         path: 'task-accept',
         loadChildren: () => __webpack_require__.e(/*! import() | pages-task-accept-task-accept-module */ "pages-task-accept-task-accept-module").then(__webpack_require__.bind(null, /*! ./pages/task-accept/task-accept.module */ "./src/app/pages/task-accept/task-accept.module.ts")).then(m => m.TaskAcceptPageModule)
+    },
+    {
+        path: 'task-finish',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-task-finish-task-finish-module */ "pages-task-finish-task-finish-module").then(__webpack_require__.bind(null, /*! ./pages/task-finish/task-finish.module */ "./src/app/pages/task-finish/task-finish.module.ts")).then(m => m.TaskFinishPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -555,6 +572,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_authentication_authentication_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/authentication/authentication.component */ "./src/app/components/authentication/authentication.component.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
 /* harmony import */ var _ionic_native_nfc_ngx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic-native/nfc/ngx */ "./node_modules/@ionic-native/nfc/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
+
 
 
 
@@ -596,6 +615,7 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _ionic_native_nfc_ngx__WEBPACK_IMPORTED_MODULE_14__["Ndef"],
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
+            _components_home_home_component__WEBPACK_IMPORTED_MODULE_15__["HomeComponent"],
             { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
@@ -855,6 +875,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_pages_task_info_task_info_page__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/pages/task-info/task-info.page */ "./src/app/pages/task-info/task-info.page.ts");
 /* harmony import */ var _ionic_native_nfc_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic-native/nfc/ngx */ "./node_modules/@ionic-native/nfc/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var src_app_pages_task_accept_task_accept_page__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/pages/task-accept/task-accept.page */ "./src/app/pages/task-accept/task-accept.page.ts");
+/* harmony import */ var src_app_pages_task_finish_task_finish_page__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/pages/task-finish/task-finish.page */ "./src/app/pages/task-finish/task-finish.page.ts");
 
 
 
@@ -867,7 +888,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const osrm_url = 'http://195.128.100.64:5000/route/v1';
+
+const osrm_url = "https://v2202010130694129625.goodsrv.de:50/route/v1";
 let HomeComponent = class HomeComponent {
     constructor(platform, router, http, data, modalController, toastCtrl, nfc, ndef) {
         this.platform = platform;
@@ -880,6 +902,8 @@ let HomeComponent = class HomeComponent {
         this.ndef = ndef;
         this.wp = [];
         this.tracking = false;
+        this.acceptedTaskMarker = [];
+        this.routing = false;
         this.platform.ready().then(() => {
             this.addListenNFC();
         });
@@ -919,19 +943,39 @@ let HomeComponent = class HomeComponent {
         })).subscribe((data) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             let payload = data.tag.ndefMessage[0].payload;
             let tagContent = this.nfc.bytesToString(payload).substring(3);
-            let toast = yield this.toastCtrl.create({
-                message: 'Route wird gestartet',
-                duration: 1000,
-                position: 'bottom'
-            });
-            toast.present();
-            this.http.startRoute(tagContent).subscribe(result => {
-                console.log('Test123');
-                result.subscribe(res => {
-                    console.log('Test213');
-                    this.reloadAcceptedTasks(tagContent);
+            let task = this.data.acceptedTasks.find(i => i.taskid == Number(tagContent));
+            if (this.routing) {
+                let toast = yield this.toastCtrl.create({
+                    message: 'Route beendet',
+                    duration: 2000,
+                    position: 'bottom'
                 });
-            });
+                toast.present();
+                this.endRoute(this.currentDrivingTask);
+            }
+            else if (this.data.acceptedTasks.includes(task) && !this.routing) {
+                let toast = yield this.toastCtrl.create({
+                    message: 'Route wird gestartet',
+                    duration: 2000,
+                    position: 'bottom'
+                });
+                toast.present();
+                this.http.startRoute(tagContent).subscribe(result => {
+                    result.subscribe(res => {
+                        this.startRoute(tagContent);
+                        this.reloadAcceptedTasks(tagContent);
+                        this.routing = true;
+                    });
+                });
+            }
+            else {
+                let toast = yield this.toastCtrl.create({
+                    message: 'Kein Task gefunden',
+                    duration: 2000,
+                    position: 'bottom'
+                });
+                toast.present();
+            }
         }));
     }
     presentModalOpenTask(task) {
@@ -958,6 +1002,17 @@ let HomeComponent = class HomeComponent {
             return yield modal.present();
         });
     }
+    presentModalFinishTask(task) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const modal = yield this.modalController.create({
+                component: src_app_pages_task_finish_task_finish_page__WEBPACK_IMPORTED_MODULE_12__["TaskFinishPage"],
+                swipeToClose: true,
+                componentProps: {
+                    task: task
+                }
+            });
+        });
+    }
     getLocation() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const position = yield _capacitor_core__WEBPACK_IMPORTED_MODULE_3__["Geolocation"].getCurrentPosition();
@@ -969,7 +1024,7 @@ let HomeComponent = class HomeComponent {
                 if (this.wp.length == 0) {
                     this.wp.push([48.151417, 14.020848]);
                     body = {
-                        routeid: this.data.routeid,
+                        routeid: this.data.routeId,
                         lat: 48.151417,
                         lng: 14.020848
                     };
@@ -977,7 +1032,7 @@ let HomeComponent = class HomeComponent {
                 else if (this.wp.length == 1) {
                     this.wp.push([48.163901, 14.033382]);
                     body = {
-                        routeid: this.data.routeid,
+                        routeid: this.data.routeId,
                         lat: 48.163901,
                         lng: 14.033382
                     };
@@ -985,7 +1040,7 @@ let HomeComponent = class HomeComponent {
                 else if (this.wp.length == 2) {
                     this.wp.push([48.170509, 14.051609]);
                     body = {
-                        routeid: this.data.routeid,
+                        routeid: this.data.routeId,
                         lat: 48.170509,
                         lng: 14.051609
                     };
@@ -1067,41 +1122,80 @@ let HomeComponent = class HomeComponent {
                 marker.on('click', () => {
                     this.presentModalAcceptedTask(task);
                 });
+                this.acceptedTaskMarker.push(marker);
             });
         }
     }
     reloadAcceptedTasks(taskId) {
-        console.log('132');
         let tasks = this.data.acceptedTasks;
         let task = this.data.acceptedTasks.find(i => i.taskid == taskId);
         let index = tasks.indexOf(task);
-        tasks.forEach(task => {
-            let marker = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Marker"]([task.startlat, task.startlng], { icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
-                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
-                    iconSize: [25, 41],
-                    iconAnchor: [12, 41]
-                }) });
-            marker.removeFrom(this.map);
+        this.currentDrivingTask = task;
+        this.acceptedTaskMarker.forEach(marker => {
+            this.map.removeLayer(marker);
         });
         tasks.splice(index, 1);
         this.data.acceptedTasks = tasks;
+        this.acceptedTaskMarker = [];
         this.showAcceptedTasks(tasks);
     }
     //überarbeiten
-    generateRoute() {
-        //this.http.generateRoute().subscribe()
-    }
-    endRoute() {
-        this.http.endRoute().subscribe(value => {
-            console.log(value);
+    startRoute(taskId) {
+        let task = this.data.acceptedTasks.find(i => i.taskid == taskId);
+        let wp = [];
+        wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(task.startlat, task.startlng));
+        wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(task.endlat, task.endlng));
+        this.route = leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].control({
+            routeWhileDragging: false,
+            show: false,
+            router: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].OSRMv1({
+                serviceUrl: osrm_url
+            }),
+            addWaypoints: false,
+            plan: leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].plan(wp, {
+                createMarker: function (j, waypoint) {
+                    if (j == 0) {
+                        return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, {
+                            icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png',
+                                iconSize: [25, 41],
+                                iconAnchor: [12, 41]
+                            }),
+                            draggable: false
+                        });
+                    }
+                    else {
+                        let marker = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Marker"](waypoint.latLng, {
+                            icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png',
+                                iconSize: [25, 41],
+                                iconAnchor: [12, 41]
+                            }),
+                            draggable: false
+                        });
+                        marker.on('click', () => {
+                            this.presentModalFinishTask(task);
+                        });
+                        return marker;
+                    }
+                }
+            })
         });
+        this.route.addTo(this.map);
+    }
+    endRoute(task) {
+        this.http.endRoute(task.routeid).subscribe(result => {
+            result.subscribe(res => {
+            });
+        });
+        this.routing = false;
+        this.map.removeControl(this.route);
     }
     changeTracking() {
         console.log(this.wp);
         this.tracking = !this.tracking;
         console.log(this.tracking);
         if (this.tracking) {
-            this.generateRoute();
             document.getElementById('tracking').innerHTML = 'Stop Tracking';
             this.interval = setInterval(() => {
                 this.newLocation();
@@ -1110,7 +1204,6 @@ let HomeComponent = class HomeComponent {
         else {
             document.getElementById('tracking').innerHTML = 'Start Tracking';
             clearInterval(this.interval);
-            this.endRoute();
         }
     }
 };
@@ -1250,17 +1343,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_service_http_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/service/http.service */ "./src/app/service/http.service.ts");
 /* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! leaflet */ "./node_modules/leaflet/dist/leaflet-src.js");
 /* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var src_app_components_home_home_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/components/home/home.component */ "./src/app/components/home/home.component.ts");
 
 
 
 
 
-const corsUrl = "https://cors-anywhere.herokuapp.com/";
-const osrm_url = corsUrl + 'http://195.128.100.64:5000/route/v1';
+
+const osrm_url = "https://v2202010130694129625.goodsrv.de:50/route/v1";
 let TaskAcceptPage = class TaskAcceptPage {
-    constructor(modalCtrl, http) {
+    constructor(modalCtrl, http, home) {
         this.modalCtrl = modalCtrl;
         this.http = http;
+        this.home = home;
     }
     ngOnInit() {
     }
@@ -1310,16 +1405,14 @@ let TaskAcceptPage = class TaskAcceptPage {
         this.modalCtrl.dismiss();
     }
     startRoute(taskId) {
-        this.http.startRoute(taskId).subscribe(result => {
-            /*result.subscribe( result => {
-              console.log(result)
-            })*/
-        });
+        this.home.startRoute(taskId);
+        this.dismiss();
     }
 };
 TaskAcceptPage.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"] },
-    { type: src_app_service_http_service__WEBPACK_IMPORTED_MODULE_3__["HttpService"] }
+    { type: src_app_service_http_service__WEBPACK_IMPORTED_MODULE_3__["HttpService"] },
+    { type: src_app_components_home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"] }
 ];
 Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
@@ -1331,6 +1424,121 @@ TaskAcceptPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./task-accept.page.scss */ "./src/app/pages/task-accept/task-accept.page.scss")).default]
     })
 ], TaskAcceptPage);
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/task-finish/task-finish.page.scss":
+/*!*********************************************************!*\
+  !*** ./src/app/pages/task-finish/task-finish.page.scss ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3Rhc2stZmluaXNoL3Rhc2stZmluaXNoLnBhZ2Uuc2NzcyJ9 */");
+
+/***/ }),
+
+/***/ "./src/app/pages/task-finish/task-finish.page.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/pages/task-finish/task-finish.page.ts ***!
+  \*******************************************************/
+/*! exports provided: TaskFinishPage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TaskFinishPage", function() { return TaskFinishPage; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+/* harmony import */ var src_app_service_http_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/service/http.service */ "./src/app/service/http.service.ts");
+/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! leaflet */ "./node_modules/leaflet/dist/leaflet-src.js");
+/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var src_app_components_home_home_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/components/home/home.component */ "./src/app/components/home/home.component.ts");
+
+
+
+
+
+
+const osrm_url = "https://v2202010130694129625.goodsrv.de:50/route/v1";
+let TaskFinishPage = class TaskFinishPage {
+    constructor(modalCtrl, http, home) {
+        this.modalCtrl = modalCtrl;
+        this.http = http;
+        this.home = home;
+    }
+    ngOnInit() {
+    }
+    ionViewDidEnter() {
+        this.map = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Map"]("route").setView([48.1654, 14.0366], 11);
+        Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["tileLayer"])('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
+        this.showRoute();
+    }
+    showRoute() {
+        let wp = [];
+        wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(this.task.startlat, this.task.startlng));
+        wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(this.task.endlat, this.task.endlng));
+        leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].control({
+            routeWhileDragging: false,
+            show: false,
+            router: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].OSRMv1({
+                serviceUrl: osrm_url
+            }),
+            addWaypoints: false,
+            plan: leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].plan(wp, {
+                createMarker: function (j, waypoint) {
+                    if (j == 0) {
+                        return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, {
+                            icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png',
+                                iconSize: [25, 41],
+                                iconAnchor: [12, 41]
+                            }),
+                            draggable: false
+                        });
+                    }
+                    else {
+                        return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, {
+                            icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+                                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png',
+                                iconSize: [25, 41],
+                                iconAnchor: [12, 41]
+                            }),
+                            draggable: false
+                        });
+                    }
+                }
+            })
+        }).addTo(this.map);
+    }
+    dismiss() {
+        this.modalCtrl.dismiss();
+    }
+    finishRoute(task) {
+        this.home.endRoute(task);
+        this.dismiss();
+    }
+};
+TaskFinishPage.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"] },
+    { type: src_app_service_http_service__WEBPACK_IMPORTED_MODULE_3__["HttpService"] },
+    { type: src_app_components_home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"] }
+];
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], TaskFinishPage.prototype, "task", void 0);
+TaskFinishPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-task-finish',
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./task-finish.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/pages/task-finish/task-finish.page.html")).default,
+        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./task-finish.page.scss */ "./src/app/pages/task-finish/task-finish.page.scss")).default]
+    })
+], TaskFinishPage);
 
 
 
@@ -1370,8 +1578,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const corsUrl = "https://cors-anywhere.herokuapp.com/";
-const osrm_url = corsUrl + 'http://195.128.100.64:5000/route/v1';
+const osrm_url = "https://v2202010130694129625.goodsrv.de:50/route/v1";
 let TaskInfoPage = class TaskInfoPage {
     constructor(modalCtrl, http) {
         this.modalCtrl = modalCtrl;
@@ -1473,7 +1680,8 @@ __webpack_require__.r(__webpack_exports__);
 
 const TOKEN_KEY = 'token';
 const corsUrl = "https://cors-anywhere.herokuapp.com/";
-const baseUrl = corsUrl + "http://195.128.100.64:8080/";
+//const baseUrl = corsUrl + "http://195.128.100.64:8080/"
+const baseUrl = "https://v2202010130694129625.goodsrv.de/";
 //const baseUrl = "http://localhost:8080/"
 let AuthService = class AuthService {
     constructor(storage, http, router) {
@@ -1531,6 +1739,7 @@ let DataService = class DataService {
     constructor() {
         this.tasks = [];
         this.acceptedTasks = [];
+        this.acceptedTaskMarker = [];
     }
 };
 DataService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
@@ -1566,7 +1775,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const corsUrl = "https://cors-anywhere.herokuapp.com/";
-const baseUrl = corsUrl + "http://195.128.100.64:8080/";
+//const baseUrl = corsUrl + "http://195.128.100.64:8080/"
+const baseUrl = "https://v2202010130694129625.goodsrv.de/";
 //const baseUrl = "http://localhost:8080/"
 let HttpService = class HttpService {
     constructor(http, storage, data) {
@@ -1587,10 +1797,10 @@ let HttpService = class HttpService {
             //return this.http.post(baseUrl + 'sender/newRoute/', {headers}, body)
         }));
     }
-    endRoute() {
+    endRoute(routeId) {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then((result) => {
             let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
-            return this.http.put(baseUrl + 'sender/endRoute/' + this.data.routeid, { headers });
+            return this.http.get(baseUrl + 'sender/endRoute/' + routeId, { headers });
         }));
     }
     //überarbeiten
