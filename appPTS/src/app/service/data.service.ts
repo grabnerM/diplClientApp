@@ -11,7 +11,6 @@ export class DataService {
   public routeId: number
   public tasks: Task[] = []
   public acceptedTasks: acceptedTask[] = []
-  public acceptedTaskMarker: Marker[] = []
 
   constructor() { }
 }

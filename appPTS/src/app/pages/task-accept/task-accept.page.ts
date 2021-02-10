@@ -75,12 +75,7 @@ export class TaskAcceptPage implements OnInit {
   }
 
   dismiss() {
-    this.modalCtrl.dismiss()
-  }
-
-  startRoute(taskId) {
-    this.home.startRoute(taskId)
-    this.dismiss()
+    this.modalCtrl.dismiss(this.task.taskid)
   }
 
 }

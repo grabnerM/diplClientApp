@@ -151,6 +151,10 @@ export class HomeComponent implements OnInit {
       }
     })
 
+    modal.onDidDismiss().then((data) => {
+      this.startRoute(data.data)
+    })
+
     return await modal.present()
   }
 
@@ -162,6 +166,12 @@ export class HomeComponent implements OnInit {
         task: task
       }
     })
+
+    modal.onDidDismiss().then((data) => {
+      this.endRoute(data.data)
+    })
+
+    return await modal.present()
   }
 
   async getLocation() {
@@ -303,7 +313,7 @@ export class HomeComponent implements OnInit {
   //überarbeiten
   startRoute(taskId) {
     let task = this.data.acceptedTasks.find(i => i.taskid == taskId)
-
+    console.log(task)
     let wp = []
 
     wp.push(latLng(task.startlat, task.startlng))
@@ -347,7 +357,7 @@ export class HomeComponent implements OnInit {
       })
     })
 
-    this.route.addTo(this.map)
+    this.map.addControl(this.route)
   }
 
   endRoute(task) {

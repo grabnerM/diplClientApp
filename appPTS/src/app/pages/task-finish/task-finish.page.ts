@@ -75,12 +75,7 @@ export class TaskFinishPage implements OnInit {
   }
 
   dismiss() {
-    this.modalCtrl.dismiss()
-  }
-
-  finishRoute(task) {
-    this.home.endRoute(task)
-    this.dismiss()
+    this.modalCtrl.dismiss(this.task)
   }
 
 }
