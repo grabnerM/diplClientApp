@@ -309,6 +309,19 @@ export class HomeComponent implements OnInit {
     wp.push(latLng(task.startlat, task.startlng))
     wp.push(latLng(task.endlat, task.endlng))
 
+    let targetMarker = new Marker(wp[1], { 
+      icon: new Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41]
+      }), 
+      draggable: false
+    })
+
+    targetMarker.on('click', () => {
+      this.presentModalFinishTask(task)
+    })
+
     this.route = Routing.control({
       routeWhileDragging: false,
       show: false,
@@ -328,20 +341,7 @@ export class HomeComponent implements OnInit {
               draggable: false
             })
           } else {
-            let marker = new Marker(waypoint.latLng, { 
-              icon: new Icon({
-                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png',
-                iconSize: [25, 41],
-                iconAnchor: [12, 41]
-              }), 
-              draggable: false
-            })
-
-            marker.on('click', () => {
-              this.presentModalFinishTask(task)
-            })
-
-            return marker
+            return targetMarker
           }
         }
       })

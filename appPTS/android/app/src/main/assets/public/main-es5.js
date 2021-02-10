@@ -1647,12 +1647,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "startRoute",
         value: function startRoute(taskId) {
+          var _this12 = this;
+
           var task = this.data.acceptedTasks.find(function (i) {
             return i.taskid == taskId;
           });
           var wp = [];
           wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(task.startlat, task.startlng));
           wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(task.endlat, task.endlng));
+          var targetMarker = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Marker"](wp[1], {
+            icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
+              iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png',
+              iconSize: [25, 41],
+              iconAnchor: [12, 41]
+            }),
+            draggable: false
+          });
+          targetMarker.on('click', function () {
+            _this12.presentModalFinishTask(task);
+          });
           this.route = leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].control({
             routeWhileDragging: false,
             show: false,
@@ -1662,8 +1675,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             addWaypoints: false,
             plan: leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].plan(wp, {
               createMarker: function createMarker(j, waypoint) {
-                var _this12 = this;
-
                 if (j == 0) {
                   return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, {
                     icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
@@ -1674,18 +1685,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     draggable: false
                   });
                 } else {
-                  var marker = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Marker"](waypoint.latLng, {
-                    icon: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Icon"]({
-                      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png',
-                      iconSize: [25, 41],
-                      iconAnchor: [12, 41]
-                    }),
-                    draggable: false
-                  });
-                  marker.on('click', function () {
-                    _this12.presentModalFinishTask(task);
-                  });
-                  return marker;
+                  return targetMarker;
                 }
               }
             })
