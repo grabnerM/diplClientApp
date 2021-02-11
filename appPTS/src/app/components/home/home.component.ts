@@ -144,7 +144,6 @@ export class HomeComponent implements OnInit {
 
     modal.onDidDismiss().then(data => {
       this.acceptTask(data.data)
-      this.reloadOpenTasks(data.data)
     })
 
     return await modal.present()
@@ -343,17 +342,15 @@ export class HomeComponent implements OnInit {
   acceptTask(taskId) {
     this.http.acceptTask(taskId).subscribe( result => {
       result.subscribe( (data: any) => {
-        console.log(data)
-        console.log(taskId)
-
         let task = this.data.openTasks.find(i => i.taskid == taskId)
-        console.log(task)
         let newTask = new acceptedTask(task.taskid, task.startlat, task.startlng, task.endlat, task.endlng, 
           task.description, task.status, task.receiverid, data.insertId)
 
         this.data.acceptedTasks.push(newTask)
         this.acceptedTaskMarker = []
         this.showAcceptedTasks(this.data.acceptedTasks)
+        
+        this.reloadOpenTasks(taskId)
       })
     })
   }
