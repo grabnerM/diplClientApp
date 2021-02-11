@@ -9,7 +9,6 @@ import { Task } from '../class/Task';
 export class DataService {
 
   public routeId: number
-  public tasks: Task[] = []
   public acceptedTasks: acceptedTask[] = []
   public openTasks: Task[] = []
 

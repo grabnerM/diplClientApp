@@ -65,9 +65,9 @@ export class HomeComponent implements OnInit {
     
     this.http.getTasks().subscribe( result => {
       result.subscribe( tasks => {
-        this.data.tasks = tasks
+        this.data.openTasks = tasks
 
-        this.showOpenTasks(this.data.tasks)
+        this.showOpenTasks(this.data.openTasks)
       })
     })
 
