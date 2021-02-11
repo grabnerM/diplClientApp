@@ -6,7 +6,6 @@ import { from } from 'rxjs';
 import { Task } from '../class/Task';
 import { acceptedTask } from '../class/acceptedTask';
 
-const corsUrl = "https://cors-anywhere.herokuapp.com/"
 //const baseUrl = corsUrl + "http://195.128.100.64:8080/"
 const baseUrl = "https://v2202010130694129625.goodsrv.de/"
 //const baseUrl = "http://localhost:8080/"

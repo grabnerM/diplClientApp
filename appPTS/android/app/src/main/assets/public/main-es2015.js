@@ -335,7 +335,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                  <ion-label>\n                      State of Task\n                  </ion-label>\n                  <ion-label>\n                      {{task.status}}\n                  </ion-label>\n              </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                  Description\n              </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"startRoute(task.taskid)\">\n                Paket abgeholt\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                  <ion-label>\n                      State of Task\n                  </ion-label>\n                  <ion-label>\n                      {{task.status}}\n                  </ion-label>\n              </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                  Description\n              </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"dismiss()\">\n                Paket abgeholt\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>");
 
 /***/ }),
 
@@ -348,7 +348,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n      <ion-title>Informations</ion-title>\n      <ion-buttons slot=\"primary\">\n          <ion-button (click)=\"dismiss()\">\n              <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n          </ion-button>\n      </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div id=\"route\"></div>\n  <ion-card>\n      <ion-card-content>\n          <ion-item-divider>\n              <!--<ion-item>\n                <ion-label>\n                    State of Task\n                </ion-label>\n                <ion-label>\n                    {{task.status}}\n                </ion-label>\n            </ion-item>-->\n              {{task.status}}\n          </ion-item-divider>\n          <ion-item-divider>\n              <!--<ion-item>\n                Description\n            </ion-item><br> {{task.description}}-->\n              {{task.description}}\n          </ion-item-divider>\n          <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"finishRoute(task)\">\n              Paket abgegeben\n          </ion-button>\n      </ion-card-content>\n  </ion-card>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                <ion-label>\n                    State of Task\n                </ion-label>\n                <ion-label>\n                    {{task.status}}\n                </ion-label>\n            </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                Description\n            </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"dismiss()\">\n                Paket abgegeben\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>");
 
 /***/ }),
 
@@ -361,7 +361,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                    <ion-label>\n                        State of Task\n                    </ion-label>\n                    <ion-label>\n                        {{task.status}}\n                    </ion-label>\n                </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                    Description\n                </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"acceptTask(task.taskid)\">\n                Auftrag annehmen\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                    <ion-label>\n                        State of Task\n                    </ion-label>\n                    <ion-label>\n                        {{task.status}}\n                    </ion-label>\n                </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                    Description\n                </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"dismiss()\">\n                Auftrag annehmen\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>");
 
 /***/ }),
 
@@ -626,6 +626,33 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
+/***/ "./src/app/class/acceptedTask.ts":
+/*!***************************************!*\
+  !*** ./src/app/class/acceptedTask.ts ***!
+  \***************************************/
+/*! exports provided: acceptedTask */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "acceptedTask", function() { return acceptedTask; });
+class acceptedTask {
+    constructor(taskid, startlat, startlng, endlat, endlng, description, status, receiverid, routeid) {
+        this.taskid = taskid;
+        this.startlat = startlat;
+        this.startlng = startlng;
+        this.endlat = endlat;
+        this.endlng = endlng;
+        this.description = description;
+        this.status = status;
+        this.receiverid = receiverid;
+        this.routeid = routeid;
+    }
+}
+
+
+/***/ }),
+
 /***/ "./src/app/components/authentication/authentication.component.scss":
 /*!*************************************************************************!*\
   !*** ./src/app/components/authentication/authentication.component.scss ***!
@@ -874,8 +901,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
 /* harmony import */ var src_app_pages_task_info_task_info_page__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/pages/task-info/task-info.page */ "./src/app/pages/task-info/task-info.page.ts");
 /* harmony import */ var _ionic_native_nfc_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic-native/nfc/ngx */ "./node_modules/@ionic-native/nfc/__ivy_ngcc__/ngx/index.js");
-/* harmony import */ var src_app_pages_task_accept_task_accept_page__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/pages/task-accept/task-accept.page */ "./src/app/pages/task-accept/task-accept.page.ts");
-/* harmony import */ var src_app_pages_task_finish_task_finish_page__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/pages/task-finish/task-finish.page */ "./src/app/pages/task-finish/task-finish.page.ts");
+/* harmony import */ var src_app_class_acceptedTask__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/class/acceptedTask */ "./src/app/class/acceptedTask.ts");
+/* harmony import */ var src_app_pages_task_accept_task_accept_page__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/pages/task-accept/task-accept.page */ "./src/app/pages/task-accept/task-accept.page.ts");
+/* harmony import */ var src_app_pages_task_finish_task_finish_page__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/pages/task-finish/task-finish.page */ "./src/app/pages/task-finish/task-finish.page.ts");
+
 
 
 
@@ -902,8 +931,9 @@ let HomeComponent = class HomeComponent {
         this.ndef = ndef;
         this.wp = [];
         this.tracking = false;
-        this.acceptedTaskMarker = [];
         this.routing = false;
+        this.acceptedTaskMarker = [];
+        this.openTaskMarker = [];
         this.platform.ready().then(() => {
             this.addListenNFC();
         });
@@ -987,17 +1017,26 @@ let HomeComponent = class HomeComponent {
                     task: task
                 }
             });
+            modal.onDidDismiss().then(data => {
+                this.acceptTask(data.data);
+                this.reloadOpenTasks(data.data);
+            });
             return yield modal.present();
         });
     }
     presentModalAcceptedTask(task) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const modal = yield this.modalController.create({
-                component: src_app_pages_task_accept_task_accept_page__WEBPACK_IMPORTED_MODULE_11__["TaskAcceptPage"],
+                component: src_app_pages_task_accept_task_accept_page__WEBPACK_IMPORTED_MODULE_12__["TaskAcceptPage"],
                 swipeToClose: true,
                 componentProps: {
                     task: task
                 }
+            });
+            modal.onDidDismiss().then(data => {
+                this.startRoute(data.data);
+                this.reloadAcceptedTasks(data.data);
+                this.routing = true;
             });
             return yield modal.present();
         });
@@ -1005,12 +1044,16 @@ let HomeComponent = class HomeComponent {
     presentModalFinishTask(task) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const modal = yield this.modalController.create({
-                component: src_app_pages_task_finish_task_finish_page__WEBPACK_IMPORTED_MODULE_12__["TaskFinishPage"],
+                component: src_app_pages_task_finish_task_finish_page__WEBPACK_IMPORTED_MODULE_13__["TaskFinishPage"],
                 swipeToClose: true,
                 componentProps: {
                     task: task
                 }
             });
+            modal.onDidDismiss().then(data => {
+                this.endRoute(data.data);
+            });
+            return yield modal.present();
         });
     }
     getLocation() {
@@ -1022,7 +1065,7 @@ let HomeComponent = class HomeComponent {
                 //Only for testing
                 let body;
                 if (this.wp.length == 0) {
-                    this.wp.push([48.151417, 14.020848]);
+                    this.wp.push(this.currentLocation);
                     body = {
                         routeid: this.data.routeId,
                         lat: 48.151417,
@@ -1030,7 +1073,7 @@ let HomeComponent = class HomeComponent {
                     };
                 }
                 else if (this.wp.length == 1) {
-                    this.wp.push([48.163901, 14.033382]);
+                    this.wp.push(this.currentLocation);
                     body = {
                         routeid: this.data.routeId,
                         lat: 48.163901,
@@ -1038,7 +1081,7 @@ let HomeComponent = class HomeComponent {
                     };
                 }
                 else if (this.wp.length == 2) {
-                    this.wp.push([48.170509, 14.051609]);
+                    this.wp.push(this.currentLocation);
                     body = {
                         routeid: this.data.routeId,
                         lat: 48.170509,
@@ -1051,8 +1094,10 @@ let HomeComponent = class HomeComponent {
                   lng: position.coords.longitude
                 }*/
                 //this.wp.push(this.currentLocation)
-                this.http.setLocation(body).subscribe(value => {
-                    console.log(value);
+                this.http.setLocation(body).subscribe(result => {
+                    result.subscribe(value => {
+                        console.log(value);
+                    });
                 });
             }
         });
@@ -1071,30 +1116,31 @@ let HomeComponent = class HomeComponent {
               iconSize: [40, 40],
               iconAnchor: [20, 20]
             })*/
-            let l = this.wp.length;
+            /*let l = this.wp.length
+        
             if (l > 0) {
-                if (l >= 2) {
-                    this.map.removeControl(this.routing);
-                }
-                this.routing = leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].control({
-                    routeWhileDragging: false,
-                    show: false,
-                    router: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].OSRMv1({
-                        serviceUrl: osrm_url
-                    }),
-                    addWaypoints: false,
-                    plan: leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].plan(this.wp, {
-                        createMarker: function (j, waypoint) {
-                            if (j == 0) {
-                                return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, { draggable: false });
-                            }
-                            else if (j + 1 == l) {
-                                return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, { draggable: false });
-                            }
-                        }
-                    })
-                }).addTo(this.map);
-            }
+              if (l >= 2) {
+                this.map.removeControl(this.routing)
+              }
+        
+              this.routing = Routing.control({
+                routeWhileDragging: false,
+                show: false,
+                router: new Routing.OSRMv1({
+                  serviceUrl: osrm_url
+                }),
+                addWaypoints: false,
+                plan: Routing.plan(this.wp, {
+                  createMarker: function(j, waypoint) {
+                    if (j == 0) {
+                      return marker(waypoint.latLng, {draggable: false})
+                    } else if (j+1 == l) {
+                      return marker(waypoint.latLng, {draggable: false})
+                    }
+                  }
+                })
+              }).addTo(this.map);
+            }*/
         });
     }
     showOpenTasks(tasks) {
@@ -1108,6 +1154,7 @@ let HomeComponent = class HomeComponent {
                 marker.on('click', () => {
                     this.presentModalOpenTask(task);
                 });
+                this.openTaskMarker.push(marker);
             });
         }
     }
@@ -1126,6 +1173,18 @@ let HomeComponent = class HomeComponent {
             });
         }
     }
+    reloadOpenTasks(taskId) {
+        let tasks = this.data.openTasks;
+        let task = this.data.openTasks.find(i => i.taskid == taskId);
+        let index = tasks.indexOf(task);
+        this.openTaskMarker.forEach(marker => {
+            this.map.removeLayer(marker);
+        });
+        tasks.splice(index, 1);
+        this.data.openTasks = tasks;
+        this.openTaskMarker = [];
+        this.showOpenTasks(tasks);
+    }
     reloadAcceptedTasks(taskId) {
         let tasks = this.data.acceptedTasks;
         let task = this.data.acceptedTasks.find(i => i.taskid == taskId);
@@ -1139,9 +1198,22 @@ let HomeComponent = class HomeComponent {
         this.acceptedTaskMarker = [];
         this.showAcceptedTasks(tasks);
     }
-    //überarbeiten
+    acceptTask(taskId) {
+        this.http.acceptTask(taskId).subscribe(result => {
+            result.subscribe((data) => {
+                console.log(data);
+                console.log(taskId);
+                let task = this.data.openTasks.find(i => i.taskid == taskId);
+                let newTask = new src_app_class_acceptedTask__WEBPACK_IMPORTED_MODULE_11__["acceptedTask"](task.taskid, task.startlat, task.startlng, task.endlat, task.endlng, task.description, task.status, task.receiverid, data.insertId);
+                this.data.acceptedTasks.push(newTask);
+                this.acceptedTaskMarker = [];
+                this.showAcceptedTasks(this.data.acceptedTasks);
+            });
+        });
+    }
     startRoute(taskId) {
         let task = this.data.acceptedTasks.find(i => i.taskid == taskId);
+        console.log(task);
         let wp = [];
         wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(task.startlat, task.startlng));
         wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(task.endlat, task.endlng));
@@ -1181,7 +1253,8 @@ let HomeComponent = class HomeComponent {
                 }
             })
         });
-        this.route.addTo(this.map);
+        this.map.addControl(this.route);
+        this.changeTracking();
     }
     endRoute(task) {
         this.http.endRoute(task.routeid).subscribe(result => {
@@ -1190,19 +1263,18 @@ let HomeComponent = class HomeComponent {
         });
         this.routing = false;
         this.map.removeControl(this.route);
+        this.changeTracking();
     }
     changeTracking() {
         console.log(this.wp);
         this.tracking = !this.tracking;
         console.log(this.tracking);
         if (this.tracking) {
-            document.getElementById('tracking').innerHTML = 'Stop Tracking';
             this.interval = setInterval(() => {
-                this.newLocation();
+                this.getLocation();
             }, 6000);
         }
         else {
-            document.getElementById('tracking').innerHTML = 'Start Tracking';
             clearInterval(this.interval);
         }
     }
@@ -1402,11 +1474,7 @@ let TaskAcceptPage = class TaskAcceptPage {
         }).addTo(this.map);
     }
     dismiss() {
-        this.modalCtrl.dismiss();
-    }
-    startRoute(taskId) {
-        this.home.startRoute(taskId);
-        this.dismiss();
+        this.modalCtrl.dismiss(this.task.taskid);
     }
 };
 TaskAcceptPage.ctorParameters = () => [
@@ -1517,11 +1585,7 @@ let TaskFinishPage = class TaskFinishPage {
         }).addTo(this.map);
     }
     dismiss() {
-        this.modalCtrl.dismiss();
-    }
-    finishRoute(task) {
-        this.home.endRoute(task);
-        this.dismiss();
+        this.modalCtrl.dismiss(this.task);
     }
 };
 TaskFinishPage.ctorParameters = () => [
@@ -1629,14 +1693,7 @@ let TaskInfoPage = class TaskInfoPage {
         }).addTo(this.map);
     }
     dismiss() {
-        this.modalCtrl.dismiss();
-    }
-    acceptTask(taskId) {
-        this.http.acceptTask(taskId).subscribe(result => {
-            result.subscribe(result => {
-                console.log(result);
-            });
-        });
+        this.modalCtrl.dismiss(this.task.taskid);
     }
 };
 TaskInfoPage.ctorParameters = () => [
@@ -1739,7 +1796,7 @@ let DataService = class DataService {
     constructor() {
         this.tasks = [];
         this.acceptedTasks = [];
-        this.acceptedTaskMarker = [];
+        this.openTasks = [];
     }
 };
 DataService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
@@ -1774,7 +1831,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const corsUrl = "https://cors-anywhere.herokuapp.com/";
 //const baseUrl = corsUrl + "http://195.128.100.64:8080/"
 const baseUrl = "https://v2202010130694129625.goodsrv.de/";
 //const baseUrl = "http://localhost:8080/"

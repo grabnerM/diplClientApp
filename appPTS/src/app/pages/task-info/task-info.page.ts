@@ -73,14 +73,6 @@ export class TaskInfoPage implements OnInit {
   }
 
   dismiss() {
-    this.modalCtrl.dismiss()
-  }
-
-  acceptTask(taskId) {
-    this.http.acceptTask(taskId).subscribe( result => {
-      result.subscribe( result => {
-        console.log(result)
-      })
-    })
+    this.modalCtrl.dismiss(this.task.taskid)
   }
 }

@@ -22,16 +22,19 @@ const osrm_url = "https://v2202010130694129625.goodsrv.de:50/route/v1"
 })
 export class HomeComponent implements OnInit {
 
-  private interval: any
-  private start: any
-  private wp = []
+  private map: Map
   private route: any
   private currentLocation: any
-  private currentDrivingTask: acceptedTask
+
+  private wp = []
+
+  private interval: any
   private tracking: boolean = false
+  private routing: boolean = false
+
+  private currentDrivingTask: acceptedTask
   private acceptedTaskMarker: Marker[] = []
-  private map: Map
-  private routing: any = false
+  private openTaskMarker: Marker[] = []
 
   constructor(
     private platform: Platform,
@@ -139,6 +142,11 @@ export class HomeComponent implements OnInit {
       }
     })
 
+    modal.onDidDismiss().then(data => {
+      this.acceptTask(data.data)
+      this.reloadOpenTasks(data.data)
+    })
+
     return await modal.present()
   }
 
@@ -151,8 +159,10 @@ export class HomeComponent implements OnInit {
       }
     })
 
-    modal.onDidDismiss().then((data) => {
+    modal.onDidDismiss().then(data => {
       this.startRoute(data.data)
+      this.reloadAcceptedTasks(data.data)
+      this.routing = true
     })
 
     return await modal.present()
@@ -167,7 +177,7 @@ export class HomeComponent implements OnInit {
       }
     })
 
-    modal.onDidDismiss().then((data) => {
+    modal.onDidDismiss().then(data => {
       this.endRoute(data.data)
     })
 
@@ -182,21 +192,21 @@ export class HomeComponent implements OnInit {
       //Only for testing
       let body
       if (this.wp.length == 0) {
-        this.wp.push([48.151417, 14.020848])
+        this.wp.push(this.currentLocation)
         body = {
           routeid: this.data.routeId,
           lat: 48.151417,
           lng: 14.020848
         }
       } else if (this.wp.length == 1) {
-        this.wp.push([48.163901, 14.033382])
+        this.wp.push(this.currentLocation)
         body = {
           routeid: this.data.routeId,
           lat: 48.163901,
           lng: 14.033382
         }
       } else if (this.wp.length == 2) {
-        this.wp.push([48.170509, 14.051609])
+        this.wp.push(this.currentLocation)
         body = {
           routeid: this.data.routeId,
           lat: 48.170509,
@@ -211,8 +221,10 @@ export class HomeComponent implements OnInit {
       }*/
 
       //this.wp.push(this.currentLocation)
-      this.http.setLocation(body).subscribe( value => {
-        console.log(value)
+      this.http.setLocation(body).subscribe( result => {
+        result.subscribe( value => {
+          console.log(value)
+        })
       })
     }
   }
@@ -232,7 +244,7 @@ export class HomeComponent implements OnInit {
       iconAnchor: [20, 20]
     })*/
 
-    let l = this.wp.length
+    /*let l = this.wp.length
 
     if (l > 0) {
       if (l >= 2) {
@@ -256,7 +268,7 @@ export class HomeComponent implements OnInit {
           }
         })
       }).addTo(this.map);
-    }
+    }*/
   }
 
   showOpenTasks(tasks) {  
@@ -271,6 +283,8 @@ export class HomeComponent implements OnInit {
         marker.on('click', () => {
           this.presentModalOpenTask(task)
         })
+
+        this.openTaskMarker.push(marker)
       })
     }
   }
@@ -293,6 +307,22 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  reloadOpenTasks(taskId) {
+    let tasks = this.data.openTasks
+    let task = this.data.openTasks.find(i => i.taskid == taskId)
+    let index = tasks.indexOf(task)
+
+    this.openTaskMarker.forEach(marker => {
+      this.map.removeLayer(marker)
+    })
+
+    tasks.splice(index, 1)
+    this.data.openTasks = tasks
+    this.openTaskMarker = []
+
+    this.showOpenTasks(tasks)
+  }
+
   reloadAcceptedTasks(taskId) {
     let tasks = this.data.acceptedTasks
     let task = this.data.acceptedTasks.find(i => i.taskid == taskId)
@@ -310,7 +340,24 @@ export class HomeComponent implements OnInit {
     this.showAcceptedTasks(tasks)
   }
 
-  //überarbeiten
+  acceptTask(taskId) {
+    this.http.acceptTask(taskId).subscribe( result => {
+      result.subscribe( (data: any) => {
+        console.log(data)
+        console.log(taskId)
+
+        let task = this.data.openTasks.find(i => i.taskid == taskId)
+        console.log(task)
+        let newTask = new acceptedTask(task.taskid, task.startlat, task.startlng, task.endlat, task.endlng, 
+          task.description, task.status, task.receiverid, data.insertId)
+
+        this.data.acceptedTasks.push(newTask)
+        this.acceptedTaskMarker = []
+        this.showAcceptedTasks(this.data.acceptedTasks)
+      })
+    })
+  }
+
   startRoute(taskId) {
     let task = this.data.acceptedTasks.find(i => i.taskid == taskId)
     console.log(task)
@@ -358,6 +405,7 @@ export class HomeComponent implements OnInit {
     })
 
     this.map.addControl(this.route)
+    this.changeTracking()
   }
 
   endRoute(task) {
@@ -368,6 +416,7 @@ export class HomeComponent implements OnInit {
 
     this.routing = false
     this.map.removeControl(this.route)
+    this.changeTracking()
   }
   
   changeTracking() {
@@ -377,12 +426,10 @@ export class HomeComponent implements OnInit {
     console.log(this.tracking)
 
     if (this.tracking) {
-      document.getElementById('tracking').innerHTML = 'Stop Tracking'
       this.interval = setInterval(() => {
-        this.newLocation()
+        this.getLocation()
       }, 6000);
     } else {
-      document.getElementById('tracking').innerHTML = 'Start Tracking'
       clearInterval(this.interval);
     }
   }

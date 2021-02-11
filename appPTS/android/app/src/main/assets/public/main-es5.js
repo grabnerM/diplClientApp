@@ -232,7 +232,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                  <ion-label>\n                      State of Task\n                  </ion-label>\n                  <ion-label>\n                      {{task.status}}\n                  </ion-label>\n              </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                  Description\n              </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"startRoute(task.taskid)\">\n                Paket abgeholt\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                  <ion-label>\n                      State of Task\n                  </ion-label>\n                  <ion-label>\n                      {{task.status}}\n                  </ion-label>\n              </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                  Description\n              </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"dismiss()\">\n                Paket abgeholt\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>";
     /***/
   },
 
@@ -252,7 +252,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n      <ion-title>Informations</ion-title>\n      <ion-buttons slot=\"primary\">\n          <ion-button (click)=\"dismiss()\">\n              <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n          </ion-button>\n      </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div id=\"route\"></div>\n  <ion-card>\n      <ion-card-content>\n          <ion-item-divider>\n              <!--<ion-item>\n                <ion-label>\n                    State of Task\n                </ion-label>\n                <ion-label>\n                    {{task.status}}\n                </ion-label>\n            </ion-item>-->\n              {{task.status}}\n          </ion-item-divider>\n          <ion-item-divider>\n              <!--<ion-item>\n                Description\n            </ion-item><br> {{task.description}}-->\n              {{task.description}}\n          </ion-item-divider>\n          <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"finishRoute(task)\">\n              Paket abgegeben\n          </ion-button>\n      </ion-card-content>\n  </ion-card>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                <ion-label>\n                    State of Task\n                </ion-label>\n                <ion-label>\n                    {{task.status}}\n                </ion-label>\n            </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                Description\n            </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"dismiss()\">\n                Paket abgegeben\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>";
     /***/
   },
 
@@ -272,7 +272,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                    <ion-label>\n                        State of Task\n                    </ion-label>\n                    <ion-label>\n                        {{task.status}}\n                    </ion-label>\n                </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                    Description\n                </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"acceptTask(task.taskid)\">\n                Auftrag annehmen\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                    <ion-label>\n                        State of Task\n                    </ion-label>\n                    <ion-label>\n                        {{task.status}}\n                    </ion-label>\n                </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                    Description\n                </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"dismiss()\">\n                Auftrag annehmen\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>";
     /***/
   },
 
@@ -698,6 +698,43 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
     })], AppModule);
     /***/
+  },
+
+  /***/
+  "./src/app/class/acceptedTask.ts":
+  /*!***************************************!*\
+    !*** ./src/app/class/acceptedTask.ts ***!
+    \***************************************/
+
+  /*! exports provided: acceptedTask */
+
+  /***/
+  function srcAppClassAcceptedTaskTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "acceptedTask", function () {
+      return acceptedTask;
+    });
+
+    var acceptedTask = function acceptedTask(taskid, startlat, startlng, endlat, endlng, description, status, receiverid, routeid) {
+      _classCallCheck(this, acceptedTask);
+
+      this.taskid = taskid;
+      this.startlat = startlat;
+      this.startlng = startlng;
+      this.endlat = endlat;
+      this.endlng = endlng;
+      this.description = description;
+      this.status = status;
+      this.receiverid = receiverid;
+      this.routeid = routeid;
+    };
+    /***/
+
   },
 
   /***/
@@ -1163,13 +1200,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var src_app_pages_task_accept_task_accept_page__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    var src_app_class_acceptedTask__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    /*! src/app/class/acceptedTask */
+    "./src/app/class/acceptedTask.ts");
+    /* harmony import */
+
+
+    var src_app_pages_task_accept_task_accept_page__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! src/app/pages/task-accept/task-accept.page */
     "./src/app/pages/task-accept/task-accept.page.ts");
     /* harmony import */
 
 
-    var src_app_pages_task_finish_task_finish_page__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    var src_app_pages_task_finish_task_finish_page__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
     /*! src/app/pages/task-finish/task-finish.page */
     "./src/app/pages/task-finish/task-finish.page.ts");
 
@@ -1191,8 +1234,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.ndef = ndef;
         this.wp = [];
         this.tracking = false;
-        this.acceptedTaskMarker = [];
         this.routing = false;
+        this.acceptedTaskMarker = [];
+        this.openTaskMarker = [];
         this.platform.ready().then(function () {
           _this5.addListenNFC();
         });
@@ -1365,6 +1409,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "presentModalOpenTask",
         value: function presentModalOpenTask(task) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+            var _this9 = this;
+
             var modal;
             return regeneratorRuntime.wrap(function _callee4$(_context4) {
               while (1) {
@@ -1381,13 +1427,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 2:
                     modal = _context4.sent;
-                    _context4.next = 5;
+                    modal.onDidDismiss().then(function (data) {
+                      _this9.acceptTask(data.data);
+
+                      _this9.reloadOpenTasks(data.data);
+                    });
+                    _context4.next = 6;
                     return modal.present();
 
-                  case 5:
+                  case 6:
                     return _context4.abrupt("return", _context4.sent);
 
-                  case 6:
+                  case 7:
                   case "end":
                     return _context4.stop();
                 }
@@ -1399,6 +1450,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "presentModalAcceptedTask",
         value: function presentModalAcceptedTask(task) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+            var _this10 = this;
+
             var modal;
             return regeneratorRuntime.wrap(function _callee5$(_context5) {
               while (1) {
@@ -1406,7 +1459,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 0:
                     _context5.next = 2;
                     return this.modalController.create({
-                      component: src_app_pages_task_accept_task_accept_page__WEBPACK_IMPORTED_MODULE_11__["TaskAcceptPage"],
+                      component: src_app_pages_task_accept_task_accept_page__WEBPACK_IMPORTED_MODULE_12__["TaskAcceptPage"],
                       swipeToClose: true,
                       componentProps: {
                         task: task
@@ -1415,13 +1468,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 2:
                     modal = _context5.sent;
-                    _context5.next = 5;
+                    modal.onDidDismiss().then(function (data) {
+                      _this10.startRoute(data.data);
+
+                      _this10.reloadAcceptedTasks(data.data);
+
+                      _this10.routing = true;
+                    });
+                    _context5.next = 6;
                     return modal.present();
 
-                  case 5:
+                  case 6:
                     return _context5.abrupt("return", _context5.sent);
 
-                  case 6:
+                  case 7:
                   case "end":
                     return _context5.stop();
                 }
@@ -1433,6 +1493,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "presentModalFinishTask",
         value: function presentModalFinishTask(task) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+            var _this11 = this;
+
             var modal;
             return regeneratorRuntime.wrap(function _callee6$(_context6) {
               while (1) {
@@ -1440,7 +1502,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 0:
                     _context6.next = 2;
                     return this.modalController.create({
-                      component: src_app_pages_task_finish_task_finish_page__WEBPACK_IMPORTED_MODULE_12__["TaskFinishPage"],
+                      component: src_app_pages_task_finish_task_finish_page__WEBPACK_IMPORTED_MODULE_13__["TaskFinishPage"],
                       swipeToClose: true,
                       componentProps: {
                         task: task
@@ -1449,8 +1511,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 2:
                     modal = _context6.sent;
+                    modal.onDidDismiss().then(function (data) {
+                      _this11.endRoute(data.data);
+                    });
+                    _context6.next = 6;
+                    return modal.present();
 
-                  case 3:
+                  case 6:
+                    return _context6.abrupt("return", _context6.sent);
+
+                  case 7:
                   case "end":
                     return _context6.stop();
                 }
@@ -1478,21 +1548,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       this.currentLocation = [position.coords.latitude, position.coords.longitude]; //Only for testing
 
                       if (this.wp.length == 0) {
-                        this.wp.push([48.151417, 14.020848]);
+                        this.wp.push(this.currentLocation);
                         body = {
                           routeid: this.data.routeId,
                           lat: 48.151417,
                           lng: 14.020848
                         };
                       } else if (this.wp.length == 1) {
-                        this.wp.push([48.163901, 14.033382]);
+                        this.wp.push(this.currentLocation);
                         body = {
                           routeid: this.data.routeId,
                           lat: 48.163901,
                           lng: 14.033382
                         };
                       } else if (this.wp.length == 2) {
-                        this.wp.push([48.170509, 14.051609]);
+                        this.wp.push(this.currentLocation);
                         body = {
                           routeid: this.data.routeId,
                           lat: 48.170509,
@@ -1507,8 +1577,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       //this.wp.push(this.currentLocation)
 
 
-                      this.http.setLocation(body).subscribe(function (value) {
-                        console.log(value);
+                      this.http.setLocation(body).subscribe(function (result) {
+                        result.subscribe(function (value) {
+                          console.log(value);
+                        });
                       });
                     }
 
@@ -1524,7 +1596,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "newLocation",
         value: function newLocation() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
-            var l;
             return regeneratorRuntime.wrap(function _callee8$(_context8) {
               while (1) {
                 switch (_context8.prev = _context8.next) {
@@ -1533,48 +1604,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     return this.getLocation();
 
                   case 2:
-                    /*let pin = icon({
-                      iconUrl: 'assets/icon/pin.svg',
-                      iconSize: [40,40],
-                      iconAnchor: [20,20]
-                    })
-                    
-                    let location = Icon({
-                      iconUrl: 'assets/icon/location.svg',
-                      iconSize: [40, 40],
-                      iconAnchor: [20, 20]
-                    })*/
-                    l = this.wp.length;
-
-                    if (l > 0) {
-                      if (l >= 2) {
-                        this.map.removeControl(this.routing);
-                      }
-
-                      this.routing = leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].control({
-                        routeWhileDragging: false,
-                        show: false,
-                        router: new leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].OSRMv1({
-                          serviceUrl: osrm_url
-                        }),
-                        addWaypoints: false,
-                        plan: leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].plan(this.wp, {
-                          createMarker: function createMarker(j, waypoint) {
-                            if (j == 0) {
-                              return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, {
-                                draggable: false
-                              });
-                            } else if (j + 1 == l) {
-                              return Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["marker"])(waypoint.latLng, {
-                                draggable: false
-                              });
-                            }
-                          }
-                        })
-                      }).addTo(this.map);
-                    }
-
-                  case 4:
                   case "end":
                     return _context8.stop();
                 }
@@ -1585,7 +1614,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "showOpenTasks",
         value: function showOpenTasks(tasks) {
-          var _this9 = this;
+          var _this12 = this;
 
           if (tasks != null) {
             tasks.forEach(function (task) {
@@ -1595,17 +1624,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   iconSize: [25, 41],
                   iconAnchor: [12, 41]
                 })
-              }).addTo(_this9.map);
+              }).addTo(_this12.map);
               marker.on('click', function () {
-                _this9.presentModalOpenTask(task);
+                _this12.presentModalOpenTask(task);
               });
+
+              _this12.openTaskMarker.push(marker);
             });
           }
         }
       }, {
         key: "showAcceptedTasks",
         value: function showAcceptedTasks(tasks) {
-          var _this10 = this;
+          var _this13 = this;
 
           if (tasks != null) {
             tasks.forEach(function (task) {
@@ -1615,19 +1646,37 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   iconSize: [25, 41],
                   iconAnchor: [12, 41]
                 })
-              }).addTo(_this10.map);
+              }).addTo(_this13.map);
               marker.on('click', function () {
-                _this10.presentModalAcceptedTask(task);
+                _this13.presentModalAcceptedTask(task);
               });
 
-              _this10.acceptedTaskMarker.push(marker);
+              _this13.acceptedTaskMarker.push(marker);
             });
           }
         }
       }, {
+        key: "reloadOpenTasks",
+        value: function reloadOpenTasks(taskId) {
+          var _this14 = this;
+
+          var tasks = this.data.openTasks;
+          var task = this.data.openTasks.find(function (i) {
+            return i.taskid == taskId;
+          });
+          var index = tasks.indexOf(task);
+          this.openTaskMarker.forEach(function (marker) {
+            _this14.map.removeLayer(marker);
+          });
+          tasks.splice(index, 1);
+          this.data.openTasks = tasks;
+          this.openTaskMarker = [];
+          this.showOpenTasks(tasks);
+        }
+      }, {
         key: "reloadAcceptedTasks",
         value: function reloadAcceptedTasks(taskId) {
-          var _this11 = this;
+          var _this15 = this;
 
           var tasks = this.data.acceptedTasks;
           var task = this.data.acceptedTasks.find(function (i) {
@@ -1636,22 +1685,46 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var index = tasks.indexOf(task);
           this.currentDrivingTask = task;
           this.acceptedTaskMarker.forEach(function (marker) {
-            _this11.map.removeLayer(marker);
+            _this15.map.removeLayer(marker);
           });
           tasks.splice(index, 1);
           this.data.acceptedTasks = tasks;
           this.acceptedTaskMarker = [];
           this.showAcceptedTasks(tasks);
-        } //überarbeiten
+        }
+      }, {
+        key: "acceptTask",
+        value: function acceptTask(taskId) {
+          var _this16 = this;
 
+          this.http.acceptTask(taskId).subscribe(function (result) {
+            result.subscribe(function (data) {
+              console.log(data);
+              console.log(taskId);
+
+              var task = _this16.data.openTasks.find(function (i) {
+                return i.taskid == taskId;
+              });
+
+              var newTask = new src_app_class_acceptedTask__WEBPACK_IMPORTED_MODULE_11__["acceptedTask"](task.taskid, task.startlat, task.startlng, task.endlat, task.endlng, task.description, task.status, task.receiverid, data.insertId);
+
+              _this16.data.acceptedTasks.push(newTask);
+
+              _this16.acceptedTaskMarker = [];
+
+              _this16.showAcceptedTasks(_this16.data.acceptedTasks);
+            });
+          });
+        }
       }, {
         key: "startRoute",
         value: function startRoute(taskId) {
-          var _this12 = this;
+          var _this17 = this;
 
           var task = this.data.acceptedTasks.find(function (i) {
             return i.taskid == taskId;
           });
+          console.log(task);
           var wp = [];
           wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(task.startlat, task.startlng));
           wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(task.endlat, task.endlng));
@@ -1664,7 +1737,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             draggable: false
           });
           targetMarker.on('click', function () {
-            _this12.presentModalFinishTask(task);
+            _this17.presentModalFinishTask(task);
           });
           this.route = leaflet__WEBPACK_IMPORTED_MODULE_4__["Routing"].control({
             routeWhileDragging: false,
@@ -1690,7 +1763,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             })
           });
-          this.route.addTo(this.map);
+          this.map.addControl(this.route);
+          this.changeTracking();
         }
       }, {
         key: "endRoute",
@@ -1700,23 +1774,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           });
           this.routing = false;
           this.map.removeControl(this.route);
+          this.changeTracking();
         }
       }, {
         key: "changeTracking",
         value: function changeTracking() {
-          var _this13 = this;
+          var _this18 = this;
 
           console.log(this.wp);
           this.tracking = !this.tracking;
           console.log(this.tracking);
 
           if (this.tracking) {
-            document.getElementById('tracking').innerHTML = 'Stop Tracking';
             this.interval = setInterval(function () {
-              _this13.newLocation();
+              _this18.getLocation();
             }, 6000);
           } else {
-            document.getElementById('tracking').innerHTML = 'Start Tracking';
             clearInterval(this.interval);
           }
         }
@@ -2047,13 +2120,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "dismiss",
         value: function dismiss() {
-          this.modalCtrl.dismiss();
-        }
-      }, {
-        key: "startRoute",
-        value: function startRoute(taskId) {
-          this.home.startRoute(taskId);
-          this.dismiss();
+          this.modalCtrl.dismiss(this.task.taskid);
         }
       }]);
 
@@ -2225,13 +2292,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "dismiss",
         value: function dismiss() {
-          this.modalCtrl.dismiss();
-        }
-      }, {
-        key: "finishRoute",
-        value: function finishRoute(task) {
-          this.home.endRoute(task);
-          this.dismiss();
+          this.modalCtrl.dismiss(this.task);
         }
       }]);
 
@@ -2396,16 +2457,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "dismiss",
         value: function dismiss() {
-          this.modalCtrl.dismiss();
-        }
-      }, {
-        key: "acceptTask",
-        value: function acceptTask(taskId) {
-          this.http.acceptTask(taskId).subscribe(function (result) {
-            result.subscribe(function (result) {
-              console.log(result);
-            });
-          });
+          this.modalCtrl.dismiss(this.task.taskid);
         }
       }]);
 
@@ -2516,10 +2568,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "logOut",
         value: function logOut() {
-          var _this14 = this;
+          var _this19 = this;
 
           this.storage.remove(TOKEN_KEY).then(function () {
-            _this14.router.navigateByUrl('/');
+            _this19.router.navigateByUrl('/');
           });
         }
       }, {
@@ -2587,7 +2639,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       this.tasks = [];
       this.acceptedTasks = [];
-      this.acceptedTaskMarker = [];
+      this.openTasks = [];
     };
 
     DataService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -2650,9 +2702,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! rxjs */
-    "./node_modules/rxjs/_esm2015/index.js");
+    "./node_modules/rxjs/_esm2015/index.js"); //const baseUrl = corsUrl + "http://195.128.100.64:8080/"
 
-    var corsUrl = "https://cors-anywhere.herokuapp.com/"; //const baseUrl = corsUrl + "http://195.128.100.64:8080/"
 
     var baseUrl = "https://v2202010130694129625.goodsrv.de/"; //const baseUrl = "http://localhost:8080/"
 
@@ -2668,11 +2719,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(HttpService, [{
         key: "setLocation",
         value: function setLocation(body) {
-          var _this15 = this;
+          var _this20 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
-            return _this15.http.post(baseUrl + 'sender/savePosition', {
+            return _this20.http.post(baseUrl + 'sender/savePosition', {
               headers: headers
             }, body);
           }));
@@ -2688,11 +2739,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "endRoute",
         value: function endRoute(routeId) {
-          var _this16 = this;
+          var _this21 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
-            return _this16.http.get(baseUrl + 'sender/endRoute/' + routeId, {
+            return _this21.http.get(baseUrl + 'sender/endRoute/' + routeId, {
               headers: headers
             });
           }));
@@ -2701,7 +2752,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getTasks",
         value: function getTasks() {
-          var _this17 = this;
+          var _this22 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
@@ -2709,7 +2760,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     new Task(2, 48.155429, 14.036327, 48.138435, 14.004268, 'Lieferung von 3 Kebap Scharf ohne Tomaten', -1, 13),
                     new Task(3, 48.165429, 14.136327, 48.138435, 14.004268, '15 Briefe', 0, 13)]*/
 
-            return _this17.http.get(baseUrl + 'sender/getOpenTasks', {
+            return _this22.http.get(baseUrl + 'sender/getOpenTasks', {
               headers: headers
             });
           }));
@@ -2717,11 +2768,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getAcceptedTasks",
         value: function getAcceptedTasks() {
-          var _this18 = this;
+          var _this23 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
-            return _this18.http.get(baseUrl + 'sender/getOpenTasksBySender', {
+            return _this23.http.get(baseUrl + 'sender/getOpenTasksBySender', {
               headers: headers
             });
           }));
@@ -2729,11 +2780,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "acceptTask",
         value: function acceptTask(taskId) {
-          var _this19 = this;
+          var _this24 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
-            return _this19.http.get(baseUrl + 'sender/acceptTask/' + taskId, {
+            return _this24.http.get(baseUrl + 'sender/acceptTask/' + taskId, {
               headers: headers
             });
           }));
@@ -2741,16 +2792,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "startRoute",
         value: function startRoute(taskId) {
-          var _this20 = this;
+          var _this25 = this;
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
 
-            var routeid = _this20.data.acceptedTasks.find(function (i) {
+            var routeid = _this25.data.acceptedTasks.find(function (i) {
               return i.taskid == taskId;
             }).routeid;
 
-            return _this20.http.get(baseUrl + 'sender/startRoute/' + routeid, {
+            return _this25.http.get(baseUrl + 'sender/startRoute/' + routeid, {
               headers: headers
             });
           }));

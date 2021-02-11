@@ -77,5 +77,4 @@ export class TaskAcceptPage implements OnInit {
   dismiss() {
     this.modalCtrl.dismiss(this.task.taskid)
   }
-
 }
