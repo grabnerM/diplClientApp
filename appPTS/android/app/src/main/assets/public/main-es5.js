@@ -1267,9 +1267,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }).addTo(this.map);
                     this.http.getTasks().subscribe(function (result) {
                       result.subscribe(function (tasks) {
-                        _this6.data.tasks = tasks;
+                        _this6.data.openTasks = tasks;
 
-                        _this6.showOpenTasks(_this6.data.tasks);
+                        _this6.showOpenTasks(_this6.data.openTasks);
                       });
                     });
                     this.http.getAcceptedTasks().subscribe(function (result) {
@@ -1429,8 +1429,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     modal = _context4.sent;
                     modal.onDidDismiss().then(function (data) {
                       _this9.acceptTask(data.data);
-
-                      _this9.reloadOpenTasks(data.data);
                     });
                     _context4.next = 6;
                     return modal.present();
@@ -1699,9 +1697,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.http.acceptTask(taskId).subscribe(function (result) {
             result.subscribe(function (data) {
-              console.log(data);
-              console.log(taskId);
-
               var task = _this16.data.openTasks.find(function (i) {
                 return i.taskid == taskId;
               });
@@ -1713,6 +1708,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               _this16.acceptedTaskMarker = [];
 
               _this16.showAcceptedTasks(_this16.data.acceptedTasks);
+
+              _this16.reloadOpenTasks(taskId);
             });
           });
         }
@@ -1724,7 +1721,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var task = this.data.acceptedTasks.find(function (i) {
             return i.taskid == taskId;
           });
-          console.log(task);
+          this.data.routeId = task.routeid;
           var wp = [];
           wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(task.startlat, task.startlng));
           wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(task.endlat, task.endlng));
@@ -2637,7 +2634,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var DataService = function DataService() {
       _classCallCheck(this, DataService);
 
-      this.tasks = [];
       this.acceptedTasks = [];
       this.openTasks = [];
     };
@@ -2723,9 +2719,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(function (result) {
             var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
-            return _this20.http.post(baseUrl + 'sender/savePosition', {
+            return _this20.http.post(baseUrl + 'sender/savePosition', body, {
               headers: headers
-            }, body);
+            });
           }));
         } //überarbeiten
 

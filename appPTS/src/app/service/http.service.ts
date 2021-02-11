@@ -25,29 +25,11 @@ export class HttpService {
     return from(this.storage.get('token').then((result) => {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
 
-      return this.http.post(baseUrl + 'sender/savePosition', {headers}, body)
+      return this.http.post(baseUrl + 'sender/savePosition', body, {headers})
     }))
   }
 
-  //überarbeiten
-  generateRoute(body) {
-    return from(this.storage.get('token').then((result) => {
-      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
-
-      //return this.http.post(baseUrl + 'sender/newRoute/', {headers}, body)
-    }))
-  }
-
-  endRoute(routeId) {
-    return from(this.storage.get('token').then((result) => {
-      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
-
-      return this.http.get(baseUrl + 'sender/endRoute/' + routeId, {headers})
-    }))
-  }
-
-  //überarbeiten
-  getTasks() {
+  getOpenTasks() {
     return from(this.storage.get('token').then((result) => {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
 
@@ -81,6 +63,14 @@ export class HttpService {
       let routeid = this.data.acceptedTasks.find(i => i.taskid == taskId).routeid
       
       return this.http.get(baseUrl + 'sender/startRoute/' + routeid, {headers})
+    }))
+  }
+
+  endRoute(routeId) {
+    return from(this.storage.get('token').then((result) => {
+      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
+
+      return this.http.get(baseUrl + 'sender/endRoute/' + routeId, {headers})
     }))
   }
 }

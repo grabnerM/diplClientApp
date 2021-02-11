@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
       attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
     }).addTo(this.map)
     
-    this.http.getTasks().subscribe( result => {
+    this.http.getOpenTasks().subscribe( result => {
       result.subscribe( tasks => {
         this.data.openTasks = tasks
 
@@ -159,9 +159,13 @@ export class HomeComponent implements OnInit {
     })
 
     modal.onDidDismiss().then(data => {
-      this.startRoute(data.data)
-      this.reloadAcceptedTasks(data.data)
-      this.routing = true
+      this.http.startRoute(data.data).subscribe( result => {
+        result.subscribe( res => {
+          this.startRoute(data.data)
+          this.reloadAcceptedTasks(data.data)
+          this.routing = true
+        })
+      })
     })
 
     return await modal.present()
@@ -357,7 +361,7 @@ export class HomeComponent implements OnInit {
 
   startRoute(taskId) {
     let task = this.data.acceptedTasks.find(i => i.taskid == taskId)
-    console.log(task)
+    this.data.routeId = task.routeid
     let wp = []
 
     wp.push(latLng(task.startlat, task.startlng))

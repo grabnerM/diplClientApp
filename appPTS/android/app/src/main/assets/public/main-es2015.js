@@ -949,8 +949,8 @@ let HomeComponent = class HomeComponent {
             }).addTo(this.map);
             this.http.getTasks().subscribe(result => {
                 result.subscribe(tasks => {
-                    this.data.tasks = tasks;
-                    this.showOpenTasks(this.data.tasks);
+                    this.data.openTasks = tasks;
+                    this.showOpenTasks(this.data.openTasks);
                 });
             });
             this.http.getAcceptedTasks().subscribe(result => {
@@ -1019,7 +1019,6 @@ let HomeComponent = class HomeComponent {
             });
             modal.onDidDismiss().then(data => {
                 this.acceptTask(data.data);
-                this.reloadOpenTasks(data.data);
             });
             return yield modal.present();
         });
@@ -1201,19 +1200,18 @@ let HomeComponent = class HomeComponent {
     acceptTask(taskId) {
         this.http.acceptTask(taskId).subscribe(result => {
             result.subscribe((data) => {
-                console.log(data);
-                console.log(taskId);
                 let task = this.data.openTasks.find(i => i.taskid == taskId);
                 let newTask = new src_app_class_acceptedTask__WEBPACK_IMPORTED_MODULE_11__["acceptedTask"](task.taskid, task.startlat, task.startlng, task.endlat, task.endlng, task.description, task.status, task.receiverid, data.insertId);
                 this.data.acceptedTasks.push(newTask);
                 this.acceptedTaskMarker = [];
                 this.showAcceptedTasks(this.data.acceptedTasks);
+                this.reloadOpenTasks(taskId);
             });
         });
     }
     startRoute(taskId) {
         let task = this.data.acceptedTasks.find(i => i.taskid == taskId);
-        console.log(task);
+        this.data.routeId = task.routeid;
         let wp = [];
         wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(task.startlat, task.startlng));
         wp.push(Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["latLng"])(task.endlat, task.endlng));
@@ -1794,7 +1792,6 @@ __webpack_require__.r(__webpack_exports__);
 
 let DataService = class DataService {
     constructor() {
-        this.tasks = [];
         this.acceptedTasks = [];
         this.openTasks = [];
     }
@@ -1843,7 +1840,7 @@ let HttpService = class HttpService {
     setLocation(body) {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then((result) => {
             let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
-            return this.http.post(baseUrl + 'sender/savePosition', { headers }, body);
+            return this.http.post(baseUrl + 'sender/savePosition', body, { headers });
         }));
     }
     //überarbeiten
