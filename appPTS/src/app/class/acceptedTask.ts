@@ -6,6 +6,7 @@ export class acceptedTask {
         public startlng: number,
         public endlat: number,
         public endlng: number,
+        public title: String,
         public description: String,
         public status: number,
         public receiverid: number,

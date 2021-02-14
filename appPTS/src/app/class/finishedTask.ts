@@ -1,4 +1,4 @@
-export class Task {
+export class finishedTask {
 
     constructor (
         public taskid: number,
@@ -8,7 +8,7 @@ export class Task {
         public endlng: number,
         public title: String,
         public description: String,
-        public status: number,
-        public receiverid: number
+        public starttime: Date,
+        public endtime: Date
     ) { }
 }

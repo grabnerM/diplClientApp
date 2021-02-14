@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { from } from 'rxjs';
 import { Task } from '../class/Task';
 import { acceptedTask } from '../class/acceptedTask';
+import { finishedTask } from '../class/finishedTask';
 
 //const baseUrl = corsUrl + "http://195.128.100.64:8080/"
 const baseUrl = "https://v2202010130694129625.goodsrv.de/"
@@ -45,6 +46,14 @@ export class HttpService {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
 
       return this.http.get<acceptedTask[]>(baseUrl + 'sender/getOpenTasksBySender', {headers})
+    }))
+  }
+
+  getFinishedTasks() {
+    return from(this.storage.get('token').then( result => {
+      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
+
+      return this.http.get<finishedTask[]>(baseUrl + 'sender/getFinishedTasksBySender', {headers})
     }))
   }
 

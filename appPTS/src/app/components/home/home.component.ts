@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵbypassSanitizationTrustResourceUrl } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Geolocation } from '@capacitor/core';
 import { Map, tileLayer, marker, Routing, Marker, Icon, latLng } from 'leaflet';
@@ -143,7 +143,9 @@ export class HomeComponent implements OnInit {
     })
 
     modal.onDidDismiss().then(data => {
-      this.acceptTask(data.data)
+      if ( data ) {
+        this.acceptTask(data.data)
+      }
     })
 
     return await modal.present()
@@ -158,14 +160,16 @@ export class HomeComponent implements OnInit {
       }
     })
 
-    modal.onDidDismiss().then(data => {
-      this.http.startRoute(data.data).subscribe( result => {
-        result.subscribe( res => {
-          this.startRoute(data.data)
-          this.reloadAcceptedTasks(data.data)
-          this.routing = true
+    modal.onDidDismiss().then( data => {
+      if ( data ) {
+        this.http.startRoute(data.data).subscribe( result => {
+          result.subscribe( res => {
+            this.startRoute(data.data)
+            this.reloadAcceptedTasks(data.data)
+            this.routing = true
+          })
         })
-      })
+      }
     })
 
     return await modal.present()
@@ -180,8 +184,10 @@ export class HomeComponent implements OnInit {
       }
     })
 
-    modal.onDidDismiss().then(data => {
-      this.endRoute(data.data)
+    modal.onDidDismiss().then( data => {
+      if ( data ) {
+        this.endRoute(data.data)
+      }
     })
 
     return await modal.present()
@@ -193,7 +199,7 @@ export class HomeComponent implements OnInit {
     if (position.coords.latitude != null) {
       this.currentLocation = [position.coords.latitude, position.coords.longitude]
       //Only for testing
-      let body
+      /*let body
       if (this.wp.length == 0) {
         this.wp.push(this.currentLocation)
         body = {
@@ -215,19 +221,17 @@ export class HomeComponent implements OnInit {
           lat: 48.170509,
           lng: 14.051609
         }
-      }
+      }*/
 
-      /*let body = {
-        routeid: this.data.routeid,
+      let body = {
+        routeid: this.data.routeId,
         lat: position.coords.latitude,
         lng: position.coords.longitude
-      }*/
+      }
 
       //this.wp.push(this.currentLocation)
       this.http.setLocation(body).subscribe( result => {
-        result.subscribe( value => {
-          console.log(value)
-        })
+        result.subscribe()
       })
     }
   }
@@ -347,7 +351,7 @@ export class HomeComponent implements OnInit {
     this.http.acceptTask(taskId).subscribe( result => {
       result.subscribe( (data: any) => {
         let task = this.data.openTasks.find(i => i.taskid == taskId)
-        let newTask = new acceptedTask(task.taskid, task.startlat, task.startlng, task.endlat, task.endlng, 
+        let newTask = new acceptedTask(task.taskid, task.startlat, task.startlng, task.endlat, task.endlng, task.title,
           task.description, task.status, task.receiverid, data.insertId)
 
         this.data.acceptedTasks.push(newTask)
@@ -421,15 +425,14 @@ export class HomeComponent implements OnInit {
   }
   
   changeTracking() {
-    console.log(this.wp)
     this.tracking = !this.tracking
 
-    console.log(this.tracking)
+    this.getLocation()
 
     if (this.tracking) {
       this.interval = setInterval(() => {
         this.getLocation()
-      }, 6000);
+      }, 60000);
     } else {
       clearInterval(this.interval);
     }

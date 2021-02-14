@@ -16,7 +16,9 @@ export class TaskFinishPage implements OnInit {
 
   @Input() task: acceptedTask
 
-  private map: Map;
+  private map: Map
+  private lat
+  private lng
 
   constructor(
     private modalCtrl: ModalController,
@@ -25,10 +27,12 @@ export class TaskFinishPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.lat = (this.task.startlat + this.task.endlat) / 2
+    this.lng = (this.task.startlng + this.task.endlng) / 2
   }
 
   ionViewDidEnter() {
-    this.map = new Map("route").setView([48.1654, 14.0366], 11)
+    this.map = new Map("mapFinishTask").setView([this.lat, this.lng], 11)
 
     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map)
 
@@ -71,11 +75,14 @@ export class TaskFinishPage implements OnInit {
           }
         }
       })
-    }).addTo(this.map);
+    }).addTo(this.map)
   }
 
   dismiss() {
-    this.modalCtrl.dismiss(this.task)
+    this.modalCtrl.dismiss(null)
   }
 
+  finishTask() {
+    this.modalCtrl.dismiss(this.task)
+  }
 }

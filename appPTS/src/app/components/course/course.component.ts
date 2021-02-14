@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { finishedTask } from 'src/app/class/finishedTask';
+import { HttpService } from 'src/app/service/http.service';
 
 @Component({
   selector: 'app-course',
@@ -7,8 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseComponent implements OnInit {
 
-  constructor() { }
+  public tasks: finishedTask[]
 
-  ngOnInit() {}
+  constructor(
+    private http: HttpService
+  ) { }
 
+  ngOnInit() {
+    this.http.getFinishedTasks().subscribe( result => {
+      result.subscribe( tasks => {
+        this.tasks = tasks
+        console.log(tasks)
+      })
+    })
+  }
 }

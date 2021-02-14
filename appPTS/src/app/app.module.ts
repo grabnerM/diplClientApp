@@ -12,15 +12,23 @@ import { CommonModule } from '@angular/common';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ndef, NFC } from '@ionic-native/nfc/ngx';
+
+import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { HomeComponent } from './components/home/home.component';
+import { CourseComponent } from './components/course/course.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
     AppComponent, 
-    AuthenticationComponent
+    AuthenticationComponent,
+    HomeComponent,
+    CourseComponent,
+    SettingsComponent,
+    CardComponent
   ],
   entryComponents: [
     AuthenticationComponent

@@ -287,6 +287,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/components/card/card.component.html":
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/components/card/card.component.html ***!
+  \*******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-card>\n  <!--<div id={{task.taskid}} class=\"map\"></div>-->\n  <ion-card-header>\n    <ion-card-subtitle>{{task.starttime | date:'dd.MM.yyyy'}}</ion-card-subtitle>\n    <ion-card-title>{{task.title}}</ion-card-title>\n  </ion-card-header>\n\n  <ion-card-content>\n    {{task.description}}\n  </ion-card-content>\n</ion-card>");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/components/course/course.component.html":
 /*!***********************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/components/course/course.component.html ***!
@@ -296,7 +309,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Course</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <ion-header collapse=\"condense\">\n    <ion-toolbar>\n      <ion-title size=\"large\">Course</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <div id=\"container\">\n    <p>Course</p>\n  </div>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title>Bisherige Routen</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <ion-header collapse=\"condense\">\n    <ion-toolbar>\n      <ion-title size=\"large\">Bisherige Routen</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <div *ngFor=\"let task of tasks\">\n    <app-card [task]=\"task\"></app-card>\n  </div>\n</ion-content>\n");
 
 /***/ }),
 
@@ -335,7 +348,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                  <ion-label>\n                      State of Task\n                  </ion-label>\n                  <ion-label>\n                      {{task.status}}\n                  </ion-label>\n              </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                  Description\n              </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"dismiss()\">\n                Paket abgeholt\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                  <ion-label>\n                      State of Task\n                  </ion-label>\n                  <ion-label>\n                      {{task.status}}\n                  </ion-label>\n              </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                  Description\n              </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"startTask()\">\n                Paket abgeholt\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>");
 
 /***/ }),
 
@@ -348,7 +361,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                <ion-label>\n                    State of Task\n                </ion-label>\n                <ion-label>\n                    {{task.status}}\n                </ion-label>\n            </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                Description\n            </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"dismiss()\">\n                Paket abgegeben\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"mapFinishTask\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                <ion-label>\n                    State of Task\n                </ion-label>\n                <ion-label>\n                    {{task.status}}\n                </ion-label>\n            </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                Description\n            </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"finishTask()\">\n                Paket abgegeben\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>");
 
 /***/ }),
 
@@ -361,7 +374,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                    <ion-label>\n                        State of Task\n                    </ion-label>\n                    <ion-label>\n                        {{task.status}}\n                    </ion-label>\n                </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                    Description\n                </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"dismiss()\">\n                Auftrag annehmen\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n    <ion-toolbar>\n        <ion-title>Informations</ion-title>\n        <ion-buttons slot=\"primary\">\n            <ion-button (click)=\"dismiss()\">\n                <ion-icon slot=\"icon-only\" name=\"close\"></ion-icon>\n            </ion-button>\n        </ion-buttons>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content>\n    <div id=\"route\"></div>\n    <ion-card>\n        <ion-card-content>\n            <ion-item-divider>\n                <!--<ion-item>\n                    <ion-label>\n                        State of Task\n                    </ion-label>\n                    <ion-label>\n                        {{task.status}}\n                    </ion-label>\n                </ion-item>-->\n                {{task.status}}\n            </ion-item-divider>\n            <ion-item-divider>\n                <!--<ion-item>\n                    Description\n                </ion-item><br> {{task.description}}-->\n                {{task.description}}\n            </ion-item-divider>\n            <ion-button class=\"swipeButton\" color=\"dark\" fill=\"outline\" shape=\"round\" size=\"default\" (click)=\"acceptTask()\">\n                Auftrag annehmen\n            </ion-button>\n        </ion-card-content>\n    </ion-card>\n</ion-content>");
 
 /***/ }),
 
@@ -569,10 +582,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
 /* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/__ivy_ngcc__/fesm2015/ionic-storage.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
-/* harmony import */ var _components_authentication_authentication_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/authentication/authentication.component */ "./src/app/components/authentication/authentication.component.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
-/* harmony import */ var _ionic_native_nfc_ngx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic-native/nfc/ngx */ "./node_modules/@ionic-native/nfc/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
+/* harmony import */ var _ionic_native_nfc_ngx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ionic-native/nfc/ngx */ "./node_modules/@ionic-native/nfc/__ivy_ngcc__/ngx/index.js");
+/* harmony import */ var _components_authentication_authentication_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/authentication/authentication.component */ "./src/app/components/authentication/authentication.component.ts");
 /* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/home/home.component */ "./src/app/components/home/home.component.ts");
+/* harmony import */ var _components_course_course_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/course/course.component */ "./src/app/components/course/course.component.ts");
+/* harmony import */ var _components_settings_settings_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/settings/settings.component */ "./src/app/components/settings/settings.component.ts");
+/* harmony import */ var _components_card_card_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/card/card.component */ "./src/app/components/card/card.component.ts");
+
+
+
 
 
 
@@ -595,24 +614,28 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         declarations: [
             _app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"],
-            _components_authentication_authentication_component__WEBPACK_IMPORTED_MODULE_12__["AuthenticationComponent"]
+            _components_authentication_authentication_component__WEBPACK_IMPORTED_MODULE_14__["AuthenticationComponent"],
+            _components_home_home_component__WEBPACK_IMPORTED_MODULE_15__["HomeComponent"],
+            _components_course_course_component__WEBPACK_IMPORTED_MODULE_16__["CourseComponent"],
+            _components_settings_settings_component__WEBPACK_IMPORTED_MODULE_17__["SettingsComponent"],
+            _components_card_card_component__WEBPACK_IMPORTED_MODULE_18__["CardComponent"]
         ],
         entryComponents: [
-            _components_authentication_authentication_component__WEBPACK_IMPORTED_MODULE_12__["AuthenticationComponent"]
+            _components_authentication_authentication_component__WEBPACK_IMPORTED_MODULE_14__["AuthenticationComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
             _angular_common__WEBPACK_IMPORTED_MODULE_9__["CommonModule"],
-            _angular_forms__WEBPACK_IMPORTED_MODULE_13__["FormsModule"],
-            _angular_forms__WEBPACK_IMPORTED_MODULE_13__["ReactiveFormsModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_12__["FormsModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_12__["ReactiveFormsModule"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(),
             _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpClientModule"],
             _ionic_storage__WEBPACK_IMPORTED_MODULE_10__["IonicStorageModule"].forRoot(),
         ],
         providers: [
-            _ionic_native_nfc_ngx__WEBPACK_IMPORTED_MODULE_14__["NFC"],
-            _ionic_native_nfc_ngx__WEBPACK_IMPORTED_MODULE_14__["Ndef"],
+            _ionic_native_nfc_ngx__WEBPACK_IMPORTED_MODULE_13__["NFC"],
+            _ionic_native_nfc_ngx__WEBPACK_IMPORTED_MODULE_13__["Ndef"],
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
             _components_home_home_component__WEBPACK_IMPORTED_MODULE_15__["HomeComponent"],
@@ -637,12 +660,13 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "acceptedTask", function() { return acceptedTask; });
 class acceptedTask {
-    constructor(taskid, startlat, startlng, endlat, endlng, description, status, receiverid, routeid) {
+    constructor(taskid, startlat, startlng, endlat, endlng, title, description, status, receiverid, routeid) {
         this.taskid = taskid;
         this.startlat = startlat;
         this.startlng = startlng;
         this.endlat = endlat;
         this.endlng = endlng;
+        this.title = title;
         this.description = description;
         this.status = status;
         this.receiverid = receiverid;
@@ -822,6 +846,96 @@ AuthenticationComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"
 
 /***/ }),
 
+/***/ "./src/app/components/card/card.component.scss":
+/*!*****************************************************!*\
+  !*** ./src/app/components/card/card.component.scss ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvY2FyZC9jYXJkLmNvbXBvbmVudC5zY3NzIn0= */");
+
+/***/ }),
+
+/***/ "./src/app/components/card/card.component.ts":
+/*!***************************************************!*\
+  !*** ./src/app/components/card/card.component.ts ***!
+  \***************************************************/
+/*! exports provided: CardComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CardComponent", function() { return CardComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+
+
+const osrm_url = "https://v2202010130694129625.goodsrv.de:50/route/v1";
+let CardComponent = class CardComponent {
+    constructor() { }
+    ngOnInit() { }
+    ngAfterViewInit() {
+        /*  let wp = []
+          let lat = (this.task.startlat + this.task.endlat) / 2
+          let lng = (this.task.startlng + this.task.endlng) / 2
+          let map = new Map('' + this.task.taskid).setView([lat, lng], 11)
+      
+          tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map)
+      
+          wp.push(latLng(this.task.startlat, this.task.startlng))
+          wp.push(latLng(this.task.endlat, this.task.endlng))
+      
+          Routing.control({
+            routeWhileDragging: false,
+            show: false,
+            router: new Routing.OSRMv1({
+              serviceUrl: osrm_url
+            }),
+            addWaypoints: false,
+            plan: Routing.plan(wp, {
+              createMarker: function(j, waypoint) {
+                if (j == 0) {
+                  return marker(waypoint.latLng, {
+                    icon: new Icon({
+                      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png',
+                      iconSize: [25, 41],
+                      iconAnchor: [12, 41]
+                    }),
+                    draggable: false
+                  })
+                } else {
+                  return marker(waypoint.latLng, {
+                    icon: new Icon({
+                      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png',
+                      iconSize: [25, 41],
+                      iconAnchor: [12, 41]
+                    }),
+                    draggable: false
+                  })
+                }
+              }
+            })
+          }).addTo(map)*/
+    }
+};
+Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
+], CardComponent.prototype, "task", void 0);
+CardComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-card',
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./card.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/components/card/card.component.html")).default,
+        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./card.component.scss */ "./src/app/components/card/card.component.scss")).default]
+    })
+], CardComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/components/course/course.component.scss":
 /*!*********************************************************!*\
   !*** ./src/app/components/course/course.component.scss ***!
@@ -847,12 +961,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CourseComponent", function() { return CourseComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var src_app_service_http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/service/http.service */ "./src/app/service/http.service.ts");
+
 
 
 let CourseComponent = class CourseComponent {
-    constructor() { }
-    ngOnInit() { }
+    constructor(http) {
+        this.http = http;
+    }
+    ngOnInit() {
+        this.http.getFinishedTasks().subscribe(result => {
+            result.subscribe(tasks => {
+                this.tasks = tasks;
+                console.log(tasks);
+            });
+        });
+    }
 };
+CourseComponent.ctorParameters = () => [
+    { type: src_app_service_http_service__WEBPACK_IMPORTED_MODULE_2__["HttpService"] }
+];
 CourseComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-course',
@@ -947,7 +1075,7 @@ let HomeComponent = class HomeComponent {
             Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["tileLayer"])('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
             }).addTo(this.map);
-            this.http.getTasks().subscribe(result => {
+            this.http.getOpenTasks().subscribe(result => {
                 result.subscribe(tasks => {
                     this.data.openTasks = tasks;
                     this.showOpenTasks(this.data.openTasks);
@@ -1018,7 +1146,9 @@ let HomeComponent = class HomeComponent {
                 }
             });
             modal.onDidDismiss().then(data => {
-                this.acceptTask(data.data);
+                if (data) {
+                    this.acceptTask(data.data);
+                }
             });
             return yield modal.present();
         });
@@ -1033,9 +1163,15 @@ let HomeComponent = class HomeComponent {
                 }
             });
             modal.onDidDismiss().then(data => {
-                this.startRoute(data.data);
-                this.reloadAcceptedTasks(data.data);
-                this.routing = true;
+                if (data) {
+                    this.http.startRoute(data.data).subscribe(result => {
+                        result.subscribe(res => {
+                            this.startRoute(data.data);
+                            this.reloadAcceptedTasks(data.data);
+                            this.routing = true;
+                        });
+                    });
+                }
             });
             return yield modal.present();
         });
@@ -1050,7 +1186,9 @@ let HomeComponent = class HomeComponent {
                 }
             });
             modal.onDidDismiss().then(data => {
-                this.endRoute(data.data);
+                if (data) {
+                    this.endRoute(data.data);
+                }
             });
             return yield modal.present();
         });
@@ -1062,41 +1200,37 @@ let HomeComponent = class HomeComponent {
             if (position.coords.latitude != null) {
                 this.currentLocation = [position.coords.latitude, position.coords.longitude];
                 //Only for testing
-                let body;
+                /*let body
                 if (this.wp.length == 0) {
-                    this.wp.push(this.currentLocation);
-                    body = {
-                        routeid: this.data.routeId,
-                        lat: 48.151417,
-                        lng: 14.020848
-                    };
-                }
-                else if (this.wp.length == 1) {
-                    this.wp.push(this.currentLocation);
-                    body = {
-                        routeid: this.data.routeId,
-                        lat: 48.163901,
-                        lng: 14.033382
-                    };
-                }
-                else if (this.wp.length == 2) {
-                    this.wp.push(this.currentLocation);
-                    body = {
-                        routeid: this.data.routeId,
-                        lat: 48.170509,
-                        lng: 14.051609
-                    };
-                }
-                /*let body = {
-                  routeid: this.data.routeid,
-                  lat: position.coords.latitude,
-                  lng: position.coords.longitude
+                  this.wp.push(this.currentLocation)
+                  body = {
+                    routeid: this.data.routeId,
+                    lat: 48.151417,
+                    lng: 14.020848
+                  }
+                } else if (this.wp.length == 1) {
+                  this.wp.push(this.currentLocation)
+                  body = {
+                    routeid: this.data.routeId,
+                    lat: 48.163901,
+                    lng: 14.033382
+                  }
+                } else if (this.wp.length == 2) {
+                  this.wp.push(this.currentLocation)
+                  body = {
+                    routeid: this.data.routeId,
+                    lat: 48.170509,
+                    lng: 14.051609
+                  }
                 }*/
+                let body = {
+                    routeid: this.data.routeId,
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
                 //this.wp.push(this.currentLocation)
                 this.http.setLocation(body).subscribe(result => {
-                    result.subscribe(value => {
-                        console.log(value);
-                    });
+                    result.subscribe();
                 });
             }
         });
@@ -1201,7 +1335,7 @@ let HomeComponent = class HomeComponent {
         this.http.acceptTask(taskId).subscribe(result => {
             result.subscribe((data) => {
                 let task = this.data.openTasks.find(i => i.taskid == taskId);
-                let newTask = new src_app_class_acceptedTask__WEBPACK_IMPORTED_MODULE_11__["acceptedTask"](task.taskid, task.startlat, task.startlng, task.endlat, task.endlng, task.description, task.status, task.receiverid, data.insertId);
+                let newTask = new src_app_class_acceptedTask__WEBPACK_IMPORTED_MODULE_11__["acceptedTask"](task.taskid, task.startlat, task.startlng, task.endlat, task.endlng, task.title, task.description, task.status, task.receiverid, data.insertId);
                 this.data.acceptedTasks.push(newTask);
                 this.acceptedTaskMarker = [];
                 this.showAcceptedTasks(this.data.acceptedTasks);
@@ -1264,13 +1398,12 @@ let HomeComponent = class HomeComponent {
         this.changeTracking();
     }
     changeTracking() {
-        console.log(this.wp);
         this.tracking = !this.tracking;
-        console.log(this.tracking);
+        this.getLocation();
         if (this.tracking) {
             this.interval = setInterval(() => {
                 this.getLocation();
-            }, 6000);
+            }, 60000);
         }
         else {
             clearInterval(this.interval);
@@ -1428,9 +1561,11 @@ let TaskAcceptPage = class TaskAcceptPage {
         this.home = home;
     }
     ngOnInit() {
+        this.lat = (this.task.startlat + this.task.endlat) / 2;
+        this.lng = (this.task.startlng + this.task.endlng) / 2;
     }
     ionViewDidEnter() {
-        this.map = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Map"]("route").setView([48.1654, 14.0366], 11);
+        this.map = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Map"]("route").setView([this.lat, this.lng], 11);
         Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["tileLayer"])('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
         this.showRoute();
     }
@@ -1472,6 +1607,9 @@ let TaskAcceptPage = class TaskAcceptPage {
         }).addTo(this.map);
     }
     dismiss() {
+        this.modalCtrl.dismiss(null);
+    }
+    startTask() {
         this.modalCtrl.dismiss(this.task.taskid);
     }
 };
@@ -1539,9 +1677,11 @@ let TaskFinishPage = class TaskFinishPage {
         this.home = home;
     }
     ngOnInit() {
+        this.lat = (this.task.startlat + this.task.endlat) / 2;
+        this.lng = (this.task.startlng + this.task.endlng) / 2;
     }
     ionViewDidEnter() {
-        this.map = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Map"]("route").setView([48.1654, 14.0366], 11);
+        this.map = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Map"]("mapFinishTask").setView([this.lat, this.lng], 11);
         Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["tileLayer"])('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
         this.showRoute();
     }
@@ -1583,6 +1723,9 @@ let TaskFinishPage = class TaskFinishPage {
         }).addTo(this.map);
     }
     dismiss() {
+        this.modalCtrl.dismiss(null);
+    }
+    finishTask() {
         this.modalCtrl.dismiss(this.task);
     }
 };
@@ -1647,9 +1790,11 @@ let TaskInfoPage = class TaskInfoPage {
         this.http = http;
     }
     ngOnInit() {
+        this.lat = (this.task.startlat + this.task.endlat) / 2;
+        this.lng = (this.task.startlng + this.task.endlng) / 2;
     }
     ionViewDidEnter() {
-        this.map = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Map"]("route").setView([48.1654, 14.0366], 11);
+        this.map = new leaflet__WEBPACK_IMPORTED_MODULE_4__["Map"]("route").setView([this.lat, this.lng], 11);
         Object(leaflet__WEBPACK_IMPORTED_MODULE_4__["tileLayer"])('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
         this.showRoute();
     }
@@ -1691,6 +1836,9 @@ let TaskInfoPage = class TaskInfoPage {
         }).addTo(this.map);
     }
     dismiss() {
+        this.modalCtrl.dismiss(null);
+    }
+    acceptTask() {
         this.modalCtrl.dismiss(this.task.taskid);
     }
 };
@@ -1843,21 +1991,7 @@ let HttpService = class HttpService {
             return this.http.post(baseUrl + 'sender/savePosition', body, { headers });
         }));
     }
-    //überarbeiten
-    generateRoute(body) {
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then((result) => {
-            let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
-            //return this.http.post(baseUrl + 'sender/newRoute/', {headers}, body)
-        }));
-    }
-    endRoute(routeId) {
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then((result) => {
-            let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
-            return this.http.get(baseUrl + 'sender/endRoute/' + routeId, { headers });
-        }));
-    }
-    //überarbeiten
-    getTasks() {
+    getOpenTasks() {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then((result) => {
             let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
             /*return [new Task(1, 48.138435, 14.004268, 48.155429, 14.036327, 'Lieferung von 2 Kisten Bier (ZM und Hirter Privat Pils)', -1, 12),
@@ -1872,6 +2006,12 @@ let HttpService = class HttpService {
             return this.http.get(baseUrl + 'sender/getOpenTasksBySender', { headers });
         }));
     }
+    getFinishedTasks() {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then(result => {
+            let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
+            return this.http.get(baseUrl + 'sender/getFinishedTasksBySender', { headers });
+        }));
+    }
     acceptTask(taskId) {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then((result) => {
             let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
@@ -1883,6 +2023,12 @@ let HttpService = class HttpService {
             let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
             let routeid = this.data.acceptedTasks.find(i => i.taskid == taskId).routeid;
             return this.http.get(baseUrl + 'sender/startRoute/' + routeid, { headers });
+        }));
+    }
+    endRoute(routeId) {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["from"])(this.storage.get('token').then((result) => {
+            let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Authorization', 'Bearer ' + result);
+            return this.http.get(baseUrl + 'sender/endRoute/' + routeId, { headers });
         }));
     }
 };

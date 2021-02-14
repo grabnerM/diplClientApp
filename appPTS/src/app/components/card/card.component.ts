@@ -1,44 +1,30 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { HttpService } from 'src/app/service/http.service';
-import { Map, tileLayer, marker, Routing, Marker, latLng, Icon } from 'leaflet';
-import { Task } from 'src/app/class/Task';
+import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
+import { finishedTask } from 'src/app/class/finishedTask';
+import { Icon, latLng, Map, marker, Routing, tileLayer } from 'leaflet';
 
 const osrm_url = "https://v2202010130694129625.goodsrv.de:50/route/v1"
 
 @Component({
-  selector: 'app-task-info',
-  templateUrl: './task-info.page.html',
-  styleUrls: ['./task-info.page.scss'],
+  selector: 'app-card',
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.scss'],
 })
-export class TaskInfoPage implements OnInit {
+export class CardComponent implements OnInit, AfterViewInit {
 
-  @Input() task: Task
+  @Input()
+  public task: finishedTask
 
-  private map: Map
-  private lat
-  private lng
+  constructor() { }
 
-  constructor(
-    private modalCtrl: ModalController,
-    private http: HttpService
-  ) { }
+  ngOnInit() {}
 
-  ngOnInit() {
-    this.lat = (this.task.startlat + this.task.endlat) / 2
-    this.lng = (this.task.startlng + this.task.endlng) / 2
-  }
+  ngAfterViewInit() {
+  /*  let wp = []
+    let lat = (this.task.startlat + this.task.endlat) / 2
+    let lng = (this.task.startlng + this.task.endlng) / 2
+    let map = new Map('' + this.task.taskid).setView([lat, lng], 11)
 
-  ionViewDidEnter() {
-    this.map = new Map("route").setView([this.lat, this.lng], 11)
-
-    tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map)
-
-    this.showRoute()
-  }
-
-  showRoute() {
-    let wp = []
+    tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map)
 
     wp.push(latLng(this.task.startlat, this.task.startlng))
     wp.push(latLng(this.task.endlat, this.task.endlng))
@@ -73,14 +59,6 @@ export class TaskInfoPage implements OnInit {
           }
         }
       })
-    }).addTo(this.map);
-  }
-
-  dismiss() {
-    this.modalCtrl.dismiss(null)
-  }
-
-  acceptTask() {
-    this.modalCtrl.dismiss(this.task.taskid)
+    }).addTo(map)*/
   }
 }
