@@ -6,6 +6,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { CommonModule } from '@angular/common';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ReceiverAuthenticationComponent } from './components/receiver-authentication/receiver-authentication.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: AuthenticationComponent
+  },
+  {
+    path: 'receiverLogin',
+    component: ReceiverAuthenticationComponent
   },
   {
     path: 'home',
@@ -43,7 +48,8 @@ const routes: Routes = [
   {
     path: 'task-accept',
     loadChildren: () => import('./pages/task-accept/task-accept.module').then( m => m.TaskAcceptPageModule)
-  },  {
+  },
+  {
     path: 'task-finish',
     loadChildren: () => import('./pages/task-finish/task-finish.module').then( m => m.TaskFinishPageModule)
   }

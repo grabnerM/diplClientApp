@@ -31,7 +31,7 @@ export class AuthenticationComponent implements OnInit {
   ) { 
     this.loginPage = formBuilder.group({
       lEmail: ['', Validators.compose([Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])],
-      lPassword: ['', Validators.compose([Validators.required, Validators.pattern('^(?=.*)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')])]
+      lPassword: ['']
     })
 
     this.registerFirstPage = formBuilder.group({
@@ -96,6 +96,10 @@ export class AuthenticationComponent implements OnInit {
         this.router.navigate(['home'])
       }
     })
+  }
+
+  goToReceiverLogin() {
+    this.router.navigate(['receiverLogin'])
   }
 
   next() {

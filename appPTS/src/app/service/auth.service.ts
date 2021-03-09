@@ -25,6 +25,10 @@ export class AuthService {
     return this.http.post(baseUrl + 'authenticate/senderlogin', body, { responseType: 'text' })
   }
 
+  public receiverLogin(body) {
+    return 'test';
+  }
+
   public getUser() {
     let token = this.storage.get(TOKEN_KEY)
 
