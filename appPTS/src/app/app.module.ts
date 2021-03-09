@@ -20,15 +20,23 @@ import { HomeComponent } from './components/home/home.component';
 import { CourseComponent } from './components/course/course.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { CardComponent } from './components/card/card.component';
+import { ReceiverAuthenticationComponent } from './components/receiver-authentication/receiver-authentication.component';
+import { ReceiverHomeComponent } from './components/receiver-home/receiver-home.component';
+import { ReceiverCardComponent } from './components/receiver-card/receiver-card.component';
+import { TaskDetailComponent } from './components/task-detail/task-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent, 
     AuthenticationComponent,
+    ReceiverAuthenticationComponent,
     HomeComponent,
+    ReceiverHomeComponent,
     CourseComponent,
     SettingsComponent,
-    CardComponent
+    CardComponent,
+    ReceiverCardComponent,
+    TaskDetailComponent
   ],
   entryComponents: [
     AuthenticationComponent

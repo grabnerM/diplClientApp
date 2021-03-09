@@ -82,4 +82,12 @@ export class HttpService {
       return this.http.get(baseUrl + 'sender/endRoute/' + routeId, {headers})
     }))
   }
+
+  getReceiverTasks() {
+    return from(this.storage.get('token').then((result) => {
+      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
+
+      return this.http.get<Task[]>(baseUrl + 'receiver/getCreatedTasks/', {headers})
+    }))
+  }
 }

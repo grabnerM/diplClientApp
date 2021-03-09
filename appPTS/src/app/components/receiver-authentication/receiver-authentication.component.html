@@ -1,17 +1,25 @@
-<ion-card>
-  <ion-card-content>
-    <form [formGroup]="login">
-        <ion-item lines="none">
-            <ion-label position="stacked">Email</ion-label>
-            <ion-input formControlName="email" type="email" placeholder="Email" name="email"></ion-input>
-        </ion-item>
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Pantum</ion-title>
+    </ion-toolbar>
+</ion-header>
 
-        <ion-item lines="none">
-            <ion-label position="stacked">Password</ion-label>
-            <ion-input formControlName="password" type="password" placeholder="Password" name="password"></ion-input>
-        </ion-item>
+<ion-content class="ion-padding">
+    <ion-card>
+        <ion-card-content>
+            <form [formGroup]="loginPage">
+                <ion-item lines="none">
+                    <ion-label position="stacked">Email</ion-label>
+                    <ion-input formControlName="email" type="email" placeholder="Email" name="email"></ion-input>
+                </ion-item>
 
-        <ion-button (click)="login()"expand="block">Login</ion-button>
-    </form>
-  </ion-card-content>
-</ion-card>
+                <ion-item lines="none">
+                    <ion-label position="stacked">Password</ion-label>
+                    <ion-input formControlName="password" type="password" placeholder="Password" name="password"></ion-input>
+                </ion-item>
+
+                <ion-button (click)="login()" expand="block">Login</ion-button>
+            </form>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

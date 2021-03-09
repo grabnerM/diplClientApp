@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { sha512 } from 'js-sha512';
 import { AuthService } from 'src/app/service/auth.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-receiver-authentication',
@@ -33,12 +34,14 @@ export class ReceiverAuthenticationComponent implements OnInit {
       password: sha512(this.loginPage.controls['password'].value)
     }
 
-    /*this.auth.receiverLogin(body).subscribe( result => {
+    console.log(body)
+
+    this.auth.receiverLogin(body).subscribe( result => {
       if ( result ) {
         this.storage.set('token', result)
-        this.router.navigate(['home'])
+        this.router.navigate(['receiverHome'])
       }
-    })*/
+    })
   }
 
 }

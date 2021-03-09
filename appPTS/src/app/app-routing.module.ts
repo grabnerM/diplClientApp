@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { AuthGuard } from './guards/auth.guard';
+
+import { AuthenticationComponent } from './components/authentication/authentication.component';
+import { ReceiverAuthenticationComponent } from './components/receiver-authentication/receiver-authentication.component';
 import { HomeComponent } from './components/home/home.component';
+import { ReceiverHomeComponent } from './components/receiver-home/receiver-home.component';
 import { CourseComponent } from './components/course/course.component';
 import { SettingsComponent } from './components/settings/settings.component';
-import { CommonModule } from '@angular/common';
-import { AuthenticationComponent } from './components/authentication/authentication.component';
-import { AuthGuard } from './guards/auth.guard';
-import { ReceiverAuthenticationComponent } from './components/receiver-authentication/receiver-authentication.component';
+import { TaskDetailComponent } from './components/task-detail/task-detail.component';
 
 const routes: Routes = [
   {
@@ -25,6 +28,16 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'receiverHome',
+    component: ReceiverHomeComponent,
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: 'taskDetail',
+    component: TaskDetailComponent,
     canActivate: [ AuthGuard ]
   },
   {

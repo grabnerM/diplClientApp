@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Auftrag {{task.taskid}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-card-content>
+            <div id="taskDetail"></div>
+            <ion-item-divider>
+                <!--<ion-item>
+                <ion-label>
+                    State of Task
+                </ion-label>
+                <ion-label>
+                    {{task.status}}
+                </ion-label>
+            </ion-item>-->
+                {{task.status}}
+            </ion-item-divider>
+            <ion-item-divider>
+                <!--<ion-item>
+                Description
+            </ion-item><br> {{task.description}}-->
+                {{task.description}}
+            </ion-item-divider>
+            <!--INFO TEXT FÜR NFC EINFÜGEN + NFC FUNKTION EINBAUEN-->
+        </ion-card-content>
+    </ion-card>
+</ion-content>

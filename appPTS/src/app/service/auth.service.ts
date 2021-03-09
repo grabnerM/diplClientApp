@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   public receiverLogin(body) {
-    return 'test';
+    return this.http.post(baseUrl + 'authenticate/receiverlogin', body, { responseType: 'text' });
   }
 
   public getUser() {
