@@ -197,41 +197,60 @@ export class HomeComponent implements OnInit {
     const position = await Geolocation.getCurrentPosition()
     console.log(position)
     if (position.coords.latitude != null) {
-      this.currentLocation = [position.coords.latitude, position.coords.longitude]
+      //this.currentLocation = [position.coords.latitude, position.coords.longitude]
       //Only for testing
-      /*let body
+      let body
       if (this.wp.length == 0) {
         this.wp.push(this.currentLocation)
         body = {
           routeid: this.data.routeId,
-          lat: 48.151417,
-          lng: 14.020848
+          lat: 48.263159,
+          lng: 14.258552
         }
       } else if (this.wp.length == 1) {
         this.wp.push(this.currentLocation)
         body = {
           routeid: this.data.routeId,
-          lat: 48.163901,
-          lng: 14.033382
+          lat: 48.264988,
+          lng: 14.257523
         }
       } else if (this.wp.length == 2) {
         this.wp.push(this.currentLocation)
         body = {
           routeid: this.data.routeId,
-          lat: 48.170509,
-          lng: 14.051609
+          lat: 48.265587,
+          lng: 14.255188
         }
-      }*/
+      } else if (this.wp.length == 3) {
+        this.wp.push(this.currentLocation)
+        body = {
+          routeid: this.data.routeId,
+          lat: 48.267959,
+          lng: 14.253846
+        }
+      } else {
+        this.wp.push(this.currentLocation)
+        body = {
+          routeid: this.data.routeId,
+          lat: 48.268626,
+          lng: 14.252578
+        }
+      }
 
+      /*
       let body = {
         routeid: this.data.routeId,
         lat: position.coords.latitude,
         lng: position.coords.longitude
       }
+      */
 
       //this.wp.push(this.currentLocation)
       this.http.setLocation(body).subscribe( result => {
         result.subscribe()
+        if (this.tracking) {
+          this.updateRoute(body)
+        }
       })
     }
   }
@@ -335,6 +354,8 @@ export class HomeComponent implements OnInit {
     let task = this.data.acceptedTasks.find(i => i.taskid == taskId)
     let index = tasks.indexOf(task)
 
+    console.log(task)
+
     this.currentDrivingTask = task
     this.acceptedTaskMarker.forEach( marker => {
       this.map.removeLayer(marker)
@@ -361,6 +382,56 @@ export class HomeComponent implements OnInit {
         this.reloadOpenTasks(taskId)
       })
     })
+  }
+
+  updateRoute(body) {
+    let task = this.currentDrivingTask
+    let wp = []
+
+    wp.push(latLng(body.lat, body.lng))
+    wp.push(latLng(task.endlat, task.endlng))
+
+    let targetMarker = new Marker(wp[1], { 
+      icon: new Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41]
+      }), 
+      draggable: false
+    })
+
+    targetMarker.on('click', () => {
+      this.presentModalFinishTask(task)
+    })
+
+    this.map.removeControl(this.route)
+
+    this.route = Routing.control({
+      routeWhileDragging: false,
+      show: false,
+      router: new Routing.OSRMv1({
+        serviceUrl: osrm_url
+      }),
+      addWaypoints: false,
+      plan: Routing.plan(wp, {
+        createMarker: function(j, waypoint) {
+          if (j == 0) {
+            return marker(waypoint.latLng, { 
+              icon: new Icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-gold.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41]
+              }), 
+              draggable: false
+            })
+          } else {
+            return targetMarker
+          }
+        }
+      })
+    })
+
+    this.map.addControl(this.route)
   }
 
   startRoute(taskId) {
@@ -432,7 +503,7 @@ export class HomeComponent implements OnInit {
     if (this.tracking) {
       this.interval = setInterval(() => {
         this.getLocation()
-      }, 60000);
+      }, 8000);
     } else {
       clearInterval(this.interval);
     }

@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>Informations</ion-title>
+        <ion-title>Informationen</ion-title>
         <ion-buttons slot="primary">
             <ion-button (click)="dismiss()">
                 <ion-icon slot="icon-only" name="close"></ion-icon>
@@ -14,21 +14,32 @@
     <ion-card>
         <ion-card-content>
             <ion-item-divider>
-                <!--<ion-item>
-                    <ion-label>
-                        State of Task
-                    </ion-label>
-                    <ion-label>
-                        {{task.status}}
-                    </ion-label>
-                </ion-item>-->
-                {{task.status}}
+                <div id="orderStateLabelContainer">
+                    <div>
+                        <ion-label>
+                            STATUS DER BESTELLUNG
+                        </ion-label>
+                    </div>
+                    <div id="orderStateLabelColor">
+                        <ion-label>
+                            Auftrag ausstehend
+                        </ion-label>
+                    </div>
+                </div>
             </ion-item-divider>
             <ion-item-divider>
-                <!--<ion-item>
-                    Description
-                </ion-item><br> {{task.description}}-->
-                {{task.description}}
+                <div id="orderDescriptionLabelContainer">
+                    <div>
+                        <ion-label>
+                            BESCHREIBUNG
+                        </ion-label>
+                    </div>
+                    <div id="orderDescriptionLabelColor">
+                        <ion-label text-wrap>
+                            {{task.description}}
+                        </ion-label>
+                    </div>
+                </div>
             </ion-item-divider>
             <ion-button class="swipeButton" color="dark" fill="outline" shape="round" size="default" (click)="acceptTask()">
                 Auftrag annehmen

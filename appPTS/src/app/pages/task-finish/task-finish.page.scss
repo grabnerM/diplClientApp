@@ -1,0 +1,35 @@
+#route {
+    height: 30%;
+    z-index: 0;
+}
+
+ion-card {
+    text-align: center;
+}
+
+ion-list {
+    margin: auto;
+    text-align: center;
+    width: 100%;
+}
+
+ion-item-divider {
+    width: 90%;
+    text-align: center;
+}
+
+.swipeButton {
+    margin-top: 5%;
+    --border-width: 1px;
+}
+
+#orderStateLabelContainer, #orderDescriptionLabelContainer {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+#orderStateLabelColor, #orderDescriptionLabelColor {
+    color: black;
+    font-weight: bold;
+}
