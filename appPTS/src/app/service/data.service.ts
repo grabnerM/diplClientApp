@@ -1,5 +1,9 @@
+/*
+  Autor: Maximilian Grabner
+  Titel: DataService
+  Beschreibung: Zentraler Service zum Speichern von wichtigen Daten
+*/
 import { Injectable } from '@angular/core';
-import { Marker } from 'leaflet';
 import { acceptedTask } from '../class/acceptedTask';
 import { Task } from '../class/Task';
 

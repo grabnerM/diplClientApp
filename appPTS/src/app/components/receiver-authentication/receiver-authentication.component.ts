@@ -1,8 +1,14 @@
+/*
+  Autor: Maximilian Grabner
+  Titel: Auftraggeber-Login
+  Beschreibung: Diese Authentifizierung bietet dem Auftraggeber eine Login-Möglichkeit.
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { sha512 } from 'js-sha512';
-import { AuthService } from 'src/app/service/auth.service';
+import { AuthService } from '../../service/auth.service';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -28,13 +34,14 @@ export class ReceiverAuthenticationComponent implements OnInit {
 
   ngOnInit() {}
 
+  /**
+   * Logindaten auslesen und an Server schicken
+   */
   login() {
     let body = {
       email: this.loginPage.controls['email'].value,
       password: sha512(this.loginPage.controls['password'].value)
     }
-
-    console.log(body)
 
     this.auth.receiverLogin(body).subscribe( result => {
       if ( result ) {

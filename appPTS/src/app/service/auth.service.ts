@@ -1,3 +1,8 @@
+/*
+  Autor: Maximilian Grabner
+  Titel: Authentication Service
+  Beschreibung: Schnittstelle zur Authentication zwischen Server und Client
+*/
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -21,10 +26,20 @@ export class AuthService {
     private router: Router
   ) { }
 
+  /**
+   * Login 
+   * @param body Enthält Email und Passwort
+   * @returns 
+   */
   public login(body) {
     return this.http.post(baseUrl + 'authenticate/senderlogin', body, { responseType: 'text' })
   }
 
+  /**
+   * Receiver Login
+   * @param body Enthält Email und Passwort
+   * @returns 
+   */
   public receiverLogin(body) {
     return this.http.post(baseUrl + 'authenticate/receiverlogin', body, { responseType: 'text' });
   }
@@ -37,12 +52,20 @@ export class AuthService {
     return this.http.get<Sender>(baseUrl + 'sender/getUser', { headers })
   }
 
+  /**
+   * Log Out
+   */
   public logOut() {
     this.storage.remove(TOKEN_KEY).then(() => {
       this.router.navigateByUrl('/')
     })
   }
 
+  /**
+   * Register
+   * @param body Enthält alle Daten für die Registrierung
+   * @returns 
+   */
   public register(body) {
     return this.http.post(baseUrl + 'authenticate/createSender', body, { responseType: 'text' })
   }

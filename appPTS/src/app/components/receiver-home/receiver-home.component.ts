@@ -1,3 +1,9 @@
+/*
+  Autor: Maximilian Grabner
+  Titel: Auftraggeber Home
+  Beschreibung: Anzeigen aller offenen und akzeptierten Aufträge eines Auftraggebers.
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Task } from 'src/app/class/Task';
@@ -17,6 +23,9 @@ export class ReceiverHomeComponent implements OnInit {
     private router: Router
   ) { }
 
+  /**
+   * Abfrage aller offenen und akzeptierten Tasks eines Kunden
+   */
   ngOnInit() {
     this.http.getReceiverTasks().subscribe( result => {
       result.subscribe( tasks => {
@@ -25,6 +34,10 @@ export class ReceiverHomeComponent implements OnInit {
     })
   }
 
+  /**
+   * Übermitteln der Daten an die Detailansicht.
+   * @param task Task für die jeweilige Detailansicht
+   */
   showDetails(task) {
     this.router.navigate(['taskDetail', task])
   }

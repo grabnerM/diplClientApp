@@ -1,3 +1,10 @@
+/*
+  Autor: Maximilian Grabner
+  Titel: Home
+  Beschreibung: Die HomeComponent ist der Hauptbestandteil der App. Hier wird eine Karte mit den 
+    aktuellen Auftäge angezeigt, welche durch die Kuriere bearbeitet werden können. 
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Geolocation } from '@capacitor/core';
@@ -6,13 +13,14 @@ import { HttpService } from '../../service/http.service';
 import 'leaflet-routing-machine';
 import { DataService } from '../../service/data.service';
 import { ModalController, Platform, ToastController } from '@ionic/angular';
-import { TaskInfoPage } from 'src/app/pages/task-info/task-info.page';
-import { Task } from 'src/app/class/Task';
+import { TaskInfoPage } from '../../pages/task-info/task-info.page';
+import { Task } from '../../class/Task';
 import { NFC, Ndef } from '@ionic-native/nfc/ngx';
-import { acceptedTask } from 'src/app/class/acceptedTask';
-import { TaskAcceptPage } from 'src/app/pages/task-accept/task-accept.page';
-import { TaskFinishPage } from 'src/app/pages/task-finish/task-finish.page';
+import { acceptedTask } from '../../class/acceptedTask';
+import { TaskAcceptPage } from '../../pages/task-accept/task-accept.page';
+import { TaskFinishPage } from '../../pages/task-finish/task-finish.page';
 
+//URL für die Open Street Routing Machine
 const osrm_url = "https://v2202010130694129625.goodsrv.de:50/route/v1"
 
 @Component({
@@ -54,11 +62,19 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Anzeigen der Karte mit dem Mittelpunkt auf der aktuellen Position
+   * Alle offenen Tasks abfragen
+   * Alle angenommenen Tasks eines Kuriers abfragen
+   */
   async ionViewDidEnter() {
     const position = await Geolocation.getCurrentPosition()
     
+    
+    //Map setzen
     this.map = new Map("map").setView([position.coords.latitude, position.coords.longitude], 13)
     
+    //TilesLayer zu der Map hinzufügen, damit die Map angezeigt wird.
     tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'MapData @ <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
     }).addTo(this.map)
@@ -80,6 +96,9 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  /**
+   * NFC-Listener mit anschließender Verarbeitung und anzeige eines Toasts
+   */
   addListenNFC() {
     this.nfc.addNdefListener(() => {
     }, async (err) => {
@@ -133,6 +152,12 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  /**
+   * Bereitstellen eines Modals für das Annehmen eines Auftrags
+   * Verarbeitung des Events bei Annahme des Auftrags
+   * @param task Task, der angenommen wird
+   * @returns 
+   */
   async presentModalOpenTask(task: Task) {
     const modal = await this.modalController.create({
       component: TaskInfoPage,
@@ -151,6 +176,12 @@ export class HomeComponent implements OnInit {
     return await modal.present()
   }
 
+  /**
+   * Bereitstellen eines Modals für das Starten eines Auftrags
+   * Verarbeitung des Events bei Starten des Auftrags
+   * @param task Task, der gestartet wird
+   * @returns 
+   */
   async presentModalAcceptedTask(task: acceptedTask) {
     const modal = await this.modalController.create({
       component: TaskAcceptPage,
@@ -174,7 +205,13 @@ export class HomeComponent implements OnInit {
 
     return await modal.present()
   }
-
+  
+  /**
+   * Bereitstellen eines Modals für das Beenden eines Auftrags
+   * Verarbeitung des Events bei Beenden des Auftrags
+   * @param task Task, der beendet wird
+   * @returns 
+   */
   async presentModalFinishTask(task: acceptedTask) {
     const modal = await this.modalController.create({
       component: TaskFinishPage,
@@ -193,12 +230,17 @@ export class HomeComponent implements OnInit {
     return await modal.present()
   }
 
+  /**
+   * Schnittstelle zwischen dem GPS-Modul des Smartphone und der App
+   * Aktuelle Position wird abgefragt und anschließend an den Server geschickt
+   */
   async getLocation() {
     const position = await Geolocation.getCurrentPosition()
     console.log(position)
     if (position.coords.latitude != null) {
       //this.currentLocation = [position.coords.latitude, position.coords.longitude]
       //Only for testing
+      /*
       let body
       if (this.wp.length == 0) {
         this.wp.push(this.currentLocation)
@@ -236,15 +278,14 @@ export class HomeComponent implements OnInit {
           lng: 14.252578
         }
       }
-
-      /*
+      */
+      
       let body = {
         routeid: this.data.routeId,
         lat: position.coords.latitude,
         lng: position.coords.longitude
       }
-      */
-
+      
       //this.wp.push(this.currentLocation)
       this.http.setLocation(body).subscribe( result => {
         result.subscribe()
@@ -255,6 +296,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  /**
+   * Setzen von verschiedenen Icons als Start und Endpunkt
+   * Derzeit nur als Zwischenschritt für die Positionsabfrage
+   */
   async newLocation() {
     await this.getLocation()
 
@@ -297,6 +342,10 @@ export class HomeComponent implements OnInit {
     }*/
   }
 
+  /**
+   * Anzeigen aller offenen Aufträge und anschließende Bindung mittels Click-Event an das Modal
+   * @param tasks Alle aktuelle offenen Aufträge
+   */
   showOpenTasks(tasks) {  
     if (tasks != null) {
       tasks.forEach(task => {
@@ -315,6 +364,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  /**
+   * Anzeige aller angenommenen Aufträge und Bindung mittels Click-Event an das Modal
+   * @param tasks Alle akzeptierten Aufträge eines Kuriers
+   */
   showAcceptedTasks(tasks) {
     if (tasks != null) {
       tasks.forEach(task => {
@@ -333,6 +386,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  /**
+   * Bei dem Annehmen eines Auftrags muss der Auftrag aus der Liste der offenen Aufträge gelöscht werden.
+   * @param taskId Id des zu entferndenen Auftrags
+   */
   reloadOpenTasks(taskId) {
     let tasks = this.data.openTasks
     let task = this.data.openTasks.find(i => i.taskid == taskId)
@@ -349,12 +406,14 @@ export class HomeComponent implements OnInit {
     this.showOpenTasks(tasks)
   }
 
+  /**
+   * Bei dem Starten eines Auftrags muss der Auftrag aus der Liste der akzeptierten Aufträge gelöscht werden.
+   * @param taskId Id des gestarteten Auftrags
+   */
   reloadAcceptedTasks(taskId) {
     let tasks = this.data.acceptedTasks
     let task = this.data.acceptedTasks.find(i => i.taskid == taskId)
     let index = tasks.indexOf(task)
-
-    console.log(task)
 
     this.currentDrivingTask = task
     this.acceptedTaskMarker.forEach( marker => {
@@ -368,6 +427,10 @@ export class HomeComponent implements OnInit {
     this.showAcceptedTasks(tasks)
   }
 
+  /**
+   * Übermittelung der TaskId an den Server zur Annahme eines Auftrags
+   * @param taskId Id des Task
+   */
   acceptTask(taskId) {
     this.http.acceptTask(taskId).subscribe( result => {
       result.subscribe( (data: any) => {
@@ -384,6 +447,10 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  /**
+   * Aktualisierung der Route
+   * @param body Enthält die aktuelle Position
+   */
   updateRoute(body) {
     let task = this.currentDrivingTask
     let wp = []
@@ -434,6 +501,10 @@ export class HomeComponent implements OnInit {
     this.map.addControl(this.route)
   }
 
+  /**
+   * Bei Starten eines Auftrags wird die vorgeschlagenen Route angezeigt
+   * @param taskId Id des Tasks
+   */
   startRoute(taskId) {
     let task = this.data.acceptedTasks.find(i => i.taskid == taskId)
     this.data.routeId = task.routeid
@@ -484,6 +555,10 @@ export class HomeComponent implements OnInit {
     this.changeTracking()
   }
 
+  /**
+   * Beenden der aktuell gefahrenen Route
+   * @param task Aktuell ausgelieferter Task
+   */
   endRoute(task) {
     this.http.endRoute(task.routeid).subscribe( result => {
       result.subscribe( res => {
@@ -495,6 +570,9 @@ export class HomeComponent implements OnInit {
     this.changeTracking()
   }
   
+  /**
+   * Setzen eines Intervals für die regelmäßige Abfrage der Position
+   */
   changeTracking() {
     this.tracking = !this.tracking
 

@@ -1,9 +1,14 @@
+/*
+  Autor: Maximilian Grabner
+  Titel: FinishModal
+  Beschreibung: Dieses Modal dient dazu, einen Auftrag als abgeliefert zu markieren..
+*/
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { HttpService } from 'src/app/service/http.service';
+import { HttpService } from '../../service/http.service';
 import { Map, tileLayer, marker, Routing, Marker, latLng, Icon } from 'leaflet';
-import { acceptedTask } from 'src/app/class/acceptedTask';
-import { HomeComponent } from 'src/app/components/home/home.component';
+import { acceptedTask } from '../../class/acceptedTask';
+import { HomeComponent } from '../../components/home/home.component';
 
 const osrm_url = "https://v2202010130694129625.goodsrv.de:50/route/v1"
 
@@ -26,11 +31,17 @@ export class TaskFinishPage implements OnInit {
     private home: HomeComponent
   ) { }
 
+  /**
+   * Berechnung des Mittelpunkts der Strecke
+   */
   ngOnInit() {
     this.lat = (this.task.startlat + this.task.endlat) / 2
     this.lng = (this.task.startlng + this.task.endlng) / 2
   }
 
+  /**
+   * Setzen der Map
+   */
   ionViewDidEnter() {
     this.map = new Map("mapFinishTask").setView([this.lat, this.lng], 11)
 
@@ -39,6 +50,9 @@ export class TaskFinishPage implements OnInit {
     this.showRoute()
   }
 
+  /**
+   * Route anzeigen
+   */
   showRoute() {
     let wp = []
 
@@ -78,10 +92,16 @@ export class TaskFinishPage implements OnInit {
     }).addTo(this.map)
   }
 
+  /**
+   * Modal ohne Aktion schließen
+   */
   dismiss() {
     this.modalCtrl.dismiss(null)
   }
 
+  /**
+   * Task beenden und Modal schließen.
+   */
   finishTask() {
     this.modalCtrl.dismiss(this.task)
   }

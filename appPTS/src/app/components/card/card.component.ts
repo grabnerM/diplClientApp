@@ -1,5 +1,11 @@
+/*
+  Autor: Maximilian Grabner
+  Titel: Abgeschlossener Auftrag
+  Beschreibung: Diese Component ist mit der CourseComponent eng verknüpft. Sie zeigt einen einzelnen
+    erfüllten Auftag an.
+*/
 import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
-import { finishedTask } from 'src/app/class/finishedTask';
+import { finishedTask } from '../../class/finishedTask';
 import { Icon, latLng, Map, marker, Routing, tileLayer } from 'leaflet';
 
 const osrm_url = "https://v2202010130694129625.goodsrv.de:50/route/v1"

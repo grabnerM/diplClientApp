@@ -1,8 +1,13 @@
+/*
+  Autor: Maximilian Grabner
+  Titel: InfoModal
+  Beschreibung: Dieses Modal dient dazu, eines Auftrag anzunehmen.
+*/
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { HttpService } from 'src/app/service/http.service';
+import { HttpService } from '../../service/http.service';
 import { Map, tileLayer, marker, Routing, Marker, latLng, Icon } from 'leaflet';
-import { Task } from 'src/app/class/Task';
+import { Task } from '../../class/Task';
 
 const osrm_url = "https://v2202010130694129625.goodsrv.de:50/route/v1"
 
@@ -24,11 +29,17 @@ export class TaskInfoPage implements OnInit {
     private http: HttpService
   ) { }
 
+  /**
+   * Berechnen des Streckenmittelpunkts
+   */
   ngOnInit() {
     this.lat = (this.task.startlat + this.task.endlat) / 2
     this.lng = (this.task.startlng + this.task.endlng) / 2
   }
 
+  /**
+   * Setzen der Map
+   */
   ionViewDidEnter() {
     this.map = new Map("route").setView([this.lat, this.lng], 11)
 
@@ -37,6 +48,9 @@ export class TaskInfoPage implements OnInit {
     this.showRoute()
   }
 
+  /**
+   * Anzeigen der Route
+   */
   showRoute() {
     let wp = []
 
@@ -76,10 +90,16 @@ export class TaskInfoPage implements OnInit {
     }).addTo(this.map);
   }
 
+  /**
+   * Modal ohne Aktion schließen
+   */
   dismiss() {
     this.modalCtrl.dismiss(null)
   }
 
+  /**
+   * Task annehmen und Modal schließen
+   */
   acceptTask() {
     this.modalCtrl.dismiss(this.task.taskid)
   }

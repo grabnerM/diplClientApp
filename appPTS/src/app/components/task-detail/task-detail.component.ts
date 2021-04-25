@@ -1,8 +1,14 @@
+/*
+  Autor: Maximilian Grabner
+  Titel: Detailansicht
+  Beschreibung: Diese Component dient als Detailansicht für die Aufträge eines Auftraggebers.
+*/
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Task } from 'src/app/class/Task';
+import { Task } from '../../class/Task';
 import { Map, tileLayer, marker, Routing, Marker, latLng, Icon } from 'leaflet';
 
+//URL der Open Street Routing Machine
 const osrm_url = "https://v2202010130694129625.goodsrv.de:50/route/v1"
 
 @Component({
@@ -21,6 +27,9 @@ export class TaskDetailComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
+  /**
+   * Auslesen der Queryparameter
+   */
   ngOnInit() {
     this.route.params.subscribe( params => {
       this.task = new Task(Number(params.taskid), Number(params.startlat), Number(params.startlng), Number(params.endlat), Number(params.endlng), 
@@ -28,6 +37,9 @@ export class TaskDetailComponent implements OnInit {
     })  
   }
 
+  /**
+   * Setzen der Map auf den Mittelpunkt der Strecke
+   */
   ionViewDidEnter() {  
     this.lat = (this.task.startlat + this.task.endlat) / 2
     this.lng = (this.task.startlng + this.task.endlng) / 2
@@ -40,6 +52,9 @@ export class TaskDetailComponent implements OnInit {
 
   }
 
+  /**
+   * Anzeigen der Route
+   */
   showRoute() {
     let wp = []
 

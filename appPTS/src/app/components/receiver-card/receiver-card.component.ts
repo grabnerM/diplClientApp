@@ -1,5 +1,12 @@
+/*
+  Autor: Maximilian Grabner
+  Titel: Detailansicht für Auftraggeber
+  Beschreibung: Diese Component ist die Detailansicht aller Aufträge eines Auftraggebers. Sie steht
+    in Verbindung mit der ReceiverHomeComponent.
+*/
+
 import { Component, Input, OnInit } from '@angular/core';
-import { Task } from 'src/app/class/Task';
+import { Task } from '../../class/Task';
 
 @Component({
   selector: 'app-receiver-card',

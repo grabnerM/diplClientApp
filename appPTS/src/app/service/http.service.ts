@@ -1,3 +1,8 @@
+/*
+  Autor: Maximilian Grabner
+  Titel: HTTP Service
+  Beschreibung: Schnittstelle zwischen dem Server und dem Client
+*/
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
@@ -22,6 +27,11 @@ export class HttpService {
     private data: DataService
   ) { }
 
+  /**
+   * Position speichern
+   * @param body Enthält Latitude und Longitude
+   * @returns 
+   */
   setLocation(body) {
     return from(this.storage.get('token').then((result) => {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
@@ -30,6 +40,10 @@ export class HttpService {
     }))
   }
 
+  /**
+   * Abfrage aller offenen Aufträge
+   * @returns 
+   */
   getOpenTasks() {
     return from(this.storage.get('token').then((result) => {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
@@ -41,6 +55,10 @@ export class HttpService {
     }))
   }
 
+  /**
+   * Abfrage aller angenommenen Aufträge
+   * @returns 
+   */
   getAcceptedTasks() {
     return from(this.storage.get('token').then((result) => {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
@@ -49,6 +67,10 @@ export class HttpService {
     }))
   }
 
+  /**
+   * Abfrage aller abgeschlossenen Aufträge
+   * @returns 
+   */
   getFinishedTasks() {
     return from(this.storage.get('token').then( result => {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
@@ -57,6 +79,11 @@ export class HttpService {
     }))
   }
 
+  /**
+   * Task annehmen
+   * @param taskId Id des anzunehmenden Task
+   * @returns 
+   */
   acceptTask(taskId) {
     return from(this.storage.get('token').then((result) => {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
@@ -65,6 +92,11 @@ export class HttpService {
     }))
   }
 
+  /**
+   * Route starten
+   * @param taskId Id des Tasks 
+   * @returns 
+   */
   startRoute(taskId) {
     return from(this.storage.get('token').then((result) => {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
@@ -75,6 +107,11 @@ export class HttpService {
     }))
   }
 
+  /**
+   * Route beenden
+   * @param routeId Id der aktuellen Route 
+   * @returns 
+   */
   endRoute(routeId) {
     return from(this.storage.get('token').then((result) => {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)
@@ -83,6 +120,10 @@ export class HttpService {
     }))
   }
 
+  /**
+   * Abfrage aller Aufträge eines Auftraggebers
+   * @returns 
+   */
   getReceiverTasks() {
     return from(this.storage.get('token').then((result) => {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + result)

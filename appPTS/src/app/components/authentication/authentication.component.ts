@@ -1,3 +1,10 @@
+/*
+  Autor: Maximilian Grabner
+  Titel: Authentifizierung
+  Beschreibung: Diese Component bietet dem Kurier die Möglichkeit, einen Account zu erstellen
+    beziehungsweise sich anzumelden.
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
@@ -62,6 +69,9 @@ export class AuthenticationComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Auslesen der aktuellen Loginfelder und anschließende Übermittelung der Daten an den Server.
+   */
   login() {
     let body = {
       email: this.loginPage.controls['lEmail'].value,
@@ -76,6 +86,9 @@ export class AuthenticationComponent implements OnInit {
     })
   }
 
+  /**
+   * Auslesen der aktuellen Registerfelder und anschließende Übermittelung der Daten an den Server.
+   */
   register() {
     let body = {
       username: this.registerFirstPage.controls['username'].value,
@@ -98,6 +111,9 @@ export class AuthenticationComponent implements OnInit {
     })
   }
 
+  /**
+   * Navigation zu dem Auftraggeber-Login
+   */
   goToReceiverLogin() {
     this.router.navigate(['receiverLogin'])
   }
@@ -113,6 +129,11 @@ export class AuthenticationComponent implements OnInit {
     }
   }
 
+  /**
+   * Überprüfung, ob die eingegebenen Daten nicht den angegebenen Anforderungen entsprechen.
+   * @param formInput aktuelles zu überprüfendes Inputfield
+   * @returns True or False
+   */
   formInputIsRequired(formInput: string) {
     if (this.registerFirstPage.controls[formInput]) {
       if (this.registerFirstPage.controls[formInput].hasError('required')) {
@@ -123,6 +144,10 @@ export class AuthenticationComponent implements OnInit {
     return false;
   }
 
+  /**
+   * Zurücksetzten aller bisherigen Eingaben
+   * @param event 
+   */
   segmentChanged(event) {
     this.secondPage = false
 
